@@ -1,5 +1,5 @@
 #Requirements & Use Cases
---------------------------
+
 ###ความต้องการการทำงาน (Functional requirement)
 * แสดงสถานะต่างๆของห้องได้ในรูปแบบปฏิทิน
 * สามารถทำการจองห้องพักได้
@@ -9,6 +9,7 @@
 * เพิ่ม/ลบ/แก้ไข รายละเอียดของโรงแรม
 * จัดการข้อมูลส่วนตัว
 
+--------------------------
 ###ความต้องการที่ไม่ใช่หน้าที่ (Non-functional requirement)
 * รองรับผู้ใช้หลายคนพร้อมกัน
 * ทำงานได้เร็ว – มีประสิทธิภาพสูง
@@ -17,10 +18,11 @@
 * สามารถปรับปรุงแก้ไขระบบได้โดยง่าย
 
 --------------------------
-
 ###Use Case Diagram
 ![Use Case Diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/use%20case%20diagram.jpg)
+
 --------------------------
+
 ###Use Case Specification
 **ชื่อกรณี (use case name):** การจองห้องพัก (reservation)
 
@@ -106,9 +108,11 @@
 3-4. ดำเนินสถานการณ์หลัก (primary scenario) ต่อในขั้นตอนที่ 4.
 
 ###Activity diagrams
-**จัดการข้อมูลลูกค้า**
-![Activity diagram manage user profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-add-edit-delete-customer-profile.jpg)
---------------------------
-**ดูข้อมูลลูกค้า**
-![Activity diagram view customer profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-view-customer-profile.jpg)
 
+**จัดการข้อมูลลูกค้า**
+
+![Activity diagram manage user profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-add-edit-delete-customer-profile.jpg)
+
+**ดูข้อมูลลูกค้า**
+
+![Activity diagram view customer profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-view-customer-profile.jpg)

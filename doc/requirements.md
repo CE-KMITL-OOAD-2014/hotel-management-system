@@ -16,9 +16,11 @@
 * พร้อมใช้งานตลอดเวลา
 * สามารถปรับปรุงแก้ไขระบบได้โดยง่าย
 
+--------------------------
+
 ###Use Case Diagram
 ![Use Case Diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/use%20case%20diagram.jpg)
-
+--------------------------
 ###Use Case Specification
 **ชื่อกรณี (use case name):** การจองห้องพัก (reservation)
 
@@ -43,9 +45,11 @@
 
 4. ยืนยันการจอง
 
+5. จบการทำงาน
+
 **สถานการณ์อื่น  (alternate scenario) :**
 
-**เงื่อนไขที่ทำให้เกิดสถานการณ์อื่น (condition triggering  alternate flow scenario): **
+**เงื่อนไขที่ทำให้เกิดสถานการณ์อื่น (condition triggering  alternate flow scenario):**
 
   เงื่อนไขที่ 1: ห้องพักที่ลูกค้าต้องการถูกจองเต็มทุกห้องในวันที่ลูกค้าต้องการ
 
@@ -59,6 +63,11 @@
 
 2-3. ถ้าลูกค้าไม่ตกลงและไม่ต้องการจองห้องพัก ให้ถือว่าไม่มีการจองเกิดขึ้น
 
+2-4. จบการทำงาน
+
+--------------------------
+
+
 **ชื่อกรณี (use case name):** เพิ่มห้องพัก
 
 **วัตถุประสงค์  (use case purpose):** : ให้ผู้จัดการสามารถเพิ่มห้องพักของและใส่รายละเอียดต่างๆได้
@@ -67,7 +76,7 @@
 
 **ตัวแปรตาม (postconditions):** เพิ่มห้องพักพร้อมทั้งรายละเอียดของห้อง
 
-**ข้อจำกัด (limitations): **  ไม่สามารถเพิ่มห้องทีละหลายๆห้องที่มีรายละเอียดต่างกันพร้อมกันได้
+**ข้อจำกัด (limitations):**  ไม่สามารถเพิ่มห้องทีละหลายๆห้องที่มีรายละเอียดต่างกันพร้อมกันได้
 
 **สมมติฐาน (assumptions):**  ผู้จัดการทราบรายละเอียดทั้งหมดที่จำเป็นของห้องที่ต้องการเพิ่ม
 
@@ -80,10 +89,11 @@
 3. ใส่ประเภทของห้อง, ราคา, จำนวนเตียง, หมายเลขห้อง, ชั้นและรายละเอียดอื่นๆ
 
 4. ยืนยันการเพิ่มห้อง
+5. จบการทำงาน
 
-**สถานการณ์อื่น  (alternate scenario): **
+**สถานการณ์อื่น  (alternate scenario):**
 
-**เงื่อนไขที่ทำให้เกิดสถานการณ์อื่น (condition triggering  alternate flow scenario): **
+**เงื่อนไขที่ทำให้เกิดสถานการณ์อื่น (condition triggering  alternate flow scenario):**
 
 เงื่อนไขที่ 1: กรอกข้อมูลไม่ครบในขั้นตอนการเพิ่มห้องพัก
 
@@ -96,7 +106,9 @@
 3-4. ดำเนินสถานการณ์หลัก (primary scenario) ต่อในขั้นตอนที่ 4.
 
 ###Activity diagrams
+**จัดการข้อมูลลูกค้า**
 ![Activity diagram manage user profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-add-edit-delete-customer-profile.jpg)
-
+--------------------------
+**ดูข้อมูลลูกค้า**
 ![Activity diagram view customer profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-view-customer-profile.jpg)
 

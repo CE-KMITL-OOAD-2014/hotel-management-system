@@ -1,5 +1,12 @@
-#Requirements & Use Cases
+#ความต้องการและกรณีการใช้งาน (Requirements & Use Cases)
+###วิชา: Object-oriented Analysis and Design Fall 2014 @ KMITL  
+###ชื่อโปรเจค: ระบบบริหารจัดการโรงแรม
+###ชื่อกลุ่ม: Spades
+###รายชื่อสมาชิกในกลุ่ม:  
+1. นาย ณัฐกิจ ไพรสุวรรณา 55010350  
+2. นาย ณัฐนนท์ รุ่งประเสริฐ 55010362  
 
+--------------------------
 ###ความต้องการที่เป็นหน้าที่หลัก (Functional requirement)
 * แสดงสถานะต่างๆของห้องได้ในรูปแบบปฏิทิน
 * สามารถทำการจองห้องพักได้
@@ -18,12 +25,11 @@
 * สามารถปรับปรุงแก้ไขระบบได้โดยง่าย
 
 --------------------------
-###Use Case Diagram
-![Use Case Diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/use%20case%20diagram.jpg)
-
+###แผนภาพกรณีการใช้งาน (Use Case Diagram)
+![Use Case Diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/use%20case%20diagram.jpg)  
 --------------------------
 
-###Use Case Specification
+###รายละเอียดกรณีการใช้งาน (Use Case Specification)
 **ชื่อกรณี (Use case name):** การจองห้องพัก (reservation)
 
 **วัตถุประสงค์  (Use case purpose):**จองห้องโดยใช้พนักงานต้อนรับเป็นผู้ทำการเลือกห้องพักให้กับลูกค้าที่เข้าพักโดยการจองสามารถถูกยกเลิกแก้ไขได้เช่นกัน
@@ -46,10 +52,10 @@
 **สถานการณ์อื่น  (Alternate scenario) :**  
 **เงื่อนไขที่ทำให้เกิดสถานการณ์อื่น (Condition triggering  alternate flow scenario):**  
 เงื่อนไขที่ 1: ห้องพักที่ลูกค้าต้องการถูกจองเต็มทุกห้องในวันที่ลูกค้าต้องการ  
-1-1. พนักงานบอกลูกค้าว่าห้องที่ต้องการเต็ม  
+1-1. พนักงานแจ้งลูกค้าว่าห้องที่ต้องการเต็ม  
 1-2. เสนอห้องที่มีลักษณะและราคาใกล้เคียงกับความต้องการของลูกค้าและไม่ถูกจองในวันที่ลูกค้าต้องการ  
-2-1. ถ้าลูกค้าตกลง ให้ไปที่ ข้อ 2.  
-2-2. ถ้าลูกค้าไม่ตกแต่ต้องการจองห้องพัก ให้ไปที่ ข้อ 1-2.  
+2-1. ถ้าลูกค้าตกลงดำเนินสถานการณ์หลัก (Primary scenario) ต่อในขั้นตอนที่ 2.
+2-2. ถ้าลูกค้าไม่ตกลงแต่ต้องการจองห้องพัก ให้ไปที่ ข้อ 1-2.  
 2-3. ถ้าลูกค้าไม่ตกลงและไม่ต้องการจองห้องพัก ให้ถือว่าไม่มีการจองเกิดขึ้น  
 2-4. จบการทำงาน  
 
@@ -82,10 +88,10 @@
 3-3. ผู้จัดการกรอกรายละเอียดส่วนที่ขาดหาย  
 3-4. ดำเนินสถานการณ์หลัก (Primary scenario) ต่อในขั้นตอนที่ 4.  
 
-###Activity diagrams
+###แผนภาพการทำงาน (Activity diagrams)  
 
-**จัดการข้อมูลลูกค้า**  
-![Activity diagram manage user profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-add-edit-delete-customer-profile.jpg)
+**เพิ่มประวัติลูกค้า**  
+![Activity diagram add customer profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-add-customer-profile.jpg)
 
 **ดูข้อมูลลูกค้า**  
 ![Activity diagram view customer profile](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/act-view-customer-profile.jpg)

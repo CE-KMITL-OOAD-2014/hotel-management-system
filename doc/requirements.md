@@ -27,8 +27,8 @@
 --------------------------
 ###แผนภาพกรณีการใช้งาน (Use Case Diagram)
 ![Use Case Diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/use%20case%20diagram.jpg)  
---------------------------
 
+--------------------------
 ###รายละเอียดกรณีการใช้งาน (Use Case Specification)
 **ชื่อกรณี (Use case name):** การจองห้องพัก (reservation)
 
@@ -88,6 +88,7 @@
 3-3. ผู้จัดการกรอกรายละเอียดส่วนที่ขาดหาย  
 3-4. ดำเนินสถานการณ์หลัก (Primary scenario) ต่อในขั้นตอนที่ 4.  
 
+--------------------------
 ###แผนภาพการทำงาน (Activity diagrams)  
 
 **เพิ่มประวัติลูกค้า**  

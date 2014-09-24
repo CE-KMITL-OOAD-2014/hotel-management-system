@@ -15,18 +15,18 @@
 - ระบบบันทึกประวัติลูกค้าซึ่งจะบันทึก ชื่อ-นามสกุล, เพศ, เลขประจำตัวประชาชนหรือหมายเลขหนังสือเดินทาง,วัน เดือน ปีเกิดและสัญชาติ  
 
 --------------------------
-###Architecture
+###สถาปัตยกรรม(Architecture)  
 ![Application architecture](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/application-architecture.jpg)
 - ระบบจัดการห้อง บันทึกรายละเอียดต่างๆของห้องได้แก่ ราคา, ประเภท, เลขห้อง และเตียงเสริม  
 - ระบบจัดการสถานะห้อง บันทึกสถานะการเข้าพักของแต่ละห้องในแต่ละช่วงเวลาซึ่งสถานะอาจจะมี ว่าง, จอง, มีคนเข้าพัก และปิดซ่อมบำรุง โดยนำข้อมูลจากระบบจัดการห้อง  
 - ระบบจัดการแขก บันทึกขอมูลของแขกลงในฐานข้อมูล  
 - ระบบจัดการพนักงาน จำกัดสิทธ์ในการเข้าถึงและแก้ไขข้อมูลส่วนต่างๆของพนักงานแต่ละคน, บันทึกประวัติการทำงาน  
-- Room database เก็บข้อมูลจากระบบจัดการห้องและระบบจัดการสถานะห้อง  
-- Guest database เก็บข้อมูลจากระบบจัดการแขก  
-- Staff database เก็บข้อมูลส่วนตัวและประวัติการทำงานจากระบบจัดการพนักงาน	  
+- ฐานข้อมูลห้อง(Room database) เก็บข้อมูลจากระบบจัดการห้องและระบบจัดการสถานะห้อง  
+- ฐานข้อมูลแขก(Guest database) เก็บข้อมูลจากระบบจัดการแขก  
+- ฐานข้อมูลพนักงาน(Staff database) เก็บข้อมูลส่วนตัวและประวัติการทำงานจากระบบจัดการพนักงาน	  
 
 --------------------------
-###Component  
+###องค์ประกอบ(Component)  
 **ระบบจัดการห้อง**  
 - เพิ่มห้อง เพิ่มรายชื่อห้องและรายละเอียดประกอบด้วยราคา, ประเภท, เลขห้อง และเตียงเสริม  
 - แก้ไขรายละเอียดห้องที่สร้างไว้แล้ว  
@@ -49,20 +49,20 @@
 - จัดการสิทธิ์ของพนักงานในการดูและแก้ไขข้อมูลต่างๆ เช่น รายละเอียดแขก, สถานะห้อง  
 - ลบพนักงานออกจากระบบ  
 
-**Sequence diagram**
+**แผนภาพแสดงลำดับการทำงาน(Sequence diagram)**  
 **จองห้องพัก**  
 ![Sequence diagram reservation](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/sequence-diagram-reservation.jpg)
 **เพิ่มห้อง**  
 ![Sequence diagram add room](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/sequence-diagram-addroom.jpg)
 
 --------------------------
-###Domain classes
+###แผนภาพคลาส(Class diagram)
 ![Class diagram](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/class-diagram.jpg)
 
 --------------------------
-###Deployment 
+###การใช้งาน(Deployment)  
 
 --------------------------
-###Implementation Plan
+###แผนการพัฒนา(Implementation Plan)
 
 --------------------------

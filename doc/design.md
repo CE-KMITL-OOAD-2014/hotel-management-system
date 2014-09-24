@@ -62,8 +62,13 @@
 
 --------------------------
 ###การใช้งาน(Deployment)  
+- VM Ubuntu server LTS 14.04 IP address 23.101.31.234 
+- Laravel php Framework ที่ใช้พัฒนา  
+- Bootstrap เป็น Frontend Framework    
+- MySQL เป็นโปรแกรมที่ใช้ในการจัดการเกี่ยวกับฐานข้อมูล    
+- XAMPP Apache web server  เพื่อจำลองการทำงาน  
+- phpMyAdmin เป็นตัวช่วยจัดการฐานข้อมูล  
 
 --------------------------
 ###แผนการพัฒนา(Implementation Plan)
-
---------------------------
+![Implementation plan](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/implementation-plan.png)

@@ -10,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- CSS are placed here -->
-        {{ HTML::style('css/bootstrap.css') }}
+        {{ HTML::style('css/bootstrap.min.css') }}
         {{ HTML::style('css/bootstrap-theme.css') }}
 
         <style>
@@ -34,14 +34,15 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="#">Laravel</a>
+                    <a class="navbar-brand" href="#">Hotel management system</a>
                 </div>
                 <!-- Everything you want hidden at 940px or less, place within here -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{{ URL::to('') }}}">Home</a></li>
+                        <li><a href="{{{ URL::to('/') }}}">Home</a></li>
+                        <li><a href="{{{ URL::to('about') }}}">About</a></li>
                     </ul> 
-                </div>
+                </div>                
             </div>
         </div> 
 

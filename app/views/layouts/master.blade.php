@@ -3,15 +3,15 @@
     <head>
         <title>
             @section('title')
-            Laravel 4 - Tutorial
+            Hotel management system
             @show
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- CSS are placed here -->
-        {{ HTML::style('css/bootstrap.min.css') }}
-        {{ HTML::style('css/bootstrap-theme.css') }}
+        {{ HTML::style('css/bootstrap.css') }}
+
 
         <style>
         @section('styles')
@@ -24,27 +24,43 @@
 
     <body>
         <!-- Navbar -->
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        <div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Hotel management system</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href={{{ URL::to('') }}}>Home</a></li>
+      <li><a href=''>placeholder</a></li>
+      <li><a href=''>placeholder</a></li>
+      <li><a href=''>placeholder</a></li>
+      <li><a href={{{ URL::to('about') }}}>About</a></li>
+      <li class="dropdown">
+    </ul>
 
-                    <a class="navbar-brand" href="#">Hotel management system</a>
-                </div>
-                <!-- Everything you want hidden at 940px or less, place within here -->
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{{ URL::to('/') }}}">Home</a></li>
-                        <li><a href="{{{ URL::to('about') }}}">About</a></li>
-                    </ul> 
-                </div>                
-            </div>
-        </div> 
+    <form class="navbar-form navbar-left">
+      <input type="text" class="form-control col-lg-8" placeholder="Search">
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Link</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 
         <!-- Container -->
         <div class="container">

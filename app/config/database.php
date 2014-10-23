@@ -55,11 +55,11 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'forge',
-			'username'  => 'forge',
+			'database'  => 'Laravel',
+			'username'  => 'root',
 			'password'  => '',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
+			'charset'   => 'tis620',
+			'collation' => 'tis620_thai_ci',
 			'prefix'    => '',
 		),
 

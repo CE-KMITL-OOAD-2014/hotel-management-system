@@ -35,8 +35,12 @@
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-      <li><a href={{{ URL::to('') }}}>Home</a></li>
-      <li><a href=''>placeholder</a></li>
+      <li class="active"><a href={{{ URL::to('') }}}>Home</a></li>
+                        @if ( Auth::guest() )
+                            <li>{{ HTML::link('login', 'Login') }}</li>
+                        @else
+                            <li>{{ HTML::link('logout', 'Logout') }}</li>
+                        @endif
       <li><a href=''>placeholder</a></li>
       <li><a href=''>placeholder</a></li>
       <li><a href={{{ URL::to('about') }}}>About</a></li>

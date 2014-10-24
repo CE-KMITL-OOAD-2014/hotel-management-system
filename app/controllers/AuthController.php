@@ -93,7 +93,8 @@ class AuthController extends BaseController {
             'password' => Hash::make(Input::get('password')),
             'email' => Input::get('email')
                 ));
-            return Redirect::to('');
+            Auth::attempt($userdata);
+            return Redirect::to('')->with('success', 'You have successfully create account');
         }
         else
         // Something went wrong.

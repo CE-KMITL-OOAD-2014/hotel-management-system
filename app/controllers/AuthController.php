@@ -73,7 +73,7 @@ class AuthController extends BaseController {
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
             'username' => Input::get('username'),
-            'password' => Input::get('password'),
+            'password' => Hash::make(Input::get('password')),
             'email' => Input::get('email')
         );
                             $rules = array(
@@ -86,14 +86,11 @@ class AuthController extends BaseController {
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
-            user::create(array(
-            'name' => Input::get('name'),
-            'lastname' => Input::get('lastname'),
+            user::create($userdata);
+            Auth::attempt(array(
             'username' => Input::get('username'),
-            'password' => Hash::make(Input::get('password')),
-            'email' => Input::get('email')
-                ));
-            Auth::attempt($userdata);
+            'password' => Input::get('password')
+            ));
             return Redirect::to('')->with('success', 'You have successfully create account');
         }
         else

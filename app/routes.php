@@ -18,3 +18,5 @@ Route::get('about', 'AboutController@showAbout');
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
+Route::get('register','AuthController@showRegister');
+Route::post('register', 'AuthController@postRegister');

@@ -61,4 +61,39 @@ class AuthController extends BaseController {
         // Redirect to homepage
         return Redirect::to('')->with('success', 'You are logged out');
     }
+
+        public function showRegister()
+        {
+            return View::make('auth.register');
+        }
+
+        public function postRegister()
+        {
+                    $userdata = array(
+            'name' => Input::get('name'),
+            'lastname' => Input::get('lastname'),
+            'username' => Input::get('username'),
+            'password' => Input::get('password'),
+            'email' => Input::get('email')
+        );
+                            $rules = array(
+            'name' => 'Required',
+            'lastname' =>  'Required',
+            'username' =>  'Required',
+            'password' =>  'Required',
+            'email' =>  'Required'
+        );
+        $validator = Validator::make($userdata, $rules);
+        if ($validator->passes())
+        {
+            user::create(array(
+            'username' => Input::get('username'),
+            'password' => Hash::make(Input::get('password')),
+                ));
+            return Redirect::to('');
+        }
+        else
+        // Something went wrong.
+        return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
+        }
 }

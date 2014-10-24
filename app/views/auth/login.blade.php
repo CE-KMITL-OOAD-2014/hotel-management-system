@@ -33,10 +33,11 @@
         </div>
     </div>
 
-    <!-- Login button -->
+    <!-- Login & Register button -->
     <div class="control-group">
         <div class="controls">
             {{ Form::submit('Login', array('class' => 'btn')) }}
+            {{ HTML::link('register', 'Register') }}
         </div>
     </div>
 

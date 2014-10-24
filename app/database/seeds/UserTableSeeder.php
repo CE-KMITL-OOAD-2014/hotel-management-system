@@ -11,8 +11,11 @@ class UserTableSeeder extends Seeder {
 
         // add user using Eloquent
         $user = new User;
+        $user->name = 'admin_name';
+        $user->lastname = 'admin_lastname';
         $user->username = 'admin';
         $user->password = Hash::make('password');
+        $user->email = 'admin@hotel.com';
         $user->save();
 
         // alternativ to eloquent we can also use direct database-methods

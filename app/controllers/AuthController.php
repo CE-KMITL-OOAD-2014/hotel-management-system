@@ -79,16 +79,19 @@ class AuthController extends BaseController {
                             $rules = array(
             'name' => 'Required',
             'lastname' =>  'Required',
-            'username' =>  'Required',
+            'username' =>  'Required|unique:users',
             'password' =>  'Required',
-            'email' =>  'Required'
+            'email' =>  'Required|email|unique:users'
         );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
             user::create(array(
+            'name' => Input::get('name'),
+            'lastname' => Input::get('lastname'),
             'username' => Input::get('username'),
             'password' => Hash::make(Input::get('password')),
+            'email' => Input::get('email')
                 ));
             return Redirect::to('');
         }

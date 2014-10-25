@@ -41,7 +41,10 @@
                         @else
                             <li>{{ HTML::link('logout', 'Logout') }}</li>
                         @endif
-      <li><a href=''>placeholder</a></li>
+      
+      @if(!Auth::guest())
+      <li><a href=''>My hotel</a></li>
+    @endif
       <li><a href=''>placeholder</a></li>
       <li><a href={{{ URL::to('about') }}}>About</a></li>
       <li class="dropdown">

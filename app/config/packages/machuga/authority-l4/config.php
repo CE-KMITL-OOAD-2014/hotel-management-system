@@ -14,5 +14,8 @@ return array(
             if($user->hasRole('admin')){
                 $authority->allow('manage', 'all');
             }
+            if($user->hasRole('member')){
+            	$authority->allow('moderate','User');
+            }
         }
     );

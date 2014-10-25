@@ -10,9 +10,13 @@
 <p>This page is created using a master template.</p>
 <?php
 if(Auth::check()){
-if( Authority::can('manage', 'User') ) {
-	echo 'You are admin';
-    }else{echo 'You are normal user';}
-}else{echo 'You have not login yet.';}
+	if( Authority::can('manage', 'all') ) {
+		echo 'You are admin id:';
+		echo Auth::id();
+	}elseif (Authority::can('moderate', 'User')) {
+		echo 'You are member id:';
+		echo Auth::id();
+	}
+}
 ?>
 @stop

@@ -4,11 +4,13 @@ class HotelController extends BaseController {
 
 	public function showHotel()
 	{
-		return View::make('hotel.myhotel');
+		return View::make('hotel.myhotel')
+         ->with ('hotels',hotel::all());
 	}
 	public function showCreateHotel()
 	{
 		return View::make('hotel.create_hotel');
+
 	}
 
 	   public function postCreateHotel()

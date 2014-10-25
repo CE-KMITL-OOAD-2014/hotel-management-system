@@ -17,4 +17,15 @@
             {{ HTML::link('join_hotel', 'Join') }}
         </div>
     </div>
+    @foreach($hotels as $hotel)
+    	<li>{{ $hotel->name}}
+    	{{ $hotel->address}}
+    	{{ $hotel->tel}}
+ 
+       
+         {{ HTML::link('join_hotel', 'Join') }}
+       
+
+</li>
+    @endforeach
 @stop

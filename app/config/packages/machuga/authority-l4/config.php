@@ -9,6 +9,10 @@ return array(
             $authority->addAlias('manage', array('create', 'read', 'update', 'delete'));
             $authority->addAlias('moderate', array('read', 'update', 'delete'));
 
+
+        // If a user doesn't have any roles, we don't have to give him permissions so we can stop right here.
+        if(count($user->roles) == 0) return false;
+        
             //an example using the `hasRole` function, see below examples for more details
 
             if($user->hasRole('admin')){

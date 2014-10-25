@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@showWelcome');
 Route::get('about', 'AboutController@showAbout');
 Route::get('myhotel','HotelController@showHotel');
 Route::get('create_hotel','HotelController@showCreateHotel');
+Route::post('create_hotel','HotelController@postCreateHotel');
 // Authentication
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

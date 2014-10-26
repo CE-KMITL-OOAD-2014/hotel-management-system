@@ -34,10 +34,11 @@ class HotelController extends BaseController {
             hotel::create($userdata);
 
             // set defualt role to member
+            if(Authority::getCurrentUser()->hasRole('member')){
             $user = User::find(Auth::id());
             $user->roles()->detach(2);
             $user->roles()->attach(3);
-
+        }
             // Redirect to home with success message
             return Redirect::to('myhotel')->with('success', 'You have successfully create hotel');
         }

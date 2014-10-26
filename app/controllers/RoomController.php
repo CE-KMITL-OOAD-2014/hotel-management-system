@@ -43,5 +43,3 @@ class RoomController extends BaseController {
         }
 
     }
-
-

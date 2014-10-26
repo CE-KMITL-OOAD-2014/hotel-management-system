@@ -13,7 +13,7 @@
     <div class="control-group">
         <div class="controls">
 
-            {{ HTML::link('create_room', 'Create hotel') }}
+            {{ HTML::link('create_room', 'Create room') }}
             {{ HTML::link('edit_room', 'Edit room') }}
             {{ HTML::link('check_in', 'Check in') }}
             {{ HTML::link('check_out', 'Check out') }}

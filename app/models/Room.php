@@ -23,3 +23,4 @@ class Room extends Eloquent  {
 
 
 }
+	

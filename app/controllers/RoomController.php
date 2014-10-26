@@ -9,20 +9,20 @@ class RoomController extends BaseController {
 	}
 	public function showCreateRoom()
 	{
-		return View::make('room.create_myroom');
+		return View::make('room.create_room');
 
 	}
 
 	   public function postCreateRoom()
         {
                     $userdata = array(
-            'roomnumber.' => Input::get('roomnumber'),
+            'roomnumber' => Input::get('roomnumber'),
             'price' => Input::get('price'),
             'detail' => Input::get('detail'),
     
         );
                             $rules = array(
-            'roomnumber.' => 'Required|unique:rooms',
+            'roomnumber' => 'Required',
             'price' =>  'Required',
             'detail' =>  'Required',
          
@@ -35,11 +35,11 @@ class RoomController extends BaseController {
 
 
             // Redirect to home with success message
-            return Redirect::to('myhotel')->with('success', 'You have successfully create room');
+            return Redirect::to('room')->with('success', 'You have successfully create room');
         }
         else
         // Something went wrong.
-        return Redirect::to('myhotel')->withErrors($validator)->withInput(Input::except('fail'));
+        return Redirect::to('create_room')->withErrors($validator)->withInput(Input::except('fail'));
         }
 
     }

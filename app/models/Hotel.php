@@ -20,6 +20,10 @@ class Hotel extends Eloquent  {
 	
 	protected $fillable = array('name','address','tel');
 
+	    public function users()
+    {
+        return $this->belongsToMany('User','role_user');
+    }
 
 
 }

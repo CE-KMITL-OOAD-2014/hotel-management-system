@@ -43,7 +43,7 @@
                         @endif
       
       @if(!Auth::guest())
-      <li><a href=''>My hotel</a></li>
+      <li><a href={{{ URL::to('myhotel') }}}>My hotel</a></li>
     @endif
       <li><a href=''>placeholder</a></li>
       <li><a href={{{ URL::to('about') }}}>About</a></li>

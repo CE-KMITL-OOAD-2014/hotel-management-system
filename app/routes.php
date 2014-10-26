@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@showWelcome');
 Route::get('about', 'AboutController@showAbout');
+Route::get('myhotel','HotelController@showHotel');
+Route::get('create_hotel','HotelController@showCreateHotel');
 
 // Authentication & registration
 Route::get('login', 'AuthController@showLogin');

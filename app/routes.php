@@ -12,10 +12,16 @@
 */
 
 Route::get('/', 'HomeController@showWelcome');
+
 Route::get('about', 'AboutController@showAbout');
+
 Route::get('myhotel','HotelController@showHotel');
 Route::get('create_hotel','HotelController@showCreateHotel');
 Route::post('create_hotel','HotelController@postCreateHotel');
+
+Route::get('room','RoomController@showRoom');
+Route::post('create_room','RoomController@postCreateRoom');
+
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');

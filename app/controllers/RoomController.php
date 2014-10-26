@@ -4,8 +4,8 @@ class RoomController extends BaseController {
 
 	public function showRoom()
 	{
-		return View::make('room.myroom')
-         ->with ('rooms',hotel::all());
+		return View::make('room.room')
+         ->with ('rooms',room::all());
 	}
 	public function showCreateRoom()
 	{
@@ -16,14 +16,14 @@ class RoomController extends BaseController {
 	   public function postCreateRoom()
         {
                     $userdata = array(
-            'no.' => Input::get('no'),
+            'roomnumber.' => Input::get('roomnumber'),
             'price' => Input::get('price'),
             'detail' => Input::get('detail'),
     
         );
                             $rules = array(
-            'no.' => 'Required',
-            'price' =>  'Required'
+            'roomnumber.' => 'Required|unique:rooms',
+            'price' =>  'Required',
             'detail' =>  'Required',
          
         );
@@ -44,4 +44,4 @@ class RoomController extends BaseController {
 
     }
 
-}
+

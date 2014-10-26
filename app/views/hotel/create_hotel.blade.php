@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <!-- Last name -->
+    <!-- address -->
     <div class="control-group {{{ $errors->has('address') ? 'error' : '' }}}">
         {{ Form::label('address', 'Address', array('class' => 'control-label')) }}
         <div class="controls">
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <!-- username -->
+    <!-- telephon number -->
     <div class="control-group {{{ $errors->has('tel') ? 'error' : '' }}}">
         {{ Form::label('tel', 'Tel.', array('class' => 'control-label')) }}
         <div class="controls">

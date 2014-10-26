@@ -57,4 +57,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return false;
     }
+    public function hotels(){
+        return $this->belongsToMany('Hotel','hotel_user');
+    }
 }

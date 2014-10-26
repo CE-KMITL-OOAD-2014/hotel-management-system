@@ -45,5 +45,9 @@ class HotelController extends BaseController {
         // Something went wrong.
         return Redirect::to('myhotel')->withErrors($validator)->withInput(Input::except('password'));
         }
+        public function showJoinHotel()
+    {
+        return View::make('hotel.join_hotel');
+    }
 
 }

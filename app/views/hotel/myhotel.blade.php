@@ -17,7 +17,9 @@
             {{ HTML::link('join_hotel', 'Join') }}
         </div>
     </div>
-    @foreach($hotels as $hotel)
+<?php $users=User::find(Auth::id());?>
+
+    @foreach($users->hotels as $hotel)
     	<li>{{ HTML::link('myhotel/'.$hotel->id, $hotel->name ) }}
     	{{ $hotel->address}}
     	{{ $hotel->tel}}

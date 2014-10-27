@@ -32,7 +32,7 @@ class RoomController extends BaseController {
         {
             // Create user in database
             room::create($userdata);
-
+            $hotel=hotel::find(Auth::id());
             //Attach current hotel to newly room 
             // $user = Hotel::find(Auth::id());
             // $hotel = DB::table('rooms')->max('id');
@@ -40,7 +40,7 @@ class RoomController extends BaseController {
 
 
             // Redirect to home with success message
-            return Redirect::to('myhotel/{id}')->with('success', 'You have successfully create room');
+            return Redirect::to('myhotel/'.$hotel->id)->with('success', 'You have successfully create room');
         }
         else
         // Something went wrong.

@@ -44,6 +44,8 @@ class HotelController extends BaseController {
             $hotel = DB::table('hotels')->max('id');
             $user->hotels()->attach($hotel);
 
+        
+
 
             // Redirect to home with success message
             return Redirect::to('myhotel')->with('success', 'You have successfully create hotel');

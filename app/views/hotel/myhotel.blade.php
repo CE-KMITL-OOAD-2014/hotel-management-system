@@ -18,7 +18,7 @@
         </div>
     </div>
     @foreach($hotels as $hotel)
-    	<li>{{ HTML::link('myhotel/{id}', $hotel->name ) }}
+    	<li>{{ HTML::link('myhotel/'.$hotel->id, $hotel->name ) }}
     	{{ $hotel->address}}
     	{{ $hotel->tel}}
  

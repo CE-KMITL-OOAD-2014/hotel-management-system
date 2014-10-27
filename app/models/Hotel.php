@@ -24,6 +24,8 @@ class Hotel extends Eloquent  {
     {
         return $this->belongsToMany('User','role_user');
     }
-
+      public function rooms() {
+        return $this->belongsToMany('Room','room_hotel');
+    }
 
 }

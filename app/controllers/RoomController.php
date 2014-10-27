@@ -32,11 +32,11 @@ class RoomController extends BaseController {
         {
             // Create user in database
             room::create($userdata);
-            $hotel=hotel::find(Auth::id());
+
             //Attach current hotel to newly room 
-            // $user = Hotel::find(Auth::id());
-            // $hotel = DB::table('rooms')->max('id');
-            // $user->rooms()->attach($room);
+             $hotel= Hotel::find(Auth::id());
+             $room = DB::table('rooms')->max('id');
+             $hotel->rooms()->attach($room);
 
 
             // Redirect to home with success message

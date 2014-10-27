@@ -20,7 +20,9 @@ class Room extends Eloquent  {
 	
 	protected $fillable = array('roomnumber','price','detail');
 
-
+      public function hotels() {
+        return $this->belongTo('Hotel','room_hotel');
+    }
 
 }
 	

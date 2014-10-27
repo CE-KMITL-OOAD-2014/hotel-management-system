@@ -4,7 +4,7 @@ class RoomController extends BaseController {
 
 	public function showRoom()
 	{
-		return View::make('room.room',array('rooms'=>room::all()));
+		return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::find(Auth::id())));
          
 	}
 	public function showCreateRoom()
@@ -40,7 +40,7 @@ class RoomController extends BaseController {
 
 
             // Redirect to home with success message
-            return Redirect::to('room')->with('success', 'You have successfully create room');
+            return Redirect::to('myhotel/{id}')->with('success', 'You have successfully create room');
         }
         else
         // Something went wrong.

@@ -15,7 +15,6 @@ class CreateRoomHotelTable extends Migration {
 		Schema::create('room_hotel', function($table)
 		{
 			$table->increments('id');
-					 
             $table->integer('hotel_id')->unsigned();
             $table->integer('room_id')->unsigned();
 	

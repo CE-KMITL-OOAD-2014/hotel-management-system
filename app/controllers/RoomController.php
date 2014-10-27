@@ -34,7 +34,7 @@ class RoomController extends BaseController {
             room::create($userdata);
 
             //Attach current hotel to newly room 
-             $hotel= Hotel::find(Auth::id());
+             $hotel= hotel::find(Auth::id());
              $room = DB::table('rooms')->max('id');
              $hotel->rooms()->attach($room);
 

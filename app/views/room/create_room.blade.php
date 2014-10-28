@@ -6,6 +6,11 @@
 @stop
 
 @section('content')
+
+<?php
+//print 'hotel id ='.$hotel;
+?> <br>
+
 {{ Form::open(array('url' => 'create_room', 'class' => 'form-horizontal')) }}
 
     <!-- Roomnumber -->

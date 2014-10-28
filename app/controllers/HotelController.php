@@ -40,6 +40,7 @@ class HotelController extends BaseController {
             $user->roles()->detach(2);
             $user->roles()->attach(3);
         }
+        
             //Attatch current user to newly created hotel
             $user = User::find(Auth::id());
             $hotel = DB::table('hotels')->max('id');

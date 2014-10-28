@@ -2,18 +2,18 @@
 
 class RoomController extends BaseController {
 
-	public function showRoom()
-	{
-		return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all()));
+    public function showRoom($id)
+    {
+        return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
          
-	}
-	public function showCreateRoom()
-	{
-		return View::make('room.create_room',array('rooms'=>room::all(),'hotel'=>hotel::all()));
+    }
+    public function showCreateRoom($id)
+    {
+        return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$id));
 
-	}
+    }
 
-	   public function postCreateRoom()
+       public function postCreateRoom($id)
         {
                     $userdata = array(
             'roomnumber' => Input::get('roomnumber'),
@@ -34,7 +34,7 @@ class RoomController extends BaseController {
             room::create($userdata);
 
             //Attach current hotel to newly room 
-             $hotel= hotel::find(Auth::id());
+             $hotel= hotel::find($id);
              $room = DB::table('rooms')->max('id');
              $hotel->rooms()->attach($room);
 

@@ -7,11 +7,9 @@
 
 @section('content')
 
-<?php
-//print 'hotel id ='.$hotel;
-?> <br>
+<?php  echo "My hotel id is :".$hotel_id;?> <br>
 
-{{ Form::open(array('url' => 'create_room', 'class' => 'form-horizontal')) }}
+{{ Form::open(array('url' => 'create_room/'.$hotel_id, 'class' => 'form-horizontal')) }}
 
     <!-- Roomnumber -->
     <div class="control-group {{{ $errors->has('roomnumber') ? 'error' : '' }}}">

@@ -20,8 +20,8 @@ Route::get('create_hotel','HotelController@showCreateHotel');
 Route::post('create_hotel','HotelController@postCreateHotel');
 
 Route::get('myhotel/{id}','RoomController@showRoom');
-Route::get('create_room','RoomController@showCreateRoom');
-Route::post('create_room','RoomController@postCreateRoom');
+Route::get('create_room/{id}','RoomController@showCreateRoom');
+Route::post('create_room/{id}','RoomController@postCreateRoom');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

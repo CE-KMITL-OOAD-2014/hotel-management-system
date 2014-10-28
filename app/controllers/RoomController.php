@@ -7,13 +7,13 @@ class RoomController extends BaseController {
 		return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
          
 	}
-	public function showCreateRoom()
+	public function showCreateRoom($id)
 	{
-		return View::make('room.create_room',array('rooms'=>room::all()));
+		return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$id));
 
 	}
 
-	   public function postCreateRoom()
+	   public function postCreateRoom($id)
         {
                     $userdata = array(
             'roomnumber' => Input::get('roomnumber'),

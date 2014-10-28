@@ -2,14 +2,14 @@
 
 class RoomController extends BaseController {
 
-	public function showRoom($id)
+	public function showRoom()
 	{
-		return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
+		return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all()));
          
 	}
 	public function showCreateRoom()
 	{
-		return View::make('room.create_room',array('rooms'=>room::all()));
+		return View::make('room.create_room',array('rooms'=>room::all(),'hotel'=>hotel::all()));
 
 	}
 
@@ -34,7 +34,7 @@ class RoomController extends BaseController {
             room::create($userdata);
 
             //Attach current hotel to newly room 
-             $hotel= hotel::find($id);
+             $hotel= hotel::find(Auth::id());
              $room = DB::table('rooms')->max('id');
              $hotel->rooms()->attach($room);
 

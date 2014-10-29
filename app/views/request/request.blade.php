@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-:: My hotel
+:: My Staff
 @stop
 
 @section('content')
@@ -17,7 +17,4 @@
             {{ HTML::link('#', 'decline') }}
         </div>
     </div>
-
-
-
 @stop

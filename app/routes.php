@@ -24,6 +24,9 @@ Route::get('myhotel/{id}','RoomController@showRoom');
 Route::get('create_room/{id}','RoomController@showCreateRoom');
 Route::post('create_room/{id}','RoomController@postCreateRoom');
 
+Route::get('staff','StaffController@showStaff');
+Route::get('request','StaffController@showRequest');
+
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');

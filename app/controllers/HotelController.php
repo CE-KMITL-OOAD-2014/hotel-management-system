@@ -8,13 +8,15 @@ class HotelController extends BaseController {
 		return View::make('hotel.myhotel')
          ->with ('hotels',hotel::all());
 	}
+
+
 	public function showCreateHotel()
 	{
 		return View::make('hotel.create_hotel');
 
 	}
 
-	   public function postCreateHotel()
+	public function postCreateHotel()
         {
                     $userdata = array(
             'name' => Input::get('name'),
@@ -56,6 +58,18 @@ class HotelController extends BaseController {
         // Something went wrong.
         return Redirect::to('create_hotel')->withErrors($validator)->withInput(Input::except('password'));
         }
-       
+
+
+       public function joinHotel($id)
+    {
+        if(Authority::getCurrentUser()->hasRole('member')){
+        $user = User::find(Auth::id());
+        $hotel = hotel::find($id);
+        $user->hotels()->attach($hotel);
+        $user->roles()->detach(2);
+        $user->roles()->attach(4);
+        return Redirect::to('myhotel/'.$id)->with('success', 'You have successfully join hotel');
+    }
+    }
 
 }

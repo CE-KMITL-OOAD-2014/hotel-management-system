@@ -18,6 +18,7 @@ Route::get('about', 'AboutController@showAbout');
 Route::get('myhotel','HotelController@showHotel');
 Route::get('create_hotel','HotelController@showCreateHotel');
 Route::post('create_hotel','HotelController@postCreateHotel');
+Route::get('join_hotel/{id}','HotelController@joinHotel');
 
 Route::get('myhotel/{id}','RoomController@showRoom');
 Route::get('create_room/{id}','RoomController@showCreateRoom');

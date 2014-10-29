@@ -17,17 +17,25 @@
             {{ HTML::link('join_hotel', 'Join') }}
         </div>
     </div>
-<?php $users=User::find(Auth::id());?>
 
+
+<?php $users=User::find(Auth::id());?>
+@if(Authority::getCurrentUser()->hasRole('manager')||Authority::getCurrentUser()->hasRole('staff'))
     @foreach($users->hotels as $hotel)
     	<li>{{ HTML::link('myhotel/'.$hotel->id, $hotel->name ) }}
     	{{ $hotel->address}}
     	{{ $hotel->tel}}
- 
-       
-         {{ HTML::link('join_hotel', 'Join') }}
        
 
 </li>
     @endforeach
+@else
+@foreach($hotels as $hotel)
+        <li>{{$hotel->name }}
+        {{ $hotel->address}}
+        {{ $hotel->tel}}
+         {{ HTML::link('join_hotel/'.$hotel->id, 'Join') }}
+</li>
+    @endforeach
+@endif
 @stop

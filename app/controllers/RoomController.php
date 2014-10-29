@@ -13,7 +13,7 @@ class RoomController extends BaseController {
 
     }
 
-       public function postCreateRoom($id)
+    public function postCreateRoom($id)
         {
                     $userdata = array(
             'roomnumber' => Input::get('roomnumber'),

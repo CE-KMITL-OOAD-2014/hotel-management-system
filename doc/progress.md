@@ -52,7 +52,8 @@
 - สมัครเป็นstaff ของโรงแรมดังกล่าว
 - Manager ตอบรับการเป็นstaffของuserทั้ง16คน
 - Manager กำหนดสิทธิ์พนักงาน16คนแตกต่างกัน
-![Table staff test](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/table-staff-test.JPG)
+![Table staff test](https://github.com/CE-KMITL-OOAD-2014/hotel-management-system/blob/master/images/table-staff-test.JPG)  
+
 *สิ่งที่ต้องใช้ในการทดลอง*
 - ข้อมูลของโรมแรมในฐานข้อมูล  
 - ข้อมูลของผู้ใช้งานในฐานข้อมูล  

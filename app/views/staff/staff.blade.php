@@ -16,10 +16,16 @@
     	<li>{{ $hotel->name  }}</li>
     	@foreach($hotel->users as $user_id)
     	<li>{{ $user_id->name }}</li>
-
     	@endforeach
     @endforeach
-   @endif
+@elseif(Authority::getCurrentUser()->hasRole('staff'))
+ 		@foreach($user->hotels as $hotel)
+    	<li>{{ $hotel->name  }}</li>
+    	@foreach($hotel->users as $user_id)
+    	<li>{{ $user_id->name }}</li>
+    	@endforeach
+    	@endforeach
+@endif
     <!-- Login & Register button -->
     <div class="control-group">
         <div class="controls">

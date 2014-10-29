@@ -9,12 +9,15 @@
 <h1>This is  my staff</h1>
 <p>This page is created using a master template.</p>
 
-<?php $users=User::find(Auth::id());?>
+<?php $user=User::find(Auth::id());?>
+<?php $users=User::all();?>
 @if(Authority::getCurrentUser()->hasRole('manager'))
-    @foreach($users->hotels as $hotel)
-    	<li>{{ $hotel->name  }}
+    @foreach($user->hotels as $hotel)
+    	<li>{{ $hotel->name  }}</li>
+    	@foreach($hotel->users as $user_id)
+    	<li>{{ $user_id->name }}</li>
 
-</li>
+    	@endforeach
     @endforeach
    @endif
     <!-- Login & Register button -->

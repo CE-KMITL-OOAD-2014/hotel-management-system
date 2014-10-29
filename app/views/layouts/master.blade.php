@@ -41,9 +41,10 @@
       
       @if(!Auth::guest())
       <li><a href={{{ URL::to('myhotel') }}}>My hotel</a></li>
-    @endif
       <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
-         <li><a href={{{ URL::to('request') }}}>Request</a></li>
+      <li><a href={{{ URL::to('request') }}}>Request</a></li>
+    @endif
+
       <li><a href={{{ URL::to('about') }}}>About</a></li>
       <li class="dropdown">
     </ul>

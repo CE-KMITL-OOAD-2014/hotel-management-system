@@ -6,7 +6,9 @@ class StaffController extends BaseController {
 	{
 
 		return View::make('staff.staff')
-        ->with ('hotels',hotel::all());
+        ->with ('hotels',hotel::all())
+        ->with ('users',user::all());
+
          
 	}
 

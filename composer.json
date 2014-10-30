@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"machuga/authority-l4" : "dev-master"
+		"machuga/authority-l4" : "dev-master",
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [

@@ -10,7 +10,7 @@
 <p>This page is created using a master template.</p>
 
 <?php $user=User::find(Auth::id());?>
-<?php $users=User::all();?>
+
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($user->hotels as $hotel)
     	<li>{{ $hotel->name  }}</li>

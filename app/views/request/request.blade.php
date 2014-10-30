@@ -7,14 +7,26 @@
 
 @section('content')
 <h1>This is  request</h1>
-<p>This page is created using a master template.</p>
+
 
     <!-- Login & Register button -->
     <div class="control-group">
         <div class="controls">
+<?php $user=User::find(Auth::id());?>
 
-            {{ HTML::link('#', 'accept') }}
-            {{ HTML::link('#', 'decline') }}
+
+    @foreach($user->Hotels as $hotel)
+    	<li>{{ $hotel->name  }}</li>
+    	@foreach($hotel->requestUsers as $member)
+    	<li>
+    		{{ $member->name }}
+    		{{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'accept') }}
+            {{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'decline') }}
+        </li>
+    	@endforeach
+    @endforeach
+
+
         </div>
     </div>
 @stop

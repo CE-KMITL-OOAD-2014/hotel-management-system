@@ -26,6 +26,8 @@ Route::post('create_room/{id}','RoomController@postCreateRoom');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');
+Route::get('accept/{hotel}/{id}','StaffController@staffAccept');
+Route::get('decline/{hotel}/{id}','StaffController@staffDecline');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

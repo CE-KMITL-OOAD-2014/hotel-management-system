@@ -19,7 +19,7 @@ return array(
                 $authority->allow('manage', 'all');
             }
             if($user->hasRole('member')){
-            	$authority->allow('moderate','User');
+            	$authority->allow('join','Hotel');
             }
         }
     );

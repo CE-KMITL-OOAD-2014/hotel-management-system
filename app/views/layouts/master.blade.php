@@ -46,8 +46,10 @@
         @if(Authority::getCurrentUser()->hasRole('manager')) 
             <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
             <li><a href={{{ URL::to('request') }}}>Request</a></li>
+            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
             @elseif(Authority::getCurrentUser()->hasRole('staff'))
             <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
+            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
             @endif
         @endif
 

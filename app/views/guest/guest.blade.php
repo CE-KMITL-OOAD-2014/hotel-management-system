@@ -21,14 +21,14 @@
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($user->hotels as $hotel)
         <li>{{ $hotel->name  }}</li>
-        @foreach($hotel->users as $user_id)
+        @foreach($hotel->guests as $user_id)
         <li>{{ $user_id->name }}</li>
         @endforeach
     @endforeach
 @elseif(Authority::getCurrentUser()->hasRole('staff'))
     @foreach($user->hotels as $hotel)
         <li>{{ $hotel->name  }}</li>
-        @foreach($hotel->users as $user_id)
+        @foreach($hotel->guests as $user_id)
         <li>{{ $user_id->name }}</li>
         @endforeach
     @endforeach

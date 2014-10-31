@@ -30,8 +30,8 @@ Route::get('accept/{hotel}/{id}','StaffController@staffAccept');
 Route::get('decline/{hotel}/{id}','StaffController@staffDecline');
 
 Route::get('guest','guestController@showGuest');
-Route::get('guest','guestController@showCreateGuest');
-Route::post('guest','guestController@postCreateGuest');
+Route::get('create_guest','guestController@showCreateGuest');
+Route::post('create_guest','guestController@postCreateGuest');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

@@ -19,7 +19,22 @@
     	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname}}<br>
+        {{ $user_id->name ." ".$user_id->lastname}}
+<div class="checkbox-inline text-right">
+    <label class ="checkbox-inline text-right">
+      <input type="checkbox"> View room
+    </label>
+       <label class ="checkbox-inline text-right">
+      <input type="checkbox"> Edit room
+    </label>
+       <label class ="checkbox-inline text-right">
+      <input type="checkbox"> View guest
+    </label>
+       <label class ="checkbox-inline text-right">
+      <input type="checkbox"> Edit guest
+    </label>
+  </div>
+  <br>
         @endif
     	@endforeach
     @endforeach

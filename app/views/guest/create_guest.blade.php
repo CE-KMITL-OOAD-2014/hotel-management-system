@@ -6,7 +6,13 @@
 @stop
 
 @section('content')
-{{ Form::open(array('url' => 'create_guest', 'class' => 'form-horizontal')) }}
+
+<?php  
+$hotel = hotel::find($hotel_id);
+echo "My hotel  is ".$hotel->name;
+?> <br>
+
+{{ Form::open(array('url' => 'create_guest/'.$hotel_id, 'class' => 'form-horizontal')) }}
     <!-- Gender -->
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">
         {{ Form::label('gender', 'Gender', array('class' => 'control-label')) }}
@@ -78,7 +84,7 @@
             {{ $errors->first('passportNo') }}
         </div>
     </div>
-    
+
          <!-- citizen card number -->
     <div class="control-group {{{ $errors->has('citizenCardNo') ? 'error' : '' }}}">
         {{ Form::label('citizenCardNo', 'Citizen Card Number.', array('class' => 'control-label')) }}

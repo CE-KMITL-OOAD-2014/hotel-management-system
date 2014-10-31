@@ -5,19 +5,18 @@ class GuestController extends BaseController {
     public function showGuest()
     {
 
-        return View::make('guest.guest')
-         ->with ('guest',guest::all());
+        return View::make('guest.guest');
     }
 
 
-    public function showCreateGuest()
+    public function showCreateGuest($id)
     {
-        return View::make('guest.create_guest');
+        return View::make('guest.create_guest',array('hotel_id'=>$id));
 
     }
  
 
-    public function postCreateGuest()
+    public function postCreateGuest($id)
         {
                     $userdata = array(
             'gender' => Input::get('gender'),
@@ -28,7 +27,7 @@ class GuestController extends BaseController {
             'address' => Input::get('address'),
             'tel' => Input::get('tel'),
             'passportNo'=> Input::get('passportNo'),
-            'citizenCard'=>Input::get('citizenCard'),
+            'citizenCardNo'=>Input::get('citizenCard'),
         );
                     $rules = array(
             'gender'=>'Required',
@@ -39,7 +38,7 @@ class GuestController extends BaseController {
             'address' =>  'Required',
             'tel' =>  'Required',
             'passportNO' => 'Required',
-            'citizenCard' => 'Required',
+            'citizenCardNo' => 'Required',
          
         );
         $validator = Validator::make($userdata, $rules);
@@ -47,18 +46,17 @@ class GuestController extends BaseController {
         {
             // Create guest in database
             guest::create($userdata);
-
         
             //Attatch current user to newly created hotel
-           /* $user = User::find(Auth::id());
-            $hotel = DB::table('guests')->max('id');
-            $user->hotels()->attach($hotel);*/
+            $hotel = hotel::find($id);
+            $user = DB::table('guests')->max('id');
+            $hotel->guests()->attach($user);
 
         
 
 
             // Redirect to home with success message
-            return Redirect::to('myhotel')->with('success', 'You have successfully create guest');
+            return Redirect::to('guest')->with('success', 'You have successfully create guest');
         }
         else
         // Something went wrong.

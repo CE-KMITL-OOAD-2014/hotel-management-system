@@ -29,9 +29,9 @@ Route::get('request','StaffController@showRequest');
 Route::get('accept/{hotel}/{id}','StaffController@staffAccept');
 Route::get('decline/{hotel}/{id}','StaffController@staffDecline');
 
-Route::get('guest','guestController@showGuest');
-Route::get('create_guest','guestController@showCreateGuest');
-Route::post('create_guest','guestController@postCreateGuest');
+Route::get('guest','GuestController@showGuest');
+Route::get('create_guest/{id}','GuestController@showCreateGuest');
+Route::post('create_guest/{id}','GuestController@postCreateGuest');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

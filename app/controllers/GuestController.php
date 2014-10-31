@@ -2,10 +2,10 @@
 
 class HotelController extends BaseController {
 
-    public function showHotel()
+    public function showGuest()
     {
 
-        return View::make('hotel.myhotel')
+        return View::make('guest.guest')
          ->with ('hotels',hotel::all());
     }
 
@@ -68,14 +68,6 @@ class HotelController extends BaseController {
             $user->requestHotels()->attach($hotel);
             return Redirect::to('')->with('success', 'You have successfully request to join hotel');
         }
-       /* if(Authority::getCurrentUser()->hasRole('member')){
-        $user = User::find(Auth::id());
-        $hotel = hotel::find($id);
-        $user->hotels()->attach($hotel);
-        $user->roles()->detach(2);
-        $user->roles()->attach(4);
-        return Redirect::to('myhotel/'.$id)->with('success', 'You have successfully join hotel');
-    }*/
     }
 
 }

@@ -13,9 +13,14 @@
 
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($user->hotels as $hotel)
-    	<li>{{ $hotel->name  }}</li>
+    	<h3>{{ $hotel->name  }}</h3>
     	@foreach($hotel->users as $user_id)
-    	<li>{{ $user_id->name }}</li>
+        @if($user_id->hasRole('manager'))
+    	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
+        <b>Staff</b><br>
+        @elseif($user_id->hasRole('staff'))
+        {{ $user_id->name ." ".$user_id->lastname}}<br>
+        @endif
     	@endforeach
     @endforeach
 @elseif(Authority::getCurrentUser()->hasRole('staff'))

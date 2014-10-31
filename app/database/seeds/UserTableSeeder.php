@@ -37,6 +37,15 @@ class UserTableSeeder extends Seeder {
         $user->email = 'nattanon@hotel.com';
         $user->save();
         $user->roles()->attach(3);
+
+                $user = new User;
+        $user->name = 'Membername';
+        $user->lastname = 'Memberlastname';
+        $user->username = 'member';
+        $user->password = Hash::make('password');
+        $user->email = 'member@hotel.com';
+        $user->save();
+        $user->roles()->attach(2);
         // alternativ to eloquent we can also use direct database-methods
         /*
         User::create(array(

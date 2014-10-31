@@ -27,9 +27,10 @@
         {{ $room->price}}
         {{ $room->detail}}
         {{ $status->name}}
-        {{ HTML::link('edit_room', 'Edit room') }}
-        {{ HTML::link('check_in', 'Check in') }}
-        {{ HTML::link('check_out', 'Check out') }}
+            {{ HTML::link('empty','Empty')}}
+            {{ HTML::link('occupied', 'Occupied') }}
+            {{ HTML::link('reserved', 'Reserved') }}
+            {{ HTML::link('maintenance', 'Maintenance') }}
 </li>
         @endforeach
     @endforeach

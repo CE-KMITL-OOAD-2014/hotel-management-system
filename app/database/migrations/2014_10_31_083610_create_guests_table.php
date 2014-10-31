@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateGuestsTable extends Migration {
@@ -11,22 +11,19 @@ class CreateGuestsTable extends Migration {
 	 */
 	public function up()
 	{
-		chema::create('guests', function($table)
-		{
-			Schema::create('users', function($table){
+
+			Schema::create('guests', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('gender',255);
 			$table->string('nationality',255);
 			$table->string('name',255);
 			$table->string('lastname', 255);
 			$table->string('dateOfBirth',255);
-			$tsble->string('address',255);
-			$table->string('tel',255)->unique();
-			$table->string('passportNo',255)->unique();
-			$table->string('citizencard',255)->unique();
+			$table->string('address',255);
+			$table->string('tel',255);
+			$table->string('passportNo',255);
+			$table->string('citizencard',255);
 			$table->timestamps();
-
-		
 		});
 	}
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGuestsHotelTable extends Migration {
+class CreateGuestHotelTable extends Migration {
 
 	/**
 	 * Run the migrations.

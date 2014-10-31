@@ -1,6 +1,6 @@
     <?php
 
-class HotelController extends BaseController {
+class GuestController extends BaseController {
 
     public function showGuest()
     {
@@ -27,10 +27,8 @@ class HotelController extends BaseController {
             'dateOfBirth' => Input::get('dateOfBirth'),
             'address' => Input::get('address'),
             'tel' => Input::get('tel'),
-            'passportNo'=> Input::('passportNO'),
-            'citizenCard'=>Input::('citizenCard'),
-
-    
+            'passportNo'=> Input::get('passportNo'),
+            'citizenCard'=>Input::get('citizenCard'),
         );
                     $rules = array(
             'gender'=>'Required',
@@ -39,9 +37,9 @@ class HotelController extends BaseController {
             'lastname' =>'Required',
             'dateOfBirth'=>'Required',
             'address' =>  'Required',
-            'tel' =>  'Required|unique:guests',
-            'passportNO' => 'Required|unique:guests',
-            'citizenCard' => 'Required|unique:guests',
+            'tel' =>  'Required',
+            'passportNO' => 'Required',
+            'citizenCard' => 'Required',
          
         );
         $validator = Validator::make($userdata, $rules);
@@ -64,7 +62,7 @@ class HotelController extends BaseController {
         }
         else
         // Something went wrong.
-        return Redirect::to('create_guest')->withErrors($validator)->withInput(Input::except('idCard'));
+        return Redirect::to('create_guest')->withErrors($validator)->withInput(Input::except('fail'));
         }
 
 }

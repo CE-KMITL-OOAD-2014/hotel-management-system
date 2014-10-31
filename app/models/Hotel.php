@@ -20,16 +20,21 @@ class Hotel extends Eloquent  {
 	
 	protected $fillable = array('name','address','tel');
 
-	    public function users()
+	 public function users()
     {
         return $this->belongsToMany('User','hotel_user');
     }
-      public function rooms() {
+    public function rooms() 
+    {
         return $this->belongsToMany('Room','room_hotel');
     }
-       public function requestUsers()
+    public function requestUsers()
     {
         return $this->belongsToMany('User','request_hotel');
     }
+    public function guests()
+    {
+    	return $this->belongsToMany('Guest','guest_hotel');
+   	}
 
 }

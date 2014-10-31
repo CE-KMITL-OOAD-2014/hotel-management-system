@@ -29,7 +29,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function permissions() {
-        return $this->hasMany('Permission');
+        return $this->hasOne('Permission');
     }
 
     public function hasRole($key) {

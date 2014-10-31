@@ -27,7 +27,7 @@ class GuestController extends BaseController {
             'address' => Input::get('address'),
             'tel' => Input::get('tel'),
             'passportNo'=> Input::get('passportNo'),
-            'citizenCardNo'=>Input::get('citizenCard'),
+            'citizenCardNo'=>Input::get('citizenCardNo'),
         );
                     $rules = array(
             'gender'=>'Required',
@@ -37,7 +37,7 @@ class GuestController extends BaseController {
             'dateOfBirth'=>'Required',
             'address' =>  'Required',
             'tel' =>  'Required',
-            'passportNO' => 'Required',
+            'passportNo' => 'Required',
             'citizenCardNo' => 'Required',
          
         );
@@ -60,7 +60,7 @@ class GuestController extends BaseController {
         }
         else
         // Something went wrong.
-        return Redirect::to('create_guest')->withErrors($validator)->withInput(Input::except('fail'));
+        return Redirect::to('create_guest/'.$id)->withErrors($validator)->withInput(Input::except('fail'));
         }
 
 }

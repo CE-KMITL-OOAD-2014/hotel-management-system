@@ -18,7 +18,8 @@ class Guest extends Eloquent  {
 	 * @var array
 	 */
 	
-	protected $fillable = array('gender','nationality','name','lastname','DateOfBirth','address','tel','passportNo','citizencardNo');
+	protected $fillable = array('gender','nationality','name','lastname',
+		'dateOfBirth','address','tel','passportNo','citizenCardNo');
 
 	    public function hotels()
     {

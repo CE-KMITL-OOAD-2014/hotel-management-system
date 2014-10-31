@@ -15,6 +15,7 @@ class CreateStatusroomsTable extends Migration {
 		Schema::create('statusrooms', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('name');
 			$table->timestamps();
 		});
 	}

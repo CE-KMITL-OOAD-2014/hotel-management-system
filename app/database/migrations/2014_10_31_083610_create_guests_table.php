@@ -21,9 +21,9 @@ class CreateGuestsTable extends Migration {
 			$table->string('lastname', 255);
 			$table->string('dateOfBirth',255);
 			$tsble->string('address',255);
-			$table->string('telephoneNumber',255)->unique();
-			$table->string('passporNo',255);->unique();
-			$table->string('citizen card',255)->unique();
+			$table->string('tel',255)->unique();
+			$table->string('passportNo',255)->unique();
+			$table->string('citizencard',255)->unique();
 			$table->timestamps();
 
 		

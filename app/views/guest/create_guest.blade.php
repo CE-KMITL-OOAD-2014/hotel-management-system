@@ -50,11 +50,11 @@ echo "My hotel  is ".$hotel->name;
     </div>
 
     <!-- DateOfBirth -->
-    <div class="control-group {{{ $errors->has('DateOfBirth') ? 'error' : '' }}}">
-        {{ Form::label('DateOfBirth', 'Date Of Birth', array('class' => 'control-label')) }}
+    <div class="control-group {{{ $errors->has('dateOfBirth') ? 'error' : '' }}}">
+        {{ Form::label('dateOfBirth', 'Date Of Birth', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('DateOfBirth', Input::get('DateOfBirth')) }}
-            {{ $errors->first('DateOfBirth') }}
+            {{ Form::text('dateOfBirth', Input::get('dateOfBirth')) }}
+            {{ $errors->first('dateOfBirth') }}
         </div>
     </div>
 

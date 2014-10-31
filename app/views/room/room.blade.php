@@ -22,14 +22,15 @@
     </div>
     <?php $hotels=Hotel::find($hotel_id);?>
       @foreach($hotels->rooms as $room)
+        @foreach($room->statusrooms as $status)
         <li>{{ $room->roomnumber}}
         {{ $room->price}}
         {{ $room->detail}}
-
+        {{ $status->name}}
         {{ HTML::link('edit_room', 'Edit room') }}
         {{ HTML::link('check_in', 'Check in') }}
         {{ HTML::link('check_out', 'Check out') }}
 </li>
-    
+        @endforeach
     @endforeach
 @stop

@@ -1,5 +1,5 @@
 <?php
-class Role extends Eloquent {
+class Statusroom extends Eloquent {
 // public  $timestamps = false;
     public function rooms()
     {

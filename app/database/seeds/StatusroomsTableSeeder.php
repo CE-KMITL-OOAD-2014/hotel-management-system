@@ -7,22 +7,22 @@ class StatusroomsTableSeeder extends Seeder {
         Eloquent::unguard();
 
         // All existing roles are deleted !!!
-        DB::table('roles')->delete();
+        DB::table('statusrooms')->delete();
 
         // add role using Eloquent
-        $status = new Status;
+        $status = new Statusroom;
         $status->name = 'Empty';
         $status->save();
 
-        $status = new Status;
+        $status = new Statusroom;
         $status->name = 'Occupied';
         $status->save();
 
-        $status = new Status;
+        $status = new Statusroom;
         $status->name = 'Reserved';
         $status->save();
 
-        $status = new Status;
+        $status = new Statusroom;
         $status->name = 'Maintenance';
         $status->save(); 
 

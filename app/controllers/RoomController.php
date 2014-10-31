@@ -38,6 +38,11 @@ class RoomController extends BaseController {
              $room = DB::table('rooms')->max('id');
              $hotel->rooms()->attach($room);
 
+            //Attach current room to status room
+             $room= room::find($room);
+             $room->statusrooms()->attach(1);
+           
+
 
             // Redirect to home with success message
             return Redirect::to('myhotel/'.$hotel->id)->with('success', 'You have successfully create room');

@@ -9,6 +9,7 @@
 <h1>This is  Permission</h1>
 
 
+<?php $user=User::find(Auth::id());?>
 
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($user->hotels as $hotel)
@@ -37,6 +38,7 @@
         @endif
     	@endforeach
     @endforeach
+
 @endif
     <!-- Login & Register button -->
     <div class="control-group">

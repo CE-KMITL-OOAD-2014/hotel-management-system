@@ -4,6 +4,7 @@ class PermissionController extends BaseController {
 
 	public function setPermission($hotel_id,$member_id)
 	{
+		return View::make('permission.permission');
 		$member = User::find($member_id);
 		$hotel = Hotel::find($hotel_id);
 		$permission = new Permission;

@@ -25,7 +25,7 @@ echo $test->permissions->view_room;
     	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->user_id}}
+        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->user_id}}<br>
 <!-- <div class="checkbox-inline text-right">
     <label class ="checkbox-inline text-right">
       <input type="checkbox"> View room

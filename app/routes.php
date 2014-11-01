@@ -35,6 +35,8 @@ Route::post('create_guest/{id}','GuestController@postCreateGuest');
 
 Route::get('permission/{hotel}/{id}','PermissionController@showSetPermission');
 Route::post('permission/{hotel}/{id}','PermissionController@postSetPermission');
+Route::get('edit_permission/{hotel}/{id}','PermissionController@showEditPermission');
+Route::post('edit_permission/{hotel}/{id}','PermissionController@postEditPermission');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

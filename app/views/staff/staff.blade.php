@@ -12,7 +12,9 @@
 <?php $user=User::find(Auth::id());?>
 <?php
 $test = User::find(4);
-$test->permissions->view_room = 0;
+$test->permissions->view_room = 1;
+$test->permissions->change_status_room = 1;
+$test->permissions->save();
 echo $test->permissions->view_room;
 ?>
 
@@ -24,17 +26,14 @@ echo $test->permissions->view_room;
     	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->change_status_room." ".$user_id->permissions->view_guest." ".$user_id->permissions->create_guest}}<br>
+        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->change_status_room." ".$user_id->permissions->view_guest." ".$user_id->permissions->create_guest}}
+        {{ HTML::link('edit_permission/'.$hotel->id.'/'.$user_id->id, 'Edit permissions') }}
+        <br>
  
         @endif
     	@endforeach
     @endforeach
 
 @endif
-    <!-- Login & Register button -->
-    <div class="control-group">
-        <div class="controls">
 
-        </div>
-    </div>
 @stop

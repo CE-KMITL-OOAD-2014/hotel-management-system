@@ -11,7 +11,6 @@
 
 <?php 
 $user=User::find(Auth::id());
-echo $staff_id;
       ?>
 
 @if(Authority::getCurrentUser()->hasRole('manager'))
@@ -21,6 +20,7 @@ echo $staff_id;
         {{ $staff_id->name ." ".$staff_id->lastname." "}}<br>
 
         <b>Set Permission</b><br>
+        {{ Form::open(array('url' => 'permission/'.$hotel_id.'/'.$staff_id, 'class' => 'form-horizontal')) }}
  <div  class="checkbox-inline text-left">
     <label class ="checkbox-inline text-right">
       <input type="checkbox"> View room

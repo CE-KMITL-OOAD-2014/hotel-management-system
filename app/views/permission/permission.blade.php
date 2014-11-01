@@ -51,4 +51,5 @@ $user=User::find(Auth::id());
 
         </div>
     </div>
+    {{ Form::close() }}
 @stop

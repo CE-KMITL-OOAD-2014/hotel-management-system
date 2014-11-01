@@ -2,11 +2,11 @@
 
 @section('title')
 @parent
-:: My Staff
+:: Permission
 @stop
 
 @section('content')
-<h1>This is  my staff</h1>
+<h1>This is  Permission</h1>
 <p>This page is created using a master template.</p>
 
 <?php $user=User::find(Auth::id());?>
@@ -26,28 +26,31 @@ echo $test->permissions->view_room;
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
         {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->user_id}}<br>
- <div class="checkbox-inline text-right">
+<!-- <div class="checkbox-inline text-right">
     <label class ="checkbox-inline text-right">
       <input type="checkbox"> View room
     </label>
-    <br> 
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> Edit room
     </label>
-    <br> 
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> View guest
     </label>
-    <br> 
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> Edit guest
     </label>
   </div>
-  <br> 
+  <br> -->
         @endif
     	@endforeach
     @endforeach
-
+@elseif(Authority::getCurrentUser()->hasRole('staff'))
+ 	@foreach($user->hotels as $hotel)
+    	<li>{{ $hotel->name  }}</li>
+    	@foreach($hotel->users as $user_id)
+    	<li>{{ $user_id->name }}</li>
+    	@endforeach
+    @endforeach
 @endif
     <!-- Login & Register button -->
     <div class="control-group">

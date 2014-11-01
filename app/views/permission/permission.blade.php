@@ -9,36 +9,41 @@
 <h1>This is  Permission</h1>
 
 
-<?php $user=User::find(Auth::id());?>
+<?php 
+$user=User::find(Auth::id());
+echo $staff_id;
+      ?>
 
 @if(Authority::getCurrentUser()->hasRole('manager'))
-    @foreach($user->hotels as $hotel)
-    	<h3>{{ $hotel->name  }}</h3>
-    	@foreach($hotel->users as $user_id)
-        @if($user_id->hasRole('manager'))
-    	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
-        <b>Staff</b><br>
-        @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->user_id}}<br>
- <div class="checkbox-inline text-right">
+    	<h3>{{ $hotel_id->name  }}</h3>
+
+        <b>Staff Detail</b><br>
+        {{ $staff_id->name ." ".$staff_id->lastname." "}}<br>
+
+        <b>Set Permission</b><br>
+ <div  class="checkbox-inline text-left">
     <label class ="checkbox-inline text-right">
       <input type="checkbox"> View room
     </label>
+    <br>
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> Edit room
     </label>
+    <br>
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> View guest
     </label>
+    <br>
        <label class ="checkbox-inline text-right">
       <input type="checkbox"> Edit guest
     </label>
   </div>
   <br> 
-        @endif
-    	@endforeach
-    @endforeach
-
+    <div class="control-group">
+        <div class="controls">
+            {{ Form::submit('Submit', array('class' => 'btn')) }}
+        </div>
+    </div>
 @endif
     <!-- Login & Register button -->
     <div class="control-group">

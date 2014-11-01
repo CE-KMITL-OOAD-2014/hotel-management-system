@@ -33,8 +33,8 @@ Route::get('guest','GuestController@showGuest');
 Route::get('create_guest/{id}','GuestController@showCreateGuest');
 Route::post('create_guest/{id}','GuestController@postCreateGuest');
 
-Route::get('permission/{hotel}/{id}','PermissionController@setPermission');
-Route::post('permission/{hotel}/{id}','PermissionController@postPermission');
+Route::get('permission/{hotel}/{id}','PermissionController@showSetPermission');
+Route::post('permission/{hotel}/{id}','PermissionController@postSetPermission');
 
 Route::get('login', 'AuthController@showLogin');
 Route::post('login', 'AuthController@postLogin');

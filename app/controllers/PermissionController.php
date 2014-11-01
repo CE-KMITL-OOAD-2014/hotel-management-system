@@ -16,13 +16,14 @@ class PermissionController extends BaseController {
 	 {
 	 	$permission = new Permission;
         $permission->user_id = $member_id;
-        $permission->view_room = 1;
-        $permission->change_status_room = 1;
-        $permission->view_guest = 1;
-        $permission->create_guest = 1;
+        $permission->view_room = Input::get('view_room');
+        $permission->change_status_room = Input::get('change_status_room');;
+        $permission->view_guest = Input::get('view_guest');;
+        $permission->create_guest = Input::get('create_guest');;
         $permission->save();
 
-	return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully set'.$member->name.' permission.');
+        $user = User::find($member_id);
+	return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully set '.$user->name.' permission.');
             // Redirect to home with success message
         //    return Redirect::to('myhotel/'.$hotel->id)->with('success', 'You have successfully set permission');
         
@@ -32,11 +33,4 @@ class PermissionController extends BaseController {
         
 
     }
-
-
-
-
-
-	
-
 }

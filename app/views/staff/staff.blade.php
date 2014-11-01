@@ -13,7 +13,6 @@
 <?php
 $test = User::find(4);
 $test->permissions->view_room = 0;
-$test->permissions->save();
 echo $test->permissions->view_room;
 ?>
 
@@ -25,7 +24,7 @@ echo $test->permissions->view_room;
     	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->user_id}}<br>
+        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->change_status_room." ".$user_id->permissions->view_guest." ".$user_id->permissions->create_guest}}<br>
  
         @endif
     	@endforeach

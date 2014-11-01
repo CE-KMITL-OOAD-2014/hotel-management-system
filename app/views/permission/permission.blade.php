@@ -17,39 +17,42 @@ $user=User::find(Auth::id());
     	<h3>{{ $hotel_id->name  }}</h3>
 
         <b>Staff Detail</b><br>
-        {{ $staff_id->name ." ".$staff_id->lastname." "}}<br>
+        {{ $staff_id->name ." ".$staff_id->lastname." ".$staff_id->id}}<br>
 
         <b>Set Permission</b><br>
-        {{ Form::open(array('url' => 'permission/'.$hotel_id.'/'.$staff_id, 'class' => 'form-horizontal')) }}
- <div  class="checkbox-inline text-left">
-    <label class ="checkbox-inline text-right">
-      <input type="checkbox"> View room
-    </label>
-    <br>
-       <label class ="checkbox-inline text-right">
-      <input type="checkbox"> Edit room
-    </label>
-    <br>
-       <label class ="checkbox-inline text-right">
-      <input type="checkbox"> View guest
-    </label>
-    <br>
-       <label class ="checkbox-inline text-right">
-      <input type="checkbox"> Edit guest
-    </label>
+{{ Form::open(array('url' => 'permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
+ <div class="checkbox">
+<li>
+{{ Form::hidden('view_room', false) }}
+{{ Form::checkbox('view_room',true,'',array('id'=>'checkbox1'))}}
+{{ Form::label('checkbox1','View Room',array('class'=>'')) }}
+</li>
+
+<li>
+{{ Form::hidden('change_status_room', false) }}
+{{ Form::checkbox('change_status_room',true,'',array('id'=>'checkbox2')) }}
+{{ Form::label('checkbox2','Change room status',array('class'=>'')) }}
+</li>
+
+<li>
+{{ Form::hidden('view_guest', false) }}
+{{ Form::checkbox('view_guest',true,'',array('id'=>'checkbox3'))}}
+{{ Form::label('checkbox3','View guest',array('class'=>''))}}
+</li>
+
+<li>
+{{ Form::hidden('create_guest', false) }}
+{{ Form::checkbox('create_guest',true,'',array('id'=>'checkbox4')) }}
+{{ Form::label('checkbox4','Create guest',array('class'=>'')) }}
+</li>
   </div>
-  <br> 
+ 
     <div class="control-group">
         <div class="controls">
             {{ Form::submit('Submit', array('class' => 'btn')) }}
         </div>
     </div>
 @endif
-    <!-- Login & Register button -->
-    <div class="control-group">
-        <div class="controls">
 
-        </div>
-    </div>
     {{ Form::close() }}
 @stop

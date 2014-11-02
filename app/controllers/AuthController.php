@@ -109,4 +109,12 @@ class AuthController extends BaseController {
     public function showEditProfile(){
         return View::make('auth.edit_profile');
     }
+    public function postEditProfile(){
+        $user =User::find(Auth::id());
+        $user->name = Input::get('name');
+        $user->lastname = Input::get('lastname');
+        $user->email = Input::get('email');
+        $user->save();
+    return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
+    }
 }

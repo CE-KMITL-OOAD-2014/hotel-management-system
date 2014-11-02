@@ -35,22 +35,15 @@
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href={{{ URL::to('') }}}>Home</a></li>
+      <li><a href={{{ URL::to('') }}}>Home</a></li>
 
-                     
-      
       @if(!Auth::guest())
       <li><a href={{{ URL::to('myhotel') }}}>My hotel</a></li>
-     
-      <?php $users=User::find(Auth::id());?>
-        @if(Authority::getCurrentUser()->hasRole('manager')) 
             <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
+            @if(Authority::can('create','staff')) 
             <li><a href={{{ URL::to('request') }}}>Request</a></li>
-            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
-            @elseif(Authority::getCurrentUser()->hasRole('staff'))
-            <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
-            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
             @endif
+            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
         @endif
 
       <li><a href={{{ URL::to('about') }}}>About</a></li>

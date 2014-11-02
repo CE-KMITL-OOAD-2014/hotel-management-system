@@ -43,3 +43,5 @@ Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('register','AuthController@showRegister');
 Route::post('register', 'AuthController@postRegister');
+Route::get('edit_profile','AuthController@showEditProfile');
+Route::post('edit_profile','AuthController@postEditProfile');

@@ -31,19 +31,15 @@ class RoomController extends BaseController {
         if ($validator->passes())
         {
             // Create user in database
-            room::create($userdata);
+            $new_room = room::create($userdata);
 
             //Attach current hotel to newly room 
              $hotel= hotel::find($id);
-             $room = DB::table('rooms')->max('id');
-             $hotel->rooms()->attach($room);
+             $hotel->rooms()->attach($new_room);
 
-            //Attach current room to status room
-             $room= room::find($room);
-             $room->statusrooms()->attach(1);
+            //Set new_room status to empty(1)
+             $new_room->statusrooms()->attach(1);
            
-
-
             // Redirect to home with success message
             return Redirect::to('myhotel/'.$hotel->id)->with('success', 'You have successfully create room');
         }

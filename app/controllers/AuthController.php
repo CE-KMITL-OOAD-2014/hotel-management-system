@@ -87,7 +87,9 @@ class AuthController extends BaseController {
         if ($validator->passes())
         {
             // Create user in database
-            user::create($userdata);
+            $new_user = user::create($userdata);
+            // set defualt role to member
+            $new_user->roles()->attach(2);
 
             // logged user in
             Auth::attempt(array(
@@ -95,9 +97,7 @@ class AuthController extends BaseController {
             'password' => Input::get('password')
             ));
 
-            // set defualt role to member
-            $user = User::find(Auth::id());
-            $user->roles()->attach(2);
+            
 
             // Redirect to home with success message
             return Redirect::to('')->with('success', 'You have successfully create account');

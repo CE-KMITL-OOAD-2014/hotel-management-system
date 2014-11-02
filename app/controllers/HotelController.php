@@ -34,7 +34,7 @@ class HotelController extends BaseController {
         if ($validator->passes())
         {
             // Create hotel in database
-            hotel::create($userdata);
+            $new_hotel =  hotel::create($userdata);
 
             //Change role member to manager
             if(Authority::getCurrentUser()->hasRole('member')){
@@ -45,11 +45,7 @@ class HotelController extends BaseController {
         
             //Attatch current user to newly created hotel
             $user = User::find(Auth::id());
-            $hotel = DB::table('hotels')->max('id');
-            $user->hotels()->attach($hotel);
-
-        
-
+            $user->hotels()->attach($new_hotel);
 
             // Redirect to home with success message
             return Redirect::to('myhotel')->with('success', 'You have successfully create hotel');

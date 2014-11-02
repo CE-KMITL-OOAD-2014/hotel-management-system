@@ -45,15 +45,11 @@ class GuestController extends BaseController {
         if ($validator->passes())
         {
             // Create guest in database
-            guest::create($userdata);
+            $new_guest =  guest::create($userdata);
         
-            //Attatch current user to newly created hotel
+            //Attatch new guest to hotel
             $hotel = hotel::find($id);
-            $user = DB::table('guests')->max('id');
-            $hotel->guests()->attach($user);
-
-        
-
+            $hotel->guests()->attach($new_guest);
 
             // Redirect to home with success message
             return Redirect::to('guest')->with('success', 'You have successfully create guest');

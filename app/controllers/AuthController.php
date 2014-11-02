@@ -106,4 +106,7 @@ class AuthController extends BaseController {
         // Something went wrong.
         return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
         }
+    public function showEditProfile(){
+        return View::make('auth.edit_profile');
+    }
 }

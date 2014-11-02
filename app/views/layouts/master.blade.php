@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+    @section('head')
+
+    @show
         <title>
             @section('title')
             Hotel management system
@@ -11,8 +14,6 @@
 
         <!-- CSS are placed here -->
         {{ HTML::style('css/bootstrap.css') }}
-
-
         <style>
         @section('styles')
             body {
@@ -78,10 +79,9 @@
             @yield('content')
 
         </div>
-
-        <!-- Scripts are placed here -->
-        {{ HTML::script('js/jquery-1.11.1.min.js') }}
-        {{ HTML::script('js/bootstrap.min.js') }}
-
+    @section('js')
+    {{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('js/jquery-1.11.1.min.js')}}
+    @show
     </body>
 </html>

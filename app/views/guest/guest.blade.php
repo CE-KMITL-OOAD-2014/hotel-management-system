@@ -18,7 +18,10 @@
             {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
         </li>
         @foreach($hotel->guests as $user_id)
-        <li>{{ $user_id->name }}</li>
+        <li>
+            {{ $user_id->name }}
+            {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
+        </li>
         @endforeach
     @endforeach
 @elseif(Authority::getCurrentUser()->hasRole('staff'))

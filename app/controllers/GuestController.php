@@ -4,7 +4,6 @@ class GuestController extends BaseController {
 
     public function showGuest()
     {
-
         return View::make('guest.guest');
     }
 

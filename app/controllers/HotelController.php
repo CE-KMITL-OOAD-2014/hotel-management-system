@@ -58,7 +58,7 @@ class HotelController extends BaseController {
 
        public function joinHotel($id)
     {
-        if(Authority::can('join','Hotel')){
+        if(Authority::can('join','hotel')){
             $user = User::find(Auth::id());
             $hotel = hotel::find($id);
             $user->requestHotels()->attach($hotel);

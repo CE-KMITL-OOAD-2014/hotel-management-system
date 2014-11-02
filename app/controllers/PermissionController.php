@@ -43,6 +43,6 @@ class PermissionController extends BaseController {
         $user->permissions->view_guest = Input::get('view_guest');
         $user->permissions->create_guest = Input::get('create_guest');
         $user->permissions->save();
-    return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully set '.$user->name.' permission.');
+    return Redirect::to('staff')->with('success', 'You have successfully set '.$user->name.' permission.');
     }
 }

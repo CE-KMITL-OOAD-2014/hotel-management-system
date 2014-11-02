@@ -10,13 +10,6 @@
 <p>This page is created using a master template.</p>
 
 <?php $user=User::find(Auth::id());?>
-<?php
-$test = User::find(4);
-$test->permissions->view_room = 1;
-$test->permissions->change_status_room = 1;
-$test->permissions->save();
-echo $test->permissions->view_room;
-?>
 
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($user->hotels as $hotel)

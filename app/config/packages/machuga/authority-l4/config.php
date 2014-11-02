@@ -18,8 +18,11 @@ return array(
             if($user->hasRole('admin')){
                 $authority->allow('manage', 'all');
             }
+            if($user->hasRole('manager')){
+            	$authority->allow('manage','staff');
+            }
             if($user->hasRole('member')){
-            	$authority->allow('join','Hotel');
+                $authority->allow('join','hotel');
             }
         }
     );

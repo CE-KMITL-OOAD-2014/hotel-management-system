@@ -13,7 +13,7 @@
 <?php 
 $user=User::find(Auth::id());
 ?>
-{{ Form::open(array('url' => 'edit_profile', 'class' => 'form-horizontal')) }}
+{{ Form::open(array('url' => 'edit_user', 'class' => 'form-horizontal')) }}
 
     <!-- Name -->
     <div class="control-group {{{ $errors->has('name') ? 'error' : '' }}}">

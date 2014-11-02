@@ -58,5 +58,23 @@ class GuestController extends BaseController {
         // Something went wrong.
         return Redirect::to('create_guest/'.$id)->withErrors($validator)->withInput(Input::except('fail'));
         }
+    public function showEditGuest($id){
+        return View::make('guest.edit_guest')
+        ->with('guest',guest::find($id));
+    }
+    public function postEditGuest($id){
+        $guest = guest::find($id);
+        $guest->gender = Input::get('gender');
+        $guest->nationality = Input::get('nationality');
+        $guest->name = Input::get('name');
+        $guest->lastname = Input::get('lastname');
+        $guest->dateOfBirth = Input::get('dateOfBirth');
+        $guest->address = Input::get('address');
+        $guest->tel = Input::get('tel');
+        $guest->passportNo = Input::get('passportNo');
+        $guest->citizenCardNo = Input::get('citizenCardNo');
+        $guest->save();
+    return Redirect::to('guest')->with('success', 'You have successfully edit '.$guest->name.' guest.');
+    }
 
 }

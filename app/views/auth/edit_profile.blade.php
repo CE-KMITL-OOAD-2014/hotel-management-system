@@ -10,16 +10,14 @@
 <div class="page-header">
     <h2>Edit profile page</h2>
 </div>
-<?php 
-$user=User::find(Auth::id());
-?>
+
 {{ Form::open(array('url' => 'edit_profile', 'class' => 'form-horizontal')) }}
 
     <!-- Name -->
     <div class="control-group {{{ $errors->has('name') ? 'error' : '' }}}">
         {{ Form::label('name', 'Name', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('name', $user->name )}}
+            {{ Form::text('name',$user->name) }}
             {{ $errors->first('name') }}
         </div>
     </div>
@@ -28,16 +26,17 @@ $user=User::find(Auth::id());
     <div class="control-group {{{ $errors->has('lastname') ? 'error' : '' }}}">
         {{ Form::label('lastname', 'Last name', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('lastname',  $user->lastname) }}
+            {{ Form::text('lastname', $user->lastname) }}
             {{ $errors->first('lastname') }}
         </div>
     </div>
 
+    
         <!-- Email -->
     <div class="control-group {{{ $errors->has('email') ? 'error' : '' }}}">
         {{ Form::label('email', 'Email', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::email('email'),  $user->email }}
+            {{ Form::email('email'), $user->email }}
             {{ $errors->first('email') }}
         </div>
     </div>

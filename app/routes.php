@@ -18,7 +18,10 @@ Route::get('about', 'AboutController@showAbout');
 Route::get('myhotel','HotelController@showHotel');
 Route::get('create_hotel','HotelController@showCreateHotel');
 Route::post('create_hotel','HotelController@postCreateHotel');
+Route::get('edit_hotel','HotelController@showEditHotel');
+Route::post('edit_hotel','HotelController@postEditHotel');
 Route::get('join_hotel/{id}','HotelController@joinHotel');
+
 
 Route::get('myhotel/{id}','RoomController@showRoom');
 Route::get('create_room/{id}','RoomController@showCreateRoom');
@@ -43,5 +46,5 @@ Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('register','AuthController@showRegister');
 Route::post('register', 'AuthController@postRegister');
-Route::get('edit_profile','AuthController@showEditProfile');
-Route::post('edit_profile','AuthController@postEditProfile');
+Route::get('edit_profile','AuthController@showEditUser');
+Route::post('edit_profile','AuthController@postEditUser');

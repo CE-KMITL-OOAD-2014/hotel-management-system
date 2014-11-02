@@ -73,5 +73,15 @@ class HotelController extends BaseController {
         return Redirect::to('myhotel/'.$id)->with('success', 'You have successfully join hotel');
     }*/
     }
-
+        public function showEditHotel(){
+        return View::make('hotel.edit_hotel');
+    }
+    public function postEditHotel(){
+        $user =User::find(Auth::id());
+        $user->name = Input::get('name');
+        $user->lastname = Input::get('lastname');
+        $user->email = Input::get('email');
+        $user->save();
+    return Redirect::to('myhotel')->with('success', 'You have successfully edit '.$user->name.' hotel.');
+    }
 }

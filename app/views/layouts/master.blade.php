@@ -54,21 +54,12 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
-         @if ( Auth::guest() )
+         @if ( Auth::guest())
                             <li>{{ HTML::link('login', 'Login') }}</li>
                         @else
                             <li>{{ HTML::link('logout', 'Logout') }}</li>
+                            <li>{{HTML::link('#',Auth::user()->name);}}
                         @endif
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li>
     </ul>
   </div>
 </div>

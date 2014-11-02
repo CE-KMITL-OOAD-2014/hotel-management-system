@@ -6,8 +6,7 @@
 @stop
 
 @section('content')
-<h1>Hello World!</h1>
-<p>This page is created using a master template.</p>
+<h1>This is home page!</h1>
 <?php
 if(Auth::check()){
 	if( Authority::can('manage', 'all') ) {

@@ -7,7 +7,6 @@
 
 @section('content')
 <h1>This is my room!</h1>
-<p>This page is created using a master template.</p>
 
 <?php echo "My hotel id is :".$hotel_id;?>
     <!-- Login & Register button -->

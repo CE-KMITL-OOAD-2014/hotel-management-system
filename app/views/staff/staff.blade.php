@@ -7,7 +7,6 @@
 
 @section('content')
 <h1>This is  my staff</h1>
-<p>This page is created using a master template.</p>
 
 <?php $user=User::find(Auth::id());?>
 

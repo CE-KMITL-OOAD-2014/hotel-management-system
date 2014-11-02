@@ -58,7 +58,7 @@
                             <li>{{ HTML::link('login', 'Login') }}</li>
                         @else
                             <li>{{ HTML::link('logout', 'Logout') }}</li>
-                            <li>{{HTML::link('#',Auth::user()->name);}}
+                            <li>{{HTML::link('edit_profile',Auth::user()->name);}}
                         @endif
     </ul>
   </div>

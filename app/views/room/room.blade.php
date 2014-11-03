@@ -95,7 +95,9 @@
                     events is the main option for calendar.
                     for demo we have added predefined events in json object.
                 */
-                events: {{ $event }}
+            events:{
+    url: '{{URL::to('room_json')}}',
+  }
             });
             
         });

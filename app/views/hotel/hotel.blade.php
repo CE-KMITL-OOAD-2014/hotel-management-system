@@ -2,7 +2,7 @@
 
 @section('title')
 @parent
-:: My hotel
+::Hotel
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 <?php $users=User::find(Auth::id());?>
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($users->hotels as $hotel)
-    	<li>{{ HTML::link('myhotel/'.$hotel->id, $hotel->name ) }}
+    	<li>{{ HTML::link('hotel/'.$hotel->id, $hotel->name ) }}
     	{{ $hotel->address}}
     	{{ $hotel->tel}}
         {{ HTML::link('edit_hotel/'.$hotel->id,'edit' ) }}
@@ -29,7 +29,7 @@
     @endforeach
 @elseif(Authority::getCurrentUser()->hasRole('staff'))
     @foreach($users->hotels as $hotel)
-        <li>{{ HTML::link('myhotel/'.$hotel->id, $hotel->name ) }}
+        <li>{{ HTML::link('hotel/'.$hotel->id, $hotel->name ) }}
         {{ $hotel->address}}
         {{ $hotel->tel}}
     </li>

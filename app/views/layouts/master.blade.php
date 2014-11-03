@@ -38,7 +38,7 @@
       <li><a href={{{ URL::to('') }}}>Home</a></li>
 
       @if(!Auth::guest())
-      <li><a href={{{ URL::to('myhotel') }}}>My hotel</a></li>
+      <li><a href={{{ URL::to('hotel') }}}>Hotel</a></li>
             <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
             @if(Authority::can('create','staff')) 
             <li><a href={{{ URL::to('request') }}}>Request</a></li>

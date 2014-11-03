@@ -5,7 +5,7 @@ class HotelController extends BaseController {
 	public function showHotel()
 	{
 
-		return View::make('hotel.myhotel')
+		return View::make('hotel.hotel')
          ->with ('hotels',hotel::all());
 	}
 
@@ -48,7 +48,7 @@ class HotelController extends BaseController {
             $user->hotels()->attach($new_hotel);
 
             // Redirect to home with success message
-            return Redirect::to('myhotel')->with('success', 'You have successfully create hotel');
+            return Redirect::to('hotel')->with('success', 'You have successfully create hotel');
         }
         else
         // Something went wrong.
@@ -70,7 +70,7 @@ class HotelController extends BaseController {
         $user->hotels()->attach($hotel);
         $user->roles()->detach(2);
         $user->roles()->attach(4);
-        return Redirect::to('myhotel/'.$id)->with('success', 'You have successfully join hotel');
+        return Redirect::to('hotel/'.$id)->with('success', 'You have successfully join hotel');
     }*/
     }
         public function showEditHotel($id){
@@ -83,6 +83,6 @@ class HotelController extends BaseController {
         $hotel->address = Input::get('address');
         $hotel->tel = Input::get('tel');
         $hotel->save();
-    return Redirect::to('myhotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
+    return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
     }
 }

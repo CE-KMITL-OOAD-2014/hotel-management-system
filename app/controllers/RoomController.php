@@ -4,8 +4,11 @@ class RoomController extends BaseController {
 
     public function showRoom($id)
     {
-        return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
-         
+        $event = DB::table('rooms')->select(DB::raw('roomnumber as title, checkin as start, checkout as end'))->get();
+        $event_json = json_encode($event);
+
+        return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id,'event'=>$event_json));
+
     }
     public function showCreateRoom($id)
     {

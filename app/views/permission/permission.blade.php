@@ -20,29 +20,37 @@ $user=User::find(Auth::id());
 
         <b>Set Permission</b><br>
 {{ Form::open(array('url' => 'permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
- <div class="checkbox">
+ <div class="radio">
+
 <li>
-{{ Form::hidden('view_room', false) }}
-{{ Form::checkbox('view_room',true,'',array('id'=>'checkbox1'))}}
-{{ Form::label('checkbox1','View Room',array('class'=>'')) }}
+{{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
+{{ Form::label('radio1','Nothing',array('class'=>'')) }}
 </li>
 
 <li>
-{{ Form::hidden('change_status_room', false) }}
-{{ Form::checkbox('change_status_room',true,'',array('id'=>'checkbox2')) }}
-{{ Form::label('checkbox2','Change room status',array('class'=>'')) }}
+{{ Form::radio('room','view_room','',array('id'=>'radio2'))}}
+{{ Form::label('radio2','View Room',array('class'=>'')) }}
+</li>
+
+
+<li>
+{{ Form::radio('room','manager_room','',array('id'=>'radio3')) }}
+{{ Form::label('radio3','Manage Room',array('class'=>'')) }}
 </li>
 
 <li>
-{{ Form::hidden('view_guest', false) }}
-{{ Form::checkbox('view_guest',true,'',array('id'=>'checkbox3'))}}
-{{ Form::label('checkbox3','View guest',array('class'=>''))}}
+{{ Form::radio('guest','no_guest',true,array('id'=>'radio4'))}}
+{{ Form::label('radio4','No guest',array('class'=>''))}}
 </li>
 
 <li>
-{{ Form::hidden('create_guest', false) }}
-{{ Form::checkbox('create_guest',true,'',array('id'=>'checkbox4')) }}
-{{ Form::label('checkbox4','Create guest',array('class'=>'')) }}
+{{ Form::radio('guest','view_guest','',array('id'=>'radio5'))}}
+{{ Form::label('radio5','View guest',array('class'=>''))}}
+</li>
+
+<li>
+{{ Form::radio('guest','manage_guest','',array('id'=>'radio6')) }}
+{{ Form::label('radio6','Create guest',array('class'=>'')) }}
 </li>
   </div>
  

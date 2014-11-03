@@ -17,9 +17,9 @@ class CreatePermissionsTable extends Migration {
 			$table->increments('id');
             $table->integer('user_id');
             $table->boolean('view_room');
-            $table->boolean('change_status_room');
+            $table->boolean('manage_room');
             $table->boolean('view_guest');
-            $table->boolean('create_guest');
+            $table->boolean('mangae_guest');
             $table->timestamps();
             
             $table->index('user_id');

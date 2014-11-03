@@ -19,7 +19,10 @@
             {{ HTML::link('check_out', 'Check out') }}
         </div>
     </div>
-    <?php $hotels=Hotel::find($hotel_id);?>
+    <?php 
+    $hotels=Hotel::find($hotel_id);
+    $user = User::find(Auth::id());
+    ?>
       @foreach($hotels->rooms as $room)
         @foreach($room->statusrooms as $status)
         <li>{{ $room->roomnumber}}

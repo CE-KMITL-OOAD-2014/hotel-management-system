@@ -22,7 +22,7 @@
             {{ $user_id->name }}
             {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
         </li>
-        @endforeach
+        @endforeach 
     @endforeach
 @elseif(Authority::getCurrentUser()->hasRole('staff'))
     @foreach($users->hotels as $hotel)

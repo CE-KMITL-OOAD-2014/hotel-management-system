@@ -64,14 +64,6 @@ class HotelController extends BaseController {
             $user->requestHotels()->attach($hotel);
             return Redirect::to('')->with('success', 'You have successfully request to join hotel');
         }
-       /* if(Authority::getCurrentUser()->hasRole('member')){
-        $user = User::find(Auth::id());
-        $hotel = hotel::find($id);
-        $user->hotels()->attach($hotel);
-        $user->roles()->detach(2);
-        $user->roles()->attach(4);
-        return Redirect::to('hotel/'.$id)->with('success', 'You have successfully join hotel');
-    }*/
     }
         public function showEditHotel($id){
         return View::make('hotel.edit_hotel')

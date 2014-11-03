@@ -107,13 +107,14 @@ class AuthController extends BaseController {
         return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
         }
     public function showEditUser(){
-        return View::make('auth.edit_profile');
+        return View::make('auth.edit_user');
     }
     public function postEditUser(){
         $user =User::find(Auth::id());
         $user->name = Input::get('name');
         $user->lastname = Input::get('lastname');
         $user->email = Input::get('email');
+        $user->work_history = Input::get('work_history');
         $user->save();
     return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
     }

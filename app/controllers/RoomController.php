@@ -58,6 +58,6 @@ class RoomController extends BaseController {
         $room->price = Input::get('price');
         $room->detail = Input::get('detail');
         $room->save();
-    return Redirect::to('myhotel/')->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+    return Redirect::to('myhotel')->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
     }
 }

@@ -106,10 +106,10 @@ class AuthController extends BaseController {
         // Something went wrong.
         return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
         }
-    public function showEditProfile(){
+    public function showEditUser(){
         return View::make('auth.edit_profile');
     }
-    public function postEditProfile(){
+    public function postEditUser(){
         $user =User::find(Auth::id());
         $user->name = Input::get('name');
         $user->lastname = Input::get('lastname');

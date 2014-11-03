@@ -50,5 +50,5 @@ Route::post('login', 'AuthController@postLogin');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('register','AuthController@showRegister');
 Route::post('register', 'AuthController@postRegister');
-Route::get('edit_profile','AuthController@showEditUser');
-Route::post('edit_profile','AuthController@postEditUser');
+Route::get('edit_user','AuthController@showEditUser');
+Route::post('edit_user','AuthController@postEditUser');

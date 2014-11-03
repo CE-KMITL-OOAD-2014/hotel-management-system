@@ -47,5 +47,17 @@ class RoomController extends BaseController {
         // Something went wrong.
         return Redirect::to('create_room')->withErrors($validator)->withInput(Input::except('fail'));
         }
-
+    public function showEditRoom($id)
+    {
+        return View::make('room.edit_room')
+        ->with('room',room::find($id));   
     }
+    public function postEditRoom($id){
+        $room = room::find($id);
+        $room->roomnumber = Input::get('roomnumber');
+        $room->price = Input::get('price');
+        $room->detail = Input::get('detail');
+        $room->save();
+    return Redirect::to('myhotel')->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+    }
+}

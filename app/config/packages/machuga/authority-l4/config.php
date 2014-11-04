@@ -15,11 +15,8 @@ return array(
         
             //an example using the `hasRole` function, see below examples for more details
 
-            if($user->hasRole('admin')){
-                $authority->allow('manage', 'all');
-            }
             if($user->hasRole('manager')){
-            	$authority->allow('manage','staff');
+            	$authority->allow('manage','all');
             }
             if($user->hasRole('member')){
                 $authority->allow('join','hotel');

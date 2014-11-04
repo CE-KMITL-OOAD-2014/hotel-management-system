@@ -4,13 +4,19 @@ class RoomController extends BaseController {
 
     public function showRoom($id)
     {
+        $user=User::find(Auth::id());
+        if($user->permissions->view_room==1 || Authority::getCurrentUser()->hasRole('manager') )
         return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
-         
+        else
+        return Redirect::to('hotel/')->with('success', 'Access Denied');
     }
     public function showCreateRoom($id)
-    {
+    {   
+        $user=User::find(Auth::id());
+        if($user->permissions->manage_room==1 || Authority::getCurrentUser()->hasRole('manager') )
         return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$id));
-
+        else
+        return Redirect::to('hotel/')->with('success', 'Access Denied');
     }
 
     public function postCreateRoom($id)

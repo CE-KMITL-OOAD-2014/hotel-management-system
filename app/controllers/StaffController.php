@@ -28,6 +28,13 @@ class StaffController extends BaseController {
 		$member->hotels()->attach($hotel);
         $member->roles()->detach(2);
         $member->roles()->attach(4);
+        $permission = new Permission;
+        $permission->user_id = $member_id;
+        $permission->view_room = 0;
+        $permission->manage_room = 0;
+        $permission->view_guest = 0;
+        $permission->manage_guest = 0; 
+        $permission->save();
         return Redirect::to('permission/'.$hotel_id.'/'.$member_id)->with('Set Permission', 'You set permission :'.$member->name.'.');
 	}
 	public function staffDecline($hotel_id,$member_id)

@@ -18,7 +18,7 @@
     	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
         <b>Staff</b><br>
         @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." ".$user_id->permissions->view_room." ".$user_id->permissions->change_status_room." ".$user_id->permissions->view_guest." ".$user_id->permissions->create_guest}}
+        {{ $user_id->name ." ".$user_id->lastname." "}}
         {{ HTML::link('edit_permission/'.$hotel->id.'/'.$user_id->id, 'Edit permissions') }}
         <br>
  

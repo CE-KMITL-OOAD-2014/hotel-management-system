@@ -11,13 +11,34 @@ class PermissionController extends BaseController {
 
 	public function postSetPermission($hotel_id,$member_id)
 	 {
-	 	$permission = new Permission;
-        $permission->user_id = $member_id;
-        $permission->view_room = Input::get('view_room');
-        $permission->manage_room = Input::get('manage_room');
-        $permission->view_guest = Input::get('view_guest');
-        $permission->manage_guest = Input::get('manage_guest');
-        $permission->save();
+            $member = User::find($member_id);
+        //set permission room
+	 	if(Input::get('room')=='view_room'){
+            $member->permissions->view_room = 1;
+            $member->permissions->manage_room = 0;
+        }
+        elseif(Input::get('room')=='manage_room'){
+            $member->permissions->view_room = 1;
+            $member->permissions->manage_room = 1;  
+        }
+        else{
+            $member->permissions->view_room = 0;
+            $member->permissions->manage_room = 0;  
+        }
+        //permissions guest
+        if(Input::get('guest')=='view_guest'){
+            $member->permissions->view_guest = 1;
+            $member->permissions->manage_guest = 0;
+        }
+        elseif(Input::get('guest')=='manage_guest'){
+            $member->permissions->view_guest = 1;
+            $member->permissions->manage_guest = 1;  
+        }
+        else{
+            $member->permissions->view_guest = 0;
+            $member->permissions->manage_guest = 0;  
+        }
+        $member->permissions->save();
 
         $user = User::find($member_id);
 	return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully set '.$user->name.' permission.');
@@ -38,12 +59,35 @@ class PermissionController extends BaseController {
 
         public function postEditPermission($hotel_id,$member_id)
     {
-        $user =User::find($member_id);
-        $user->permissions->view_room = Input::get('view_room');
-        $user->permissions->manage_room = Input::get('manage_room');
-        $user->permissions->view_guest = Input::get('view_guest');
-        $user->permissions->manage_guest = Input::get('manage_guest');
-        $user->permissions->save();
-    return Redirect::to('staff')->with('success', 'You have successfully set '.$user->name.' permission.');
+        $member = User::find($member_id);
+        //set permission room
+        if(Input::get('room')=='view_room'){
+            $member->permissions->view_room = 1;
+            $member->permissions->manage_room = 0;
+        }
+        elseif(Input::get('room')=='manage_room'){
+            $member->permissions->view_room = 1;
+            $member->permissions->manage_room = 1;  
+        }
+        else{
+            $member->permissions->view_room = 0;
+            $member->permissions->manage_room = 0;  
+        }
+        // set$member->permissions guest
+        if(Input::get('guest')=='view_guest'){
+            $member->permissions->view_guest = 1;
+            $member->permissions->manage_guest = 0;
+        }
+        elseif(Input::get('guest')=='manage_guest'){
+            $member->permissions->view_guest = 1;
+            $member->permissions->manage_guest = 1;  
+        }
+        else{
+            $member->permissions->view_guest = 0;
+            $member->permissions->manage_guest = 0;  
+        }
+        $member->permissions->save();
+
+    return Redirect::to('staff')->with('success', 'You have successfully set '.$member->name.' permission.');
     }
 }

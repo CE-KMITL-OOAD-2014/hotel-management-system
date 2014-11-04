@@ -34,7 +34,7 @@ $user=User::find(Auth::id());
 
 
 <li>
-{{ Form::radio('room','manager_room','',array('id'=>'radio3')) }}
+{{ Form::radio('room','manage_room','',array('id'=>'radio3')) }}
 {{ Form::label('radio3','Manage Room',array('class'=>'')) }}
 </li>
 

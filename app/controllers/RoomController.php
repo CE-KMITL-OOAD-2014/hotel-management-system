@@ -48,8 +48,15 @@ class RoomController extends BaseController {
         return Redirect::to('create_room')->withErrors($validator)->withInput(Input::except('fail'));
         }
 
-       public function getRoomJson(){
-         return room::all(array('roomnumber as title','checkin as start','checkout as end', ));
+       public function getRoomJson($id){
+        $hotels=Hotel::find($id);
+        $event=array();
+        foreach ($hotels->rooms as $room) {
+            if($room->checkin!=NULL&&$room->checkout!=NULL){
+                array_push($event,  room::find($room->id,array('roomnumber as title','checkin as start','checkout as end', )));
+            }
+        }
+         return $event;
        }
 
     }

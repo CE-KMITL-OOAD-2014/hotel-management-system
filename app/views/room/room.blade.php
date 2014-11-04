@@ -96,7 +96,7 @@
                     for demo we have added predefined events in json object.
                 */
             events:{
-    url: '{{URL::to('room_json')}}',
+    url: '{{URL::to('room_json/'.$hotel_id)}}',
   }
             });
             

@@ -11,9 +11,9 @@
     <!-- Login & Register button -->
     <div class="control-group">
         <div class="controls">
-
+@if(Authority::getCurrentUser()->hasRole('manager'))
             {{ HTML::link('create_hotel', 'Create hotel') }}
-            {{ HTML::link('join_hotel', 'Join') }}
+           @endif
         </div>
     </div>
 

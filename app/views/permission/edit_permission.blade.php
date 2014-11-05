@@ -15,13 +15,14 @@ $user=User::find(Auth::id());
 @if(Authority::getCurrentUser()->hasRole('manager'))
     	<h3>{{ $hotel_id->name  }}</h3>
         <b>Staff Detail</b><br>
-        {{ $staff_id->name ." ".$staff_id->lastname." ".$staff_id->id}}<br>
+        {{ $staff_id->name ." ".$staff_id->lastname." ".$staff_id->id}} 
+        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}
+        <br>
         <b>Set Permission</b><br>
 {{ Form::open(array('url' => 'edit_permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
  <div class="radio">
-
 <h3>Room Permission</h3>
-
+  
 <li>
 @if($staff_id->permissions->view_room == false && $staff_id->permissions->manage_room == false) 
 {{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}

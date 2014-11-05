@@ -22,13 +22,13 @@ class AuthController extends BaseController {
         $userdata = array(
             'username' => Input::get('username'),
             'password' => Input::get('password')
-        );
+            );
 
         // Declare the rules for the form validation.
         $rules = array(
             'username'  => 'Required',
             'password'  => 'Required'
-        );
+            );
 
         // Validate the inputs.
         $validator = Validator::make($userdata, $rules);
@@ -53,7 +53,7 @@ class AuthController extends BaseController {
         return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
     }
 
-      public function getLogout()
+    public function getLogout()
     {
         // Log out
         Auth::logout();
@@ -62,27 +62,27 @@ class AuthController extends BaseController {
         return Redirect::to('')->with('success', 'You are logged out');
     }
 
-        public function showRegister()
-        {
-            return View::make('auth.register');
-        }
+    public function showRegister()
+    {
+        return View::make('auth.register');
+    }
 
-        public function postRegister()
-        {
-                    $userdata = array(
+    public function postRegister()
+    {
+        $userdata = array(
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
             'username' => Input::get('username'),
             'password' => Hash::make(Input::get('password')),
             'email' => Input::get('email')
-        );
-                            $rules = array(
+            );
+        $rules = array(
             'name' => 'Required',
             'lastname' =>  'Required',
             'username' =>  'Required|unique:users',
             'password' =>  'Required',
             'email' =>  'Required|email|unique:users'
-        );
+            );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
@@ -93,9 +93,9 @@ class AuthController extends BaseController {
 
             // logged user in
             Auth::attempt(array(
-            'username' => Input::get('username'),
-            'password' => Input::get('password')
-            ));
+                'username' => Input::get('username'),
+                'password' => Input::get('password')
+                ));
 
             
 
@@ -104,36 +104,36 @@ class AuthController extends BaseController {
         }
         else
         // Something went wrong.
-        return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
-        }
+            return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
+    }
     public function showEditUser(){
         return View::make('auth.edit_user');
     }
     public function postEditUser(){
         $user = User::find(Auth::id());
-                            $userdata = array(
+        $userdata = array(
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
             'email' => Input::get('email')
-        );
-                            $rules = array(
+            );
+        $rules = array(
             'name' => 'Required',
             'lastname' =>  'Required',
             'email' =>  'Required|email|unique:users,email,'.$user->id
-        );
+            );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
-        $user =User::find(Auth::id());
-        $user->name = Input::get('name');
-        $user->lastname = Input::get('lastname');
-        $user->email = Input::get('email');
-        $user->work_history = Input::get('work_history');
-        $user->save();
-        return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
-    }
-    else
-        return Redirect::to('edit_user')->withErrors($validator)->withInput(Input::except('password'));
+            $user =User::find(Auth::id());
+            $user->name = Input::get('name');
+            $user->lastname = Input::get('lastname');
+            $user->email = Input::get('email');
+            $user->work_history = Input::get('work_history');
+            $user->save();
+            return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
+        }
+        else
+            return Redirect::to('edit_user')->withErrors($validator)->withInput(Input::except('password'));
     }
 
 }

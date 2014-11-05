@@ -33,6 +33,7 @@ Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');
 Route::get('accept/{hotel}/{id}','StaffController@staffAccept');
 Route::get('decline/{hotel}/{id}','StaffController@staffDecline');
+Route::get('fireStaff/{hotel}/{id}','StaffController@fireStaff');
 
 Route::get('guest','GuestController@showGuest');
 Route::get('create_guest/{id}','GuestController@showCreateGuest');

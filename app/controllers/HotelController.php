@@ -1,35 +1,35 @@
     <?php
 
-class HotelController extends BaseController {
+    class HotelController extends BaseController {
 
-	public function showHotel()
-	{
+       public function showHotel()
+       {
 
-		return View::make('hotel.hotel')
-         ->with ('hotels',hotel::all());
-	}
+          return View::make('hotel.hotel')
+          ->with ('hotels',hotel::all());
+      }
 
 
-	public function showCreateHotel()
-	{
-		return View::make('hotel.create_hotel');
+      public function showCreateHotel()
+      {
+          return View::make('hotel.create_hotel');
 
-	}
+      }
 
-	public function postCreateHotel()
-        {
-                    $userdata = array(
+      public function postCreateHotel()
+      {
+        $userdata = array(
             'name' => Input::get('name'),
             'address' => Input::get('address'),
             'tel' => Input::get('tel'),
-    
-        );
-                            $rules = array(
+
+            );
+        $rules = array(
             'name' => 'Required',
             'address' =>  'Required|unique:hotels',
             'tel' =>  'Required|unique:hotels',
-         
-        );
+
+            );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
@@ -38,11 +38,11 @@ class HotelController extends BaseController {
 
             //Change role member to manager
             if(Authority::getCurrentUser()->hasRole('member')){
-            $user = User::find(Auth::id());
-            $user->roles()->detach(2);
-            $user->roles()->attach(3);
-        }
-        
+                $user = User::find(Auth::id());
+                $user->roles()->detach(2);
+                $user->roles()->attach(3);
+            }
+
             //Attatch current user to newly created hotel
             $user = User::find(Auth::id());
             $user->hotels()->attach($new_hotel);
@@ -52,11 +52,11 @@ class HotelController extends BaseController {
         }
         else
         // Something went wrong.
-        return Redirect::to('create_hotel')->withErrors($validator)->withInput(Input::except('password'));
-        }
+            return Redirect::to('create_hotel')->withErrors($validator)->withInput(Input::except('password'));
+    }
 
 
-       public function joinHotel($id)
+    public function joinHotel($id)
     {
         if(Authority::can('join','hotel')){
             $user = User::find(Auth::id());
@@ -71,11 +71,13 @@ class HotelController extends BaseController {
             return Redirect::to('hotel')->with('success', 'You have successfully request to join hotel');
         }
     }
-        public function showEditHotel($id){
-        return View::make('hotel.edit_hotel')
+    public function showEditHotel($id)
+    {
+        return View::make('hotel.edit_hotel')   
         ->with('hotel',hotel::find($id));
     }
-    public function postEditHotel($id){
+    public function postEditHotel($id)
+    {
         $hotel = hotel::find($id);
         $hotel->name = Input::get('name');
 
@@ -83,13 +85,13 @@ class HotelController extends BaseController {
             'name' => Input::get('name'),
             'address' => Input::get('address'),
             'tel' => Input::get('tel'),
-        );
+            );
         $rules = array(
             'name' => 'Required',
             'address' =>  'Required|unique:hotels,address,'.$id,
             'tel' =>  'Required|unique:hotels,tel,'.$id,
-         
-        );
+
+            );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes()){
             $hotel->address = Input::get('address');

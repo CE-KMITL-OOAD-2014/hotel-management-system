@@ -41,7 +41,7 @@ class PermissionController extends BaseController {
         $member->permissions->save();
 
         $user = User::find($member_id);
-	return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully set '.$user->name.' permission.');
+	return Redirect::to('staff')->with('success', 'You have successfully set '.$user->name.' permission.');
             // Redirect to home with success message
         //    return Redirect::to('myhotel/'.$hotel->id)->with('success', 'You have successfully set permission');
         

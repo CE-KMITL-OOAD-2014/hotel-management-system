@@ -10,7 +10,14 @@
 
 
 {{ Form::open(array('url' => 'edit_room/'.$hotel_id->id.'/'.$room_id->id, 'class' => 'form-horizontal')) }}
-
+@if(Authority::getCurrentUser()->hasRole('manager'))
+        <h3>{{ $hotel_id->name  }}</h3>
+        <b>Room Detail</b><br>
+        {{ "Room Number :".$room_id->roomnumber ." Price : ".$room_id->price." baht "}}<br>
+        {{ "Detail :"}}<br>
+        {{$room_id->detail}}<br>
+{{ HTML::link('delete_room/'.$hotel_id->id.'/'.$room_id->id,'Delete Room' ) }}
+@endif
     <!-- Roomnumber -->
     <div class="control-group {{{ $errors->has('roomnumber') ? 'error' : '' }}}">
         {{ Form::label('roomnumber', 'Roomnumber', array('class' => 'control-label')) }}

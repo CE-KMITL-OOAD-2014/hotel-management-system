@@ -91,7 +91,14 @@ class RoomController extends BaseController {
             return Redirect::to('edit_room/'.$hotel_id.'/'.$room->id)->withErrors($validator)->withInput(Input::except('fail'));
     }
     public function deleteRoom($hotel_id,$room_id){
+        if( Authority::getCurrentUser()->hasRole('manager') ){
         $hotel = hotel::find($hotel_id);
         $room = room::find($room_id);  
+        $hotel->rooms()->detach($room);
+        $room->statusrooms()->detach([1,2,3,4]);
+        $room->delete();
+        return Redirect::to('hotel/'.$hotel->id)->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
+        }
+        else return Redirect::back()->with('success', 'Access deny ');
     }
 }

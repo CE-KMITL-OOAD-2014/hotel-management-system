@@ -28,6 +28,7 @@ Route::get('create_room/{id}','RoomController@showCreateRoom');
 Route::post('create_room/{id}','RoomController@postCreateRoom');
 Route::get('edit_room/{hotel}/{room}','RoomController@showEditRoom');
 Route::post('edit_room/{hotel}/{room}','RoomController@postEditRoom');
+Route::get('delete_room/{hotel}/{room}','RoomController@deleteRoom');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');

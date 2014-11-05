@@ -10,7 +10,7 @@
             ->with ('staff_id',user::find($member_id));
         }
         else
-            return Redirect::to('hotel/')->with('success', 'Access Denied');
+            return Redirect::to('hotel/')->with('success', 'access denied');
     }
 
     public function postSetPermission($hotel_id,$member_id)
@@ -56,9 +56,12 @@
 
     public function showEditPermission($hotel_id,$member_id)
     {
+    if( Authority::getCurrentUser()->hasRole('manager') ){
         return View::make('permission.edit_permission') 
         ->with ('hotel_id',hotel::find($hotel_id))
         ->with ('staff_id',user::find($member_id));
+    }
+    else Redirect::to('hotel')->with('success', 'access deny ');
     }
 
     public function postEditPermission($hotel_id,$member_id)

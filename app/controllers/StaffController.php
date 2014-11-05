@@ -22,6 +22,7 @@
     	public function staffAccept($hotel_id,$member_id)
     	{
 		//This work
+            if( Authority::getCurrentUser()->hasRole('manager') ){
     		$member = User::find($member_id);
     		foreach( $member->requestHotels as $hotels){
     			$member->requestHotels()->detach($hotels->id);
@@ -37,6 +38,9 @@
     		$permission->manage_guest = 0; 
     		$permission->save();
     		return Redirect::to('permission/'.$hotel_id.'/'.$member_id)->with('Set Permission', 'You set permission :'.$member->name.'.');
+            }
+            else
+            return Redirect::back()->with('success', 'Access deny ');
     	}
 
     	public function staffDecline($hotel_id,$member_id)
@@ -49,6 +53,7 @@
 
     	public function fireStaff($hotel_id,$member_id)
     	{
+            if( Authority::getCurrentUser()->hasRole('manager') ){
             $hotel = Hotel::find($hotel_id);
     		$member = User::find($member_id);
             $member->permissions->delete();
@@ -56,6 +61,8 @@
     		$member->roles()->detach(4);
     		$member->roles()->attach(2);
             return Redirect::to('staff')->with('success', 'You fire : '.$member->name.' from '.$hotel->name );
+            }
+            else
+            return Redirect::back()->with('success', 'Access deny ');
     	}
-
     }

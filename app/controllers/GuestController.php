@@ -118,11 +118,14 @@
         return Redirect::to('edit_guest/'.$guest->id)->withErrors($validator)->withInput(Input::except('fail'));
     }
     public function deleteGuest($hotel_id,$guest_id)
-        { 
+    {
+     if( Authority::getCurrentUser()->hasRole('manager') ){ 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);
             $hotel->guests()->detach($guest);
             $guest->delete();
             return Redirect::to('guest')->with('success', 'You delete : '.$guest->name.' from '.$hotel->name );
         }
+        else  return Redirect::to('guest')->with('success', 'access deny' );
+    }
 }

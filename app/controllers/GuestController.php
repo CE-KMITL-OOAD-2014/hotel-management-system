@@ -6,11 +6,11 @@
         {
             $user=User::find(Auth::id());
             if( Authority::getCurrentUser()->hasRole('manager'))
-               return View::make('guest.guest');
-           elseif($user->permissions->view_guest==1)
-            return View::make('guest.guest');
-        else
-            return Redirect::to('hotel')->with('success', 'Access Denied');
+                return View::make('guest.guest');
+            elseif($user->permissions->view_guest==1)
+                return View::make('guest.guest');
+            else
+                return Redirect::to('hotel')->with('success', 'Access Denied');
     }
 
 
@@ -68,14 +68,15 @@
         // Something went wrong.
             return Redirect::to('create_guest/'.$id)->withErrors($validator)->withInput(Input::except('fail'));
     }
-    public function showEditGuest($id)
+    public function showEditGuest($hotel_id,$guest_id)
     {
         return View::make('guest.edit_guest')
-        ->with('guest',guest::find($id));
+        ->with('guest_id',guest::find($guest_id))
+        ->with('hotel_id',hotel::find($hotel_id));
     }
-    public function postEditGuest($id)
+    public function postEditGuest($hotel_id,$guest_id)
     {
-     $guest = guest::find($id);
+     $guest = guest::find($guest_id);
      $userdata = array(
         'gender' => Input::get('gender'),
         'nationality'=> Input::get('nationality'),
@@ -115,5 +116,13 @@
     }
     else
         return Redirect::to('edit_guest/'.$guest->id)->withErrors($validator)->withInput(Input::except('fail'));
-}
+    }
+    public function deleteGuest($hotel_id,$guest_id)
+        { 
+            $hotel = Hotel::find($hotel_id);
+            $guest = Guest::find($guest_id);
+            $hotel->guests()->detach($guest);
+            $guest->delete();
+            return Redirect::to('guest')->with('success', 'You delete : '.$guest->name.' from '.$hotel->name );
+        }
 }

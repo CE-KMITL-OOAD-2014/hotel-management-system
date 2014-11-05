@@ -18,7 +18,7 @@
         @foreach($hotel->guests as $user_id)
         <li>
             {{ $user_id->name }}
-            {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
+            {{ HTML::link('edit_guest/'.$hotel->id.'/'.$user_id->id, 'Edit guest') }}
         </li>
         @endforeach 
     @endforeach

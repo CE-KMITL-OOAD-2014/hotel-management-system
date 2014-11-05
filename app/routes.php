@@ -38,8 +38,9 @@ Route::get('fireStaff/{hotel}/{id}','StaffController@fireStaff');
 Route::get('guest','GuestController@showGuest');
 Route::get('create_guest/{id}','GuestController@showCreateGuest');
 Route::post('create_guest/{id}','GuestController@postCreateGuest');
-Route::get('edit_guest/{id}','GuestController@showEditGuest');
-Route::post('edit_guest/{id}','GuestController@postEditGuest');
+Route::get('edit_guest/{hotel}/{guest}','GuestController@showEditGuest');
+Route::post('edit_guest/{hotel}/{guest}','GuestController@postEditGuest');
+Route::get('delete_guest/{hotel}/{guest}','GuestController@deleteGuest');
 
 Route::get('permission/{hotel}/{id}','PermissionController@showSetPermission');
 Route::post('permission/{hotel}/{id}','PermissionController@postSetPermission');

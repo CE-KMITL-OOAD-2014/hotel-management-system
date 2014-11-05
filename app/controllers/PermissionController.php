@@ -61,7 +61,7 @@
         ->with ('hotel_id',hotel::find($hotel_id))
         ->with ('staff_id',user::find($member_id));
     }
-    else Redirect::to('hotel')->with('success', 'access deny ');
+    else  return Redirect::back()->with('success', 'Access deny ');
     }
 
     public function postEditPermission($hotel_id,$member_id)

@@ -52,7 +52,7 @@
         }
         else
         // Something went wrong.
-            return Redirect::to('create_hotel')->withErrors($validator)->withInput(Input::except('password'));
+            return Redirect::back()->withErrors($validator)->withInput(Input::except('password'));
     }
 
 
@@ -100,6 +100,6 @@
             return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
         }
         else 
-            return Redirect::to('edit_hotel/'.$hotel->id)->withErrors($validator)->withInput(Input::except('password'));
+            return Redirect::back()->with('success', 'Access deny ');->withInput(Input::except('password'));
     }
 }

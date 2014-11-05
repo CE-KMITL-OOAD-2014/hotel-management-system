@@ -120,7 +120,6 @@
 <h1>This is my room!</h1>
 
 <?php echo "My hotel id is :".$hotel_id;?><br>
-<?php echo "json : ".room::find(1)->checkin; ?>
     <div class="control-group">
         <div class="controls">
 

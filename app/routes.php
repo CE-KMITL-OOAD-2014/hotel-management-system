@@ -25,6 +25,7 @@ Route::get('create_room/{hotel_id}','RoomController@showCreateRoom');
 Route::post('create_room/{hotel_id}','RoomController@postCreateRoom');
 Route::get('room_json/{hotel_id}','RoomController@getRoomJson');
 Route::get('change_room_status/{hotel_id}','RoomController@showChangeRoomstatus');
+Route::post('change_room_status/{hotel_id}','RoomController@postChangeRoomstatus');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');

@@ -7,9 +7,7 @@
 
 @section('content')
 
-<?php 
-echo $guest->citizenCardNo;
-?>
+
 
 {{ Form::open(array('url' => 'edit_guest/'.$guest->id, 'class' => 'form-horizontal')) }}
     <!-- Gender -->

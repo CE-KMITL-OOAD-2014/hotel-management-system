@@ -12,7 +12,7 @@ class PermissionController extends BaseController {
 	public function postSetPermission($hotel_id,$member_id)
 	 {
             $member = User::find($member_id);
-        //set permission room
+        //set permission staff about room
 	 	if(Input::get('room')=='view_room'){
             $member->permissions->view_room = 1;
             $member->permissions->manage_room = 0;
@@ -25,7 +25,7 @@ class PermissionController extends BaseController {
             $member->permissions->view_room = 0;
             $member->permissions->manage_room = 0;  
         }
-        //permissions guest
+        //set permissions staff about guest
         if(Input::get('guest')=='view_guest'){
             $member->permissions->view_guest = 1;
             $member->permissions->manage_guest = 0;

@@ -63,13 +63,30 @@ class RoomController extends BaseController {
         ->with('hotel_id',hotel::find($hotel_id))
         ->with('room_id',room::find($id));   
     }
+
     public function postEditRoom($hotel_id,$room_id){
         $hotel = hotel::find($hotel_id);
-        $room = room::find($room_id);
-        $room->roomnumber = Input::get('roomnumber');
-        $room->price = Input::get('price');
-        $room->detail = Input::get('detail');
-        $room->save();
-    return Redirect::to('hotel/'.$hotel->id)->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+        $room = room::find($room_id);    
+        $userdata = array(
+        'roomnumber' => Input::get('roomnumber'),
+        'price' => Input::get('price'),
+        'detail' => Input::get('detail'),
+        );
+        $rules = array(
+        'roomnumber' => 'Required',
+        'price' =>  'Required',
+        'detail' =>  'Required', 
+        );
+        $validator = Validator::make($userdata, $rules);
+        if ($validator->passes()){
+            $room->roomnumber = Input::get('roomnumber');
+            $room->price = Input::get('price');
+            $room->detail = Input::get('detail');
+            $room->save();
+            return Redirect::to('hotel/'.$hotel->id)->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+        }
+        else
+        // Something went wrong.
+        return Redirect::to('edit_room/'.$hotel_id.'/'.$room->id)->withErrors($validator)->withInput(Input::except('fail'));
     }
 }

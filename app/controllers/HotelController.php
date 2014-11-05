@@ -72,9 +72,26 @@ class HotelController extends BaseController {
     public function postEditHotel($id){
         $hotel = hotel::find($id);
         $hotel->name = Input::get('name');
-        $hotel->address = Input::get('address');
-        $hotel->tel = Input::get('tel');
-        $hotel->save();
-    return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
+
+        $userdata = array(
+            'name' => Input::get('name'),
+            'address' => Input::get('address'),
+            'tel' => Input::get('tel'),
+        );
+        $rules = array(
+            'name' => 'Required',
+            'address' =>  'Required|unique:hotels',
+            'tel' =>  'Required|unique:hotels',
+         
+        );
+        $validator = Validator::make($userdata, $rules);
+        if ($validator->passes()){
+            $hotel->address = Input::get('address');
+            $hotel->tel = Input::get('tel');
+            $hotel->save();
+            return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
+        }
+        else 
+            return Redirect::to('edit_hotel/'.$hotel->id)->withErrors($validator)->withInput(Input::except('password'));
     }
 }

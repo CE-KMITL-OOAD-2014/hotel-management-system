@@ -29,7 +29,7 @@
         {{ $room->price}}
         {{ $room->detail}}
         {{ $status->name}}
-            {{ HTML::link('edit_room/'.$room->id, 'Edit room') }}
+            {{ HTML::link('edit_room/'.$hotel_id.'/'.$room->id, 'Edit room') }}
             {{ HTML::link('empty','Empty')}}
             {{ HTML::link('occupied', 'Occupied') }}
             {{ HTML::link('reserved', 'Reserved') }}

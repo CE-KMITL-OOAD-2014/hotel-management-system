@@ -9,13 +9,13 @@
 
 
 
-{{ Form::open(array('url' => 'edit_room/'.$room->id, 'class' => 'form-horizontal')) }}
+{{ Form::open(array('url' => 'edit_room/'.$hotel_id->id.'/'.$room_id->id, 'class' => 'form-horizontal')) }}
 
     <!-- Roomnumber -->
     <div class="control-group {{{ $errors->has('roomnumber') ? 'error' : '' }}}">
         {{ Form::label('roomnumber', 'Roomnumber', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('roomnumber', $room->roomnumber) }}
+            {{ Form::text('roomnumber', $room_id->roomnumber) }}
             {{ $errors->first('roomnumber') }}
         </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="control-group {{{ $errors->has('price') ? 'error' : '' }}}">
         {{ Form::label('price', 'Price', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('price', $room->price) }}
+            {{ Form::text('price', $room_id->price) }}
             {{ $errors->first('price') }}
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="control-group {{{ $errors->has('detail') ? 'error' : '' }}}">
         {{ Form::label('detail', 'Detail.', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('detail', $room->detail) }}
+            {{ Form::text('detail', $room_id->detail) }}
             {{ $errors->first('detail') }}
         </div>
     </div>

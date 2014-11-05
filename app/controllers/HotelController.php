@@ -60,9 +60,15 @@ class HotelController extends BaseController {
     {
         if(Authority::can('join','hotel')){
             $user = User::find(Auth::id());
-            $hotel = hotel::find($id);
+            $hotel = hotel::find($id); 
+            foreach( $user->requestHotels as $hotels){
+                foreach($hotel->requestUsers as $users){
+                    if($hotels->id==$id&&$users->id==$user->id)
+                        return Redirect::to('hotel')->with('success', 'You have successfully request to join hotel');
+                }
+            }
             $user->requestHotels()->attach($hotel);
-            return Redirect::to('')->with('success', 'You have successfully request to join hotel');
+            return Redirect::to('hotel')->with('success', 'You have successfully request to join hotel');
         }
     }
         public function showEditHotel($id){
@@ -80,8 +86,8 @@ class HotelController extends BaseController {
         );
         $rules = array(
             'name' => 'Required',
-            'address' =>  'Required|unique:hotels',
-            'tel' =>  'Required|unique:hotels',
+            'address' =>  'Required|unique:hotels,address,'.$id,
+            'tel' =>  'Required|unique:hotels,tel,'.$id,
          
         );
         $validator = Validator::make($userdata, $rules);

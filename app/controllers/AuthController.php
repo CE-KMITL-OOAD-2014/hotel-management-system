@@ -110,12 +110,30 @@ class AuthController extends BaseController {
         return View::make('auth.edit_user');
     }
     public function postEditUser(){
+        $user = User::find(Auth::id());
+                            $userdata = array(
+            'name' => Input::get('name'),
+            'lastname' => Input::get('lastname'),
+            'email' => Input::get('email')
+        );
+                            $rules = array(
+            'name' => 'Required',
+            'lastname' =>  'Required',
+            'email' =>  'Required|email|unique:users,email,'.$user->id
+        );
+        $validator = Validator::make($userdata, $rules);
+        if ($validator->passes())
+        {
         $user =User::find(Auth::id());
         $user->name = Input::get('name');
         $user->lastname = Input::get('lastname');
         $user->email = Input::get('email');
         $user->work_history = Input::get('work_history');
         $user->save();
-    return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
+        return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
     }
+    else
+        return Redirect::to('edit_user')->withErrors($validator)->withInput(Input::except('password'));
+    }
+
 }

@@ -86,8 +86,10 @@ class RoomController extends BaseController {
 			'end_date' => Input::get('end_date')
 			);
 		$rules = array(
+			'roomnumber' => 'Required',
+			'status' => 'Required',
 			///can't set start date in the past
-			'start_date' => 'Required|after:'.date('o-m-d'-1),
+			'start_date' => 'Required|after:'.date('o-m-d',strtotime("-1 days")),
 			///End date must come after start_date
 			'end_date' => 'Required|after:'.Input::get('start_date')
 			);
@@ -124,6 +126,6 @@ class RoomController extends BaseController {
 			$change_room->save();
 			return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully change room status');
 		}
-		else return Redirect::back()->withErrors($validator);
+		else return Redirect::back()->withErrors($validator)->withInput();
 	}
 }

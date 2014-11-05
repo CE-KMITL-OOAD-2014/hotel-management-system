@@ -14,12 +14,16 @@
 <?php  echo "My hotel id is :".$hotel_id;?> <br>
 {{ Form::open(array('url' => 'change_room_status/'.$hotel_id)) }}
 {{ Form::select('room_list', $rooms) }}
+{{ $errors->first('room_list') }}
 <br />
 {{ Form::select('status', $status) }}
+{{ $errors->first('status') }}
 <br />
 {{Form::text('start_date','',array('id'=>'date','placeholder'=>'Choose start date'))}}
+{{ $errors->first('start_date') }}
 <br />
 {{Form::text('end_date','',array('id'=>'date2','placeholder'=>'Choose end date'))}}
+{{ $errors->first('end_date') }}
    <div class="control-group">
         <div class="controls">
             {{ Form::submit('Submit', array('class' => 'btn')) }}

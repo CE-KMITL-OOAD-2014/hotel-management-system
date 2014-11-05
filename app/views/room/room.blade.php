@@ -125,9 +125,7 @@
         <div class="controls">
 
             {{ HTML::link('create_room/'.$hotel_id, 'Create room') }}
-            {{ HTML::link('edit_room', 'Edit room') }}
-            {{ HTML::link('check_in', 'Check in') }}
-            {{ HTML::link('check_out', 'Check out') }}
+            {{ HTML::link('change_room_status/'.$hotel_id, 'Change room status') }}
         </div>
     </div>
     <?php $hotels=Hotel::find($hotel_id);?>

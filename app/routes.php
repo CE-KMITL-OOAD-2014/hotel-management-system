@@ -20,10 +20,11 @@ Route::get('create_hotel','HotelController@showCreateHotel');
 Route::post('create_hotel','HotelController@postCreateHotel');
 Route::get('join_hotel/{id}','HotelController@joinHotel');
 
-Route::get('myhotel/{id}','RoomController@showRoom');
-Route::get('create_room/{id}','RoomController@showCreateRoom');
-Route::post('create_room/{id}','RoomController@postCreateRoom');
-Route::get('room_json/{id}','RoomController@getRoomJson');
+Route::get('myhotel/{hotel_id}','RoomController@showRoom');
+Route::get('create_room/{hotel_id}','RoomController@showCreateRoom');
+Route::post('create_room/{hotel_id}','RoomController@postCreateRoom');
+Route::get('room_json/{hotel_id}','RoomController@getRoomJson');
+Route::get('change_room_status/{hotel_id}','RoomController@showChangeRoomstatus');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');

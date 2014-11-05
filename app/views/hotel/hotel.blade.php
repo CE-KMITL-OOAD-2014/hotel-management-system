@@ -13,7 +13,7 @@
         <div class="controls">
 @if(Authority::getCurrentUser()->hasRole('manager'))
             {{ HTML::link('create_hotel', 'Create hotel') }}
-           @endif
+            @endif
         </div>
     </div>
 

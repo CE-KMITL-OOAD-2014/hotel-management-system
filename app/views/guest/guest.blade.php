@@ -13,37 +13,32 @@
 <?php $users=User::find(Auth::id());?>
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($users->hotels as $hotel)
-        <li>
-            {{ $hotel->name  }}
-            {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
-        </li>
+        <h3> {{ $hotel->name  }}</h3>
+        {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
         @foreach($hotel->guests as $user_id)
-        <li>
-            {{ $user_id->name }}
-            {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
-        </li>
+            <li>
+                {{ $user_id->name }}
+                {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
+            </li>
         @endforeach 
     @endforeach
-@elseif($users->permissions->view_guest==1 && $users->permissions->manage_guest==0 )
+
+@elseif($users->permissions->view_guest==1)
     @foreach($users->hotels as $hotel)
-        <li>{{ $hotel->name  }}</li>
-        @foreach($hotel->guests as $user_id)
-        <li>{{ $user_id->name }}</li>
-        @endforeach
-    @endforeach
-@elseif($users->permissions->view_guest==1 && $users->permissions->manage_guest==1 )
-    @foreach($users->hotels as $hotel)
-        <li>
-            {{ $hotel->name  }}
+        <h3>{{ $hotel->name  }}</h3>
+        @if($users->permissions->manage_guest==1 )
             {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
-        </li>
+        @endif
         @foreach($hotel->guests as $user_id)
-        <li>
+            <li>
             {{ $user_id->name }}
+            @if($users->permissions->manage_guest==1 )
             {{ HTML::link('edit_guest/'.$user_id->id, 'Edit guest') }}
-        </li>
+            @endif
+            </li>
         @endforeach
     @endforeach
+
 @endif
 @stop
 

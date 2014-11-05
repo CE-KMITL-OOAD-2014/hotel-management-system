@@ -7,16 +7,12 @@
 
 @section('content')
 <h1>This is my room!</h1>
-
-<?php echo "My hotel id is :".$hotel_id;?>
     <!-- Login & Register button -->
     <div class="control-group">
         <div class="controls">
-
+@if(Authority::getCurrentUser()->hasRole('manager'))
             {{ HTML::link('create_room/'.$hotel_id, 'Create room') }}
-          
-            {{ HTML::link('check_in', 'Check in') }}
-            {{ HTML::link('check_out', 'Check out') }}
+            @endif
         </div>
     </div>
     <?php 

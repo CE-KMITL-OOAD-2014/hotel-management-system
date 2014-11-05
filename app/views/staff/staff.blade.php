@@ -14,18 +14,30 @@
     @foreach($user->hotels as $hotel)
     	<h3>{{ $hotel->name  }}</h3>
     	@foreach($hotel->users as $user_id)
-        @if($user_id->hasRole('manager'))
-    	{{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
-        <b>Staff</b><br>
-        @elseif($user_id->hasRole('staff'))
-        {{ $user_id->name ." ".$user_id->lastname." "}}
-        {{ HTML::link('edit_permission/'.$hotel->id.'/'.$user_id->id, 'Edit permissions') }}
-        <br>
- 
-        @endif
-    	@endforeach
+            @if($user_id->hasRole('manager'))
+    	       {{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
+                <b>Staff</b><br>
+            @elseif($user_id->hasRole('staff'))
+                {{ $user_id->name ." ".$user_id->lastname." "}}
+                {{ HTML::link('edit_permission/'.$hotel->id.'/'.$user_id->id, 'Edit permissions') }}
+                <br>
+            @endif      
+        @endforeach
     @endforeach
-
+ 
+@elseif(Authority::getCurrentUser()->hasRole('staff'))
+        @foreach($user->hotels as $hotel)
+            <h3>{{ $hotel->name  }}</h3>
+            @foreach($hotel->users as $user_id)
+                @if($user_id->hasRole('manager'))
+                {{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
+                <b>Staff</b><br>
+                @elseif($user_id->hasRole('staff'))
+                    {{ $user_id->name ." ".$user_id->lastname." "}}
+                <br>
+                @endif      
+            @endforeach
+        @endforeach
 @endif
 
 @stop

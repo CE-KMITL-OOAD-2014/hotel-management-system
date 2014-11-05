@@ -8,7 +8,7 @@ class GuestController extends BaseController {
         if($user->permissions->view_guest==1 ||  Authority::getCurrentUser()->hasRole('manager') )
             return View::make('guest.guest');
         else
-        return Redirect::to('hotel/')->with('success', 'Access Denied');
+        return Redirect::to('hotel')->with('success', 'Access Denied');
     }
 
 
@@ -18,7 +18,7 @@ class GuestController extends BaseController {
         if($user->permissions->manage_guest==1 ||  Authority::getCurrentUser()->hasRole('manager') )
         return View::make('guest.create_guest',array('hotel_id'=>$id));
         else
-        return Redirect::to('hotel/')->with('success', 'Access Denied');
+        return Redirect::to('hotel')->with('success', 'Access Denied');
     }
  
 

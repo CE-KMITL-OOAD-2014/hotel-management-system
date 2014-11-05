@@ -40,7 +40,7 @@ class AuthController extends BaseController {
             if (Auth::attempt($userdata))
             {
                 // Redirect to homepage
-                return Redirect::to('')->with('success', 'You have logged in successfully');
+                return Redirect::to('hotel')->with('success', 'You have logged in successfully');
             }
             else
             {

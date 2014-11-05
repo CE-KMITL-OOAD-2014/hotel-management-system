@@ -90,4 +90,8 @@ class RoomController extends BaseController {
         // Something went wrong.
             return Redirect::to('edit_room/'.$hotel_id.'/'.$room->id)->withErrors($validator)->withInput(Input::except('fail'));
     }
+    public function deleteRoom($hotel_id,$room_id){
+        $hotel = hotel::find($hotel_id);
+        $room = room::find($room_id);  
+    }
 }

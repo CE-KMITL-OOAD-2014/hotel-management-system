@@ -3,10 +3,14 @@
 class PermissionController extends BaseController {
 
 	public function showSetPermission($hotel_id,$member_id)
-	{
-		return View::make('permission.permission') 
-		->with ('hotel_id',hotel::find($hotel_id))
-        ->with ('staff_id',user::find($member_id));
+    {
+        if( Authority::getCurrentUser()->hasRole('manager') ){
+	       return View::make('permission.permission') 
+            ->with ('hotel_id',hotel::find($hotel_id))
+            ->with ('staff_id',user::find($member_id));
+        }
+        else
+            return Redirect::to('hotel/')->with('success', 'Access Denied');
 	}
 
 	public function postSetPermission($hotel_id,$member_id)

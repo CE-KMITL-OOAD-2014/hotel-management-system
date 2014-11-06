@@ -68,7 +68,7 @@ class RoomController extends BaseController {
 		foreach ($hotel->rooms as $room) {
 			foreach ($room->statusrooms as $status) {
 				if($status->name == 'Empty'){
-					$room_choice[$room->roomnumber] = $room->roomnumber;
+					$room_choice[$room->id] = $room->roomnumber;
 				}
 			}
 		}
@@ -96,16 +96,10 @@ class RoomController extends BaseController {
 		$validator = Validator::make($room_data, $rules);
 		if ($validator->passes())
 		{
-			$hotel = Hotel::find($hotel_id);
-			foreach ($hotel->rooms as $room) {
-				if($room->roomnumber == Input::get('room_list')){
-					$change_room = Room::find($room->id);
-					break;
-				}
-			}
-			$change_room->checkin = Input::get('start_date');
-			$change_room->checkout = Input::get('end_date');
-			$change_room->statusrooms()->detach('1');
+			$room = Room::find(Input::get('room_list'));
+			$room->checkin = Input::get('start_date');
+			$room->checkout = Input::get('end_date');
+			$room->statusrooms()->detach('1');
 			switch (Input::get('status')) {
 					//Occupied 
 				case '2':
@@ -123,7 +117,7 @@ class RoomController extends BaseController {
 					// do nothing
 				break;
 			}
-			$change_room->save();
+			$room->save();
 			return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully change room status');
 		}
 		else return Redirect::back()->withErrors($validator)->withInput();

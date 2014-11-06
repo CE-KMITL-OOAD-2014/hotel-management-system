@@ -1,5 +1,6 @@
     <?php
 
+
     class PermissionController extends BaseController {
 
        public function showSetPermission($hotel_id,$member_id)

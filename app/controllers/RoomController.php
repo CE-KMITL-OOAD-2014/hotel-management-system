@@ -64,7 +64,7 @@ class RoomController extends BaseController {
 	public function showChangeRoomstatus($hotel_id){
 		////populate drop down menu ($room_choice) with empty room of current hotel
 		$hotel = Hotel::find($hotel_id);
-		$room_choice =array('' =>'Please select room number');
+		$room_choice =array('' => 'Please select room number');
 		foreach ($hotel->rooms as $room) {
 			foreach ($room->statusrooms as $status) {
 				if($status->name == 'Empty'){
@@ -80,7 +80,7 @@ class RoomController extends BaseController {
 	/////This function will change room status from empty to Occupied, Reserved or Maintenance according to form
 	public function postChangeRoomstatus($hotel_id){
 		$room_data = array(
-			'roomnumber' => Input::get('room_list'),
+			'roomnumber' => Input::get('roomnumber'),
 			'status' => Input::get('status'),
 			'start_date' => Input::get('start_date'),
 			'end_date' => Input::get('end_date')
@@ -96,7 +96,7 @@ class RoomController extends BaseController {
 		$validator = Validator::make($room_data, $rules);
 		if ($validator->passes())
 		{
-			$room = Room::find(Input::get('room_list'));
+			$room = Room::find(Input::get('roomnumber'));
 			$room->checkin = Input::get('start_date');
 			$room->checkout = Input::get('end_date');
 			$room->statusrooms()->detach('1');

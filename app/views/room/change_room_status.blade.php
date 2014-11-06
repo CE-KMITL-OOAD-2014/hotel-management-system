@@ -13,8 +13,8 @@
 
 <?php  echo "My hotel id is :".$hotel_id;?> <br>
 {{ Form::open(array('url' => 'change_room_status/'.$hotel_id)) }}
-{{ Form::select('room_list', $rooms) }}
-{{ $errors->first('room_list') }}
+{{ Form::select('roomnumber', $rooms) }}
+{{ $errors->first('roomnumber') }}
 <br />
 {{ Form::select('status', $status) }}
 {{ $errors->first('status') }}

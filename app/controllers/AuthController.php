@@ -106,10 +106,12 @@ class AuthController extends BaseController {
         // Something went wrong.
             return Redirect::to('register')->withErrors($validator)->withInput(Input::except('password'));
     }
-    public function showEditUser(){
+    public function showEditUser()
+    {
         return View::make('auth.edit_user');
     }
-    public function postEditUser(){
+    public function postEditUser()
+    {
         $user = User::find(Auth::id());
         $userdata = array(
             'name' => Input::get('name'),
@@ -124,15 +126,18 @@ class AuthController extends BaseController {
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
+            //replace old value with input
             $user =User::find(Auth::id());
             $user->name = Input::get('name');
             $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
             $user->work_history = Input::get('work_history');
             $user->save();
+            // Redirect to home
             return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
         }
         else
+    
             return Redirect::back()->withErrors($validator)->withInput(Input::except('password'));
     }
 

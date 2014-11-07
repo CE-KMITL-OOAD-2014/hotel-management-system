@@ -114,7 +114,7 @@ class RoomController extends BaseController {
 	}
 		   /////This function will display form use to change room status
 	public function showChangeRoomstatus($hotel_id){
-		////populate drop down menu ($room_choice) with empty room of current hotel
+		////populate drop down menu ($roochoice) with empty room of current hotel
 		$hotel = Hotel::find($hotel_id);
 		$room_choice =array('' => 'Please select room number');
 		foreach ($hotel->rooms as $room) {
@@ -170,7 +170,7 @@ class RoomController extends BaseController {
 				break;
 			}
 			$room->save();
-			return Redirect::to('myhotel/'.$hotel_id)->with('success', 'You have successfully change room status');
+			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
 		}
 		else return Redirect::back()->withErrors($validator)->withInput();
 	}

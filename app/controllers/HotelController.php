@@ -100,6 +100,6 @@
             return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
         }
         else 
-            return Redirect::back()->with('success', 'Access deny ');->withInput(Input::except('password'));
+            return Redirect::back()->with('success', 'Access deny ')->withInput(Input::except('password'));
     }
 }

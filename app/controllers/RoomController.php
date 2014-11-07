@@ -99,6 +99,7 @@ class RoomController extends BaseController {
 		else return Redirect::back()->with('success', 'Access deny ');
 	}
 
+	///return json list of room with specific status & hotel
 	public function getRoomJson($room_status,$hotel_id){
 		$hotels=Hotel::find($hotel_id);
 		$event=array();

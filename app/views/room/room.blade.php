@@ -97,16 +97,19 @@
                         */
                     eventSources:[
                     {
+                        /////Occupied
                         url: '{{URL::to('room_json/Occupied/'.$hotel_id)}}',
                         color: '#3F51B5',
                         textColor : '#ffffff'
                     },
                     {
+                        /////Reserved
                         url: '{{URL::to('room_json/Reserved/'.$hotel_id)}}',
                         color: '#FFB300',
                         textColor : '#ffffff'
                     },
                     {
+                        /////Maintenance
                         url: '{{URL::to('room_json/Maintenance/'.$hotel_id)}}',
                         color: '#F44336',
                         textColor : '#ffffff'

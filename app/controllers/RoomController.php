@@ -4,9 +4,9 @@ class RoomController extends BaseController {
 
 	public function showRoom($id)
 	{
-		$user=User::find(Auth::id());
 		if( Authority::getCurrentUser()->hasRole('manager') )
 			return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
+		$user=User::find(Auth::id());
 		elseif($user->permissions->view_room==1 )
 			return View::make('room.room',array('rooms'=>room::all(),'hotel'=>hotel::all(),'hotel_id'=>$id));
 		else
@@ -14,9 +14,9 @@ class RoomController extends BaseController {
 	}
 	public function showCreateRoom($id)
 	{   
-		$user=User::find(Auth::id());
 		if( Authority::getCurrentUser()->hasRole('manager') )
 			return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$id));
+		$user=User::find(Auth::id());
 		elseif($user->permissions->manage_room==1)
 			return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$id));
 		else
@@ -66,8 +66,6 @@ class RoomController extends BaseController {
 
 	public function postEditRoom($hotel_id,$room_id)
 	{
-		$hotel = hotel::find($hotel_id);
-		$room = room::find($room_id);    
 		$userdata = array(
 			'roomnumber' => Input::get('roomnumber'),
 			'price' => Input::get('price'),
@@ -80,15 +78,16 @@ class RoomController extends BaseController {
 			);
 		$validator = Validator::make($userdata, $rules);
 		if ($validator->passes()){
+			$room = room::find($room_id);
 			$room->roomnumber = Input::get('roomnumber');
 			$room->price = Input::get('price');
 			$room->detail = Input::get('detail');
 			$room->save();
-			return Redirect::to('hotel/'.$hotel->id)->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
 		}
 		else
         // Something went wrong.
-			return Redirect::to('edit_room/'.$hotel_id.'/'.$room->id)->withErrors($validator)->withInput(Input::except('fail'));
+			return Redirect::back()->withErrors($validator)->withInput(Input::except('fail'));
 	}
 	public function deleteRoom($hotel_id,$room_id){
 		if( Authority::getCurrentUser()->hasRole('manager') ){
@@ -97,7 +96,7 @@ class RoomController extends BaseController {
 			$hotel->rooms()->detach($room);
 			$room->statusrooms()->detach([1,2,3,4]);
 			$room->delete();
-			return Redirect::to('hotel/'.$hotel->id)->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
+			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
 		}
 		else return Redirect::back()->with('success', 'Access deny ');
 	}
@@ -107,12 +106,12 @@ class RoomController extends BaseController {
 		$event=array();
 		foreach ($hotels->rooms as $room) {
 			if($room->checkin!=NULL&&$room->checkout!=NULL){
-				array_push($event,  room::find($room->id,array('roomnumber as title','checkin as start','checkout as end', )));
+				array_push($event,room::find($room->id,array('roomnumber as title','checkin as start','checkout as end', )));
 			}
 		}
 		return $event;
 	}
-		   /////This function will display form use to change room status
+		   /////This function will display form to change room status
 	public function showChangeRoomstatus($hotel_id){
 		////populate drop down menu ($roochoice) with empty room of current hotel
 		$hotel = Hotel::find($hotel_id);

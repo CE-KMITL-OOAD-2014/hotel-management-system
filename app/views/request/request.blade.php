@@ -8,8 +8,7 @@
 @section('content')
 <h1>This is  request</h1>
 
-<!-- only manager can accept and decline request -->
-@if(Authority::getCurrentUser()->hasRole('manager'))
+
 
 <?php $user=User::find(Auth::id());?>
 
@@ -25,5 +24,5 @@
         </li>
     	@endforeach
     @endforeach
-@endif
+
 @stop

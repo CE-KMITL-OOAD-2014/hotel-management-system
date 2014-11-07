@@ -9,14 +9,17 @@
 <h1>This is  my staff</h1>
 
 <?php $user=User::find(Auth::id());?>
-
+<!-- only manager can edit permission staff -->
 @if(Authority::getCurrentUser()->hasRole('manager'))
+    <!--show all his hotels -->
     @foreach($user->hotels as $hotel)
     	<h3>{{ $hotel->name  }}</h3>
     	@foreach($hotel->users as $user_id)
+            <!--show  manger  -->
             @if($user_id->hasRole('manager'))
     	       {{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
                 <b>Staff</b><br>
+            <!--show  staff  -->
             @elseif($user_id->hasRole('staff'))
                 {{ $user_id->name ." ".$user_id->lastname." "}}
                 {{ HTML::link('edit_permission/'.$hotel->id.'/'.$user_id->id, 'Edit permissions') }}
@@ -24,13 +27,16 @@
             @endif      
         @endforeach
     @endforeach
- 
+ <!-- staff can see his friend staffs in his hotel -->
 @elseif(Authority::getCurrentUser()->hasRole('staff'))
+         <!--show  his hotel -->
         @foreach($user->hotels as $hotel)
             <h3>{{ $hotel->name  }}</h3>
             @foreach($hotel->users as $user_id)
+                <!--show  manger-->
                 @if($user_id->hasRole('manager'))
                 {{"Manager name : ". $user_id->name." ".$user_id->lastname }}<br>
+                <!--show  staff -->
                 <b>Staff</b><br>
                 @elseif($user_id->hasRole('staff'))
                     {{ $user_id->name ." ".$user_id->lastname." "}}

@@ -12,8 +12,7 @@
 <?php 
 $user=User::find(Auth::id());
       ?>
-<!-- only manager can set permission staff-->
-@if(Authority::getCurrentUser()->hasRole('manager'))
+
     	<h3>{{ $hotel_id->name  }}</h3>
         <b>Staff Detail</b><br>
         {{"Name : ".$staff_id->name}}<br>

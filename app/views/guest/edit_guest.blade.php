@@ -19,13 +19,13 @@
         {{"Passport Number : ".$guest_id->passportNo}}<br>
         {{"Citizen Card Number : ".$guest_id->citizenCardNo}}<br>
    
-{{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
-<!-- if manager show delete guest url-->
-@if(Authority::getCurrentUser()->hasRole('manager'))
+        {{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
+        <!-- only manager can delete guest-->
+        @if(Authority::getCurrentUser()->hasRole('manager'))
 
-  {{ HTML::link('delete_guest/'.$hotel_id->id.'/'.$guest_id->id,'Delete' ) }}
-
-@endif
+        {{ HTML::link('delete_guest/'.$hotel_id->id.'/'.$guest_id->id,'Delete' ) }}
+        
+        @endif
     <!-- Gender -->
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">
         {{ Form::label('gender', 'Gender', array('class' => 'control-label')) }}

@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-<h1>This is home page!</h1>
+<h1>Hotel management system</h1>
 <?php
 if(Auth::check()){
 	if( Authority::can('manage', 'all') ) {

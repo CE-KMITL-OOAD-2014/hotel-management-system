@@ -8,26 +8,35 @@
 @section('content')
 <h1>This is my guest</h1>
 
-    <!-- Login & Register button -->
-
+<!-- Login & Register button -->
+{{ Form::open(array('url' => 'guest/', 'class' => 'form-horizontal')) }}
 <?php $users=User::find(Auth::id());?>
 @if(Authority::getCurrentUser()->hasRole('manager'))
     @foreach($users->hotels as $hotel)
+        <h3> {{ $hotel->name  }}</h3>
+        {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
+        @foreach($hotel->guests as $user_id)
         <li>
-            {{ $hotel->name  }}
-            {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
+            {{ $user_id->name }}
+            {{ HTML::link('edit_guest/'.$hotel->id.'/'.$user_id->id, 'Edit guest') }}
         </li>
-        @foreach($hotel->guests as $user_id)
-        <li>{{ $user_id->name }}</li>
-        @endforeach
+        @endforeach 
     @endforeach
-@elseif(Authority::getCurrentUser()->hasRole('staff'))
+@elseif($users->permissions->view_guest==1)
     @foreach($users->hotels as $hotel)
-        <li>{{ $hotel->name  }}</li>
+        <h3>{{ $hotel->name  }}</h3>
+        @if($users->permissions->manage_guest==1 )
+            {{ HTML::link('create_guest/'.$hotel->id, 'Create guest') }}
+        @endif
         @foreach($hotel->guests as $user_id)
-        <li>{{ $user_id->name }}</li>
+            <li>
+            {{ $user_id->name }}
+            @if($users->permissions->manage_guest==1 )
+                {{ HTML::link('edit_guest/'.$hotel->id.'/'.$user_id->id, 'Edit guest') }}
+            @endif
+            </li>
         @endforeach
     @endforeach
 @endif
 @stop
-@stop
+

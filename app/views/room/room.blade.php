@@ -10,72 +10,72 @@
 <script>
     /*
             jQuery document ready
-        */
-        
-        $(document).ready(function()
-        {
+            */
+            
+            $(document).ready(function()
+            {
             /*
                 date store today date.
                 d store today date.
                 m store current month.
                 y store current year.
-            */
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            
+                */
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+                
             /*
                 Initialize fullCalendar and store into variable.
                 Why in variable?
                 Because doing so we can use it inside other function.
                 In order to modify its option later.
-            */
-            
-            var calendar = $('#calendar').fullCalendar(
-            {
+                */
+                
+                var calendar = $('#calendar').fullCalendar(
+                {
                 /*
                     header option will define our calendar header.
                     left define what will be at left position in calendar
                     center define what will be at center position in calendar
                     right define what will be at right position in calendar
-                */
-                header:
-                {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay'
-                },
+                    */
+                    header:
+                    {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
                 /*
                     defaultView option used to define which view to show by default,
                     for example we have used agendaWeek.
-                */
-                defaultView: 'basicWeek',
+                        */
+                    defaultView: 'basicWeek',
                 /*
                     selectable:true will enable user to select datetime slot
                     selectHelper will add helpers for selectable.
-                */
-                selectable: true,
-                selectHelper: true,
+                    */
+                    selectable: true,
+                    selectHelper: true,
                 /*
                     when user select timeslot this option code will execute.
                     It has three arguments. Start,end and allDay.
                     Start means starting time of event.
                     End means ending time of event.
                     allDay means if events is for entire day or not.
-                */
-                select: function(start, end, allDay)
-                {
+                    */
+                    select: function(start, end, allDay)
+                    {
                     /*
                         after selection user will be promted for enter title for event.
-                    */
-                    var title = prompt('Event Title:');
+                        */
+                        var title = prompt('Event Title:');
                     /*
                         if title is enterd calendar will add title and event into fullCalendar.
-                    */
-                    if (title)
-                    {
-                        calendar.fullCalendar('renderEvent',
+                            */
+                        if (title)
+                        {
+                            calendar.fullCalendar('renderEvent',
                             {
                                 title: title,
                                 start: start,
@@ -83,26 +83,26 @@
                                 allDay: allDay
                             },
                             true // make the event "stick"
-                        );
-                    }
-                    calendar.fullCalendar('unselect');
-                },
+                            );
+                        }
+                        calendar.fullCalendar('unselect');
+                    },
                 /*
                     editable: true allow user to edit events.
-                */
-                editable: false,
+                    */
+                    editable: false,
                 /*
                     events is the main option for calendar.
                     for demo we have added predefined events in json object.
-                */
-            events:{
-    url: '{{URL::to('room_json/'.$hotel_id)}}',
-  }
-            });
-            
-        });
+                        */
+                    events:{
+                        url: '{{URL::to('room_json/'.$hotel_id)}}',
+                    }
+                });
 
-    </script>
+});
+
+</script>
 @stop
 
 @section('title')
@@ -112,38 +112,56 @@
 @section('styles')
 @parent
 #calendar {
-        max-width: 900px;
-        margin: 0 auto;
-    }
+max-width: 900px;
+margin: 0 auto;
+}
 @stop
 @section('content')
 <h1>This is my room!</h1>
 
-<?php echo "My hotel id is :".$hotel_id;?><br>
-    <div class="control-group">
-        <div class="controls">
-
-            {{ HTML::link('create_room/'.$hotel_id, 'Create room') }}
-            {{ HTML::link('change_room_status/'.$hotel_id, 'Change room status') }}
-        </div>
-    </div>
-    <?php $hotels=Hotel::find($hotel_id);?>
-      @foreach($hotels->rooms as $room)
-        @foreach($room->statusrooms as $status)
-        <li>{{ $room->roomnumber}}
-        {{ $room->price}}
-        {{ $room->detail}}
-        {{ $status->name}}
-            {{ HTML::link('empty','Empty')}}
-            {{ HTML::link('occupied', 'Occupied') }}
-            {{ HTML::link('reserved', 'Reserved') }}
-            {{ HTML::link('maintenance', 'Maintenance') }}
+<?php 
+$hotels=Hotel::find($hotel_id);
+$user = User::find(Auth::id());
+?>
+@if(Authority::getCurrentUser()->hasRole('manager'))
+{{ HTML::link('create_room/'.$hotel_id, 'Create room') }}
+{{ HTML::link('change_room_status/'.$hotel_id, 'Change room status') }}
+@foreach($hotels->rooms as $room)
+@foreach($room->statusrooms as $status)
+<li>
+    {{ $room->roomnumber}}
+    {{ $room->price}}
+    {{ $room->detail}}
+    {{ $status->name}}
+    {{ HTML::link('edit_room/'.$hotel_id.'/'.$room->id, 'Edit room') }}
+    {{ HTML::link('empty','Empty')}}
+    {{ HTML::link('occupied', 'Occupied') }}
+    {{ HTML::link('reserved', 'Reserved') }}
+    {{ HTML::link('maintenance', 'Maintenance') }}
 </li>
-        @endforeach
-    @endforeach
-
-    <!--FullCalendar container div-->
-    <div id='calendar'></div>
+@endforeach
+@endforeach 
+@elseif($user->permissions->view_room==1)
+@foreach($hotels->rooms as $room)
+@foreach($room->statusrooms as $status)
+<li>
+    {{ $room->roomnumber}}
+    {{ $room->price}}
+    {{ $room->detail}}
+    {{ $status->name}}            
+    @if($user->permissions->manage_room==1 )
+    {{ HTML::link('edit_room/'.$hotel_id.'/'.$room->id, 'Edit room') }}
+    {{ HTML::link('empty','Empty')}}
+    {{ HTML::link('occupied', 'Occupied') }}
+    {{ HTML::link('reserved', 'Reserved') }}
+    {{ HTML::link('maintenance', 'Maintenance') }}
+</li>
+@endif
+@endforeach
+@endforeach
+@endif
+<!--FullCalendar container div-->
+<div id='calendar'></div>
 @stop
 @section('js')
 {{ HTML::script('js/bootstrap.min.js') }}

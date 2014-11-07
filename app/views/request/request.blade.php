@@ -16,7 +16,7 @@
 
 
     @foreach($user->Hotels as $hotel)
-    	<li>{{ $hotel->name  }}</li>
+    	<h3>{{ $hotel->name  }}</h3>
     	@foreach($hotel->requestUsers as $member)
     	<li>
     		{{ $member->name }}

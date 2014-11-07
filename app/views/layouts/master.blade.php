@@ -37,16 +37,21 @@
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
       <li><a href={{{ URL::to('') }}}>Home</a></li>
-
+       
       @if(!Auth::guest())
-      <li><a href={{{ URL::to('myhotel') }}}>My hotel</a></li>
-            <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
-            @if(Authority::can('create','staff')) 
-            <li><a href={{{ URL::to('request') }}}>Request</a></li>
-            @endif
-            <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
+       <?php $user=User::find(Auth::id()); ?>
+      <li><a href={{{ URL::to('hotel') }}}>Hotel</a></li>
+            @if(Authority::getCurrentUser()->hasRole('staff'))
+                <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
+                @if($user->permissions->view_guest==1||$user->permissions->create_guest==1)
+                    <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
+                    @endif
+            @elseif(Authority::getCurrentUser()->hasRole('manager'))
+                <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
+                <li><a href={{{ URL::to('request') }}}>Request</a></li>
+                <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
+                @endif
         @endif
-
       <li><a href={{{ URL::to('about') }}}>About</a></li>
       <li class="dropdown">
     </ul>
@@ -59,7 +64,7 @@
                             <li>{{ HTML::link('login', 'Login') }}</li>
                         @else
                             <li>{{ HTML::link('logout', 'Logout') }}</li>
-                            <li>{{HTML::link('#',Auth::user()->name);}}
+                            <li>{{HTML::link('edit_user',Auth::user()->name);}}
                         @endif
     </ul>
   </div>

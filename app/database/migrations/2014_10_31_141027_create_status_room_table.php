@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateStatusRoomTable extends Migration {
@@ -12,7 +11,7 @@ class CreateStatusRoomTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('status_room', function(Blueprint $table)
+		Schema::create('status_room', function($table)
 		{
 			$table->increments('id');
 			$table->integer('statusroom_id')->unsigned();

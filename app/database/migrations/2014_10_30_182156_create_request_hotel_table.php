@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateRequestHotelTable extends Migration {
@@ -12,7 +11,7 @@ class CreateRequestHotelTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('request_hotel', function(Blueprint $table)
+		Schema::create('request_hotel', function($table)
 		{
 			$table->increments('id');
             $table->integer('hotel_id')->unsigned();

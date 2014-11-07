@@ -105,7 +105,8 @@
 
             );
         $validator = Validator::make($userdata, $rules);
-        if ($validator->passes()){
+        if ($validator->passes())
+        {
             //replace old data with input
             $hotel->address = Input::get('address');
             $hotel->tel = Input::get('tel');
@@ -120,7 +121,8 @@
 
         $user=User::find(Auth::id());
         $hotel=Hotel::find($id);
-        if(Authority::getCurrentUser()->hasRole('manager') ){
+        if(Authority::getCurrentUser()->hasRole('manager') )
+        {
             //delete all guest in hotel
             foreach($hotel->guests as $guest){
                 App::make('GuestController')->deleteGuest($id,$guest->id);

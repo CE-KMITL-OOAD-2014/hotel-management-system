@@ -1,5 +1,5 @@
 <?php
-use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Database\Migrations\Migration;
 
 class CreateGuestsTable extends Migration {
@@ -12,7 +12,8 @@ class CreateGuestsTable extends Migration {
 	public function up()
 	{
 
-			Schema::create('guests', function(Blueprint $table){
+		Schema::create('guests', function($table)
+		{
 			$table->increments('id');
 			$table->string('gender',255);
 			$table->string('nationality',255);

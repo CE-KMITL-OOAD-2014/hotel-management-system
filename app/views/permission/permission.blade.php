@@ -6,19 +6,22 @@
 @stop
 
 @section('content')
-<h1>This is  Permission</h1>
+<h3>Set Permission</h3>
 
 
 <?php 
 $user=User::find(Auth::id());
       ?>
-
+<!-- only manager can set permission staff-->
 @if(Authority::getCurrentUser()->hasRole('manager'))
     	<h3>{{ $hotel_id->name  }}</h3>
         <b>Staff Detail</b><br>
-        {{ $staff_id->name ." ".$staff_id->lastname." ".$staff_id->id}}<br>
-
+        {{"Name : ".$staff_id->name}}<br>
+        {{"Lastname : ".$staff_id->lastname}}<br>
+        {{"email : ".$staff_id->email}}<br>
+        {{"work history : ".$staff_id->work_history}}<br>
         <b>Set Permission</b><br>
+
 {{ Form::open(array('url' => 'permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
  <div class="radio">
 

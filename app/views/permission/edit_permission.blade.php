@@ -2,26 +2,28 @@
 
 @section('title')
 @parent
-:: Permission
+::Edit Permission
 @stop
 
 @section('content')
-<h1>This is edit  Permission</h1>
+<h3>Edit  Permission</h3>
 
 <?php 
 $user=User::find(Auth::id());
 ?>
-
+<!--only manager can edit permission staff -->
 @if(Authority::getCurrentUser()->hasRole('manager'))
     	<h3>{{ $hotel_id->name  }}</h3>
-        <b>Staff Detail</b><br>
-        {{ $staff_id->name ." ".$staff_id->lastname." ".$staff_id->id}} 
-        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}
-        <br>
-        <b>Set Permission</b><br>
+        <h4>Staff Detail</h4>
+        {{"Name : ".$staff_id->name}}<br>
+        {{"Lastname : ".$staff_id->lastname}}<br>
+        {{"email : ".$staff_id->email}}<br>
+        {{"work history : ".$staff_id->work_history}}<br>
+        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}<br>
+        <h4>Set Permission</h4>
 {{ Form::open(array('url' => 'edit_permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
  <div class="radio">
-<h3>Room Permission</h3>
+<h5>Room Permission</h5>
   
 <li>
 @if($staff_id->permissions->view_room == false && $staff_id->permissions->manage_room == false) 
@@ -50,7 +52,7 @@ $user=User::find(Auth::id());
 {{ Form::label('radio3','Manage Room',array('class'=>'')) }}
 </li>
 
-<h3>GuestPermission</h3>
+<h5>GuestPermission</h5>
 
 <li>
 @if($staff_id->permissions->view_guest == false && $staff_id->permissions->manage_guest == false)

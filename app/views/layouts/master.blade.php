@@ -52,7 +52,6 @@
                 <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
                 @endif
         @endif
-      <li><a href={{{ URL::to('about') }}}>About</a></li>
       <li class="dropdown">
     </ul>
 

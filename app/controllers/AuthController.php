@@ -100,7 +100,7 @@ class AuthController extends BaseController {
             
 
             // Redirect to home with success message
-            return Redirect::to('')->with('success', 'You have successfully create account');
+            return Redirect::to('hotel')->with('success', 'You have successfully create account');
         }
         else
         // Something went wrong.
@@ -134,10 +134,10 @@ class AuthController extends BaseController {
             $user->work_history = Input::get('work_history');
             $user->save();
             // Redirect to home
-            return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
+            return Redirect::to('hotel')->with('success', 'You have successfully edit '.$user->name.' profile.');
         }
         else
-    
+
             return Redirect::back()->withErrors($validator)->withInput(Input::except('password'));
     }
 

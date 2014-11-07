@@ -112,7 +112,7 @@
             $hotel->save();
             return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
         }
-        //Something wentwrong
+        //Something went wrong
         else 
             return Redirect::back()->withErrors($validator)->withInput();
     }

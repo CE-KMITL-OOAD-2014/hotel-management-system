@@ -2,39 +2,39 @@
 
     class GuestController extends BaseController {
 
-        public function showGuest()
-        {
-            $user=User::find(Auth::id());
-            //manager and staff with permission can view guest
-            if( Authority::getCurrentUser()->hasRole('manager'))
-                return View::make('guest.guest');
+    public function showGuest()
+    {
+        $user=User::find(Auth::id());
+        //manager and staff with permission can view guest
+        if( Authority::getCurrentUser()->hasRole('manager'))
+            return View::make('guest.guest');
             
-            elseif($user->permissions->view_guest==1)
-                return View::make('guest.guest');
-            //else redirect before page
-            else
-                return Redirect::back()->with('success', 'Access Denied');
+        elseif($user->permissions->view_guest==1)
+            return View::make('guest.guest');
+        //Somethings went wrong
+        else
+            return Redirect::back()->with('success', 'Access Denied');
     }
 
 
-    public function showCreateGuest($id)
+    public function showCreateGuest($hotel_id)
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can create guest
         if(Authority::getCurrentUser()->hasRole('manager') )
             return View::make('guest.create_guest')
-            ->with('hotel_id',$id);
+            ->with('hotel_id',$hotel_id);
 
         elseif($user->permissions->manage_guest==1)
             return View::make('guest.create_guest')
-            ->with('hotel_id',$id);
+            ->with('hotel_id',$hotel_id);
         // Something went wrong.
         else
             return Redirect::back()->with('success', 'Access Denied');
     }
 
 
-    public function postCreateGuest($id)
+    public function postCreateGuest($hotel_id)
     {
         $userdata = array(
             'gender' => Input::get('gender'),
@@ -66,7 +66,7 @@
             $new_guest =  guest::create($userdata);
 
             //Attatch new guest to hotel
-            $hotel = hotel::find($id);
+            $hotel = hotel::find($hotel_id);
             $hotel->guests()->attach($new_guest);
 
             // Redirect to home with success message
@@ -80,7 +80,8 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can edit guest
-        if(Authority::getCurrentUser()->hasRole('manager') ){
+        if(Authority::getCurrentUser()->hasRole('manager') )
+        {
         return View::make('guest.edit_guest')
         ->with('guest_id',guest::find($guest_id))
         ->with('hotel_id',hotel::find($hotel_id));
@@ -123,7 +124,8 @@
         );
      $validator = Validator::make($userdata, $rules);
      //replace old value with input
-     if ($validator->passes()){
+     if ($validator->passes())
+     {
         $guest->gender = Input::get('gender');
         $guest->nationality = Input::get('nationality');
         $guest->name = Input::get('name');
@@ -145,7 +147,8 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-     if( Authority::getCurrentUser()->hasRole('manager') ){ 
+     if( Authority::getCurrentUser()->hasRole('manager') )
+     { 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);
             $hotel->guests()->detach($guest);

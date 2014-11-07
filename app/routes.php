@@ -21,6 +21,7 @@ Route::post('create_hotel','HotelController@postCreateHotel');
 Route::get('edit_hotel/{id}','HotelController@showEditHotel');
 Route::post('edit_hotel/{id}','HotelController@postEditHotel');
 Route::get('join_hotel/{id}','HotelController@joinHotel');
+Route::get('delete_hotel/{id}','HotelController@deleteHotel');
 
 Route::get('hotel/{id}','RoomController@showRoom');
 Route::get('create_room/{id}','RoomController@showCreateRoom');

@@ -102,4 +102,34 @@
         else 
             return Redirect::back()->with('success', 'Access deny ')->withInput(Input::except('password'));
     }
+    public function deleteHotel($id){
+        $user=User::find(Auth::id());
+        $hotel=Hotel::find($id);
+        foreach($hotel->guests as $guest){
+            App::make('GuestController')->deleteGuest($id,$guest->id);
+        }
+        foreach($hotel->requestUsers as $request){
+            App::make('StaffController')->staffDecline($id,$request->id);
+        }
+        foreach($hotel->rooms as $room){
+            App::make('RoomController')->deleteRoom($id,$room->id);
+        }
+        foreach($hotel->users as $staff){
+            foreach($staff->roles as $roles_staff){
+                if($roles_staff->name == 'staff' )
+                    App::make('StaffController')->fireStaff($id,$staff->id);
+            }
+        }
+        $hotel->delete();
+        // check other hotel of manager to change roll
+        $countHotel = 0;
+        foreach($user->hotels as $hotel ){
+           $countHotel++;
+        }
+        if($countHotel==0){
+            $user->roles()->detach(3);
+            $user->roles()->attach(2);
+        }
+         return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
+    }
 }

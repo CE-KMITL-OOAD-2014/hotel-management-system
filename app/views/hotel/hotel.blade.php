@@ -8,14 +8,11 @@
 @section('content')
 <h1>This is my hotel!</h1>
 
-    <!-- Login & Register button -->
-    <div class="control-group">
-        <div class="controls">
+
+
 @if(Authority::getCurrentUser()->hasRole('manager'))
-            {{ HTML::link('create_hotel', 'Create hotel') }}
-            @endif
-        </div>
-    </div>
+    {{ HTML::link('create_hotel', 'Create hotel') }}
+    @endif
 
 
 <?php $users=User::find(Auth::id());?>

@@ -50,7 +50,7 @@ class AuthController extends BaseController {
         }
 
         // Something went wrong.
-        return Redirect::to('login')->withErrors($validator)->withInput(Input::except('password'));
+        return Redirect::back()->withErrors($validator)->withInput(Input::except('password'));
     }
 
     public function getLogout()
@@ -133,7 +133,7 @@ class AuthController extends BaseController {
             return Redirect::to('')->with('success', 'You have successfully edit '.$user->name.' profile.');
         }
         else
-            return Redirect::to('edit_user')->withErrors($validator)->withInput(Input::except('password'));
+            return Redirect::back()->withErrors($validator)->withInput(Input::except('password'));
     }
 
 }

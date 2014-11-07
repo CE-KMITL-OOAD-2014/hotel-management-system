@@ -7,10 +7,12 @@
 
 @section('content')
 
-<h3>{{ $hotel_id->name  }}</h3>
- <b>Crate Guest</b>
 
 {{ Form::open(array('url' => 'create_guest/'.$hotel_id, 'class' => 'form-horizontal')) }}
+<?php $hotel=Hotel::find($hotel_id)?>
+<h3>{{ $hotel->name }}</h3>
+ <b>Create Guest</b>
+
 
     <!-- Gender -->
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">

@@ -34,6 +34,7 @@
             {{ $errors->first('tel') }}
         </div>
     </div>
+    
     <!-- Submit button -->
     <div class="control-group">
         <div class="controls">

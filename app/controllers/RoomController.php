@@ -8,7 +8,7 @@ class RoomController extends BaseController {
 		if( Authority::getCurrentUser()->hasRole('manager') )
 			return View::make('room.room',array('rooms'=>room::all(),'hotel_id'=>$hotel_id));
 
-		elseif(User::find(Auth::hotel_id())->permissions->view_room==1 )
+		elseif(User::find(Auth::id())->permissions->view_room==1 )
 			return View::make('room.room',array('rooms'=>room::all(),'hotel_id'=>$hotel_id));
 		//Something went wrong
 		else

@@ -23,8 +23,8 @@ $user=User::find(Auth::id());
  <div class="radio">
 
 <li>
-{{ Form::radio('room','no_room',true,'',array('id'=>'radio1'))}}
-{{ Form::label('radio1','Nothing',array('class'=>'')) }}
+{{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
+{{ Form::label('radio1','No Room',array('class'=>'')) }}
 </li>
 
 <li>

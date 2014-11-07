@@ -15,6 +15,7 @@
     @if(Authority::getCurrentUser()->hasRole('manager'))
     {{ HTML::link('delete_hotel/'.$hotel->id,'Delete' ) }}
     @endif
+    
     <!-- Name -->
     <div class="control-group {{{ $errors->has('name') ? 'error' : '' }}}">
         {{ Form::label('name', 'Hotel name', array('class' => 'control-label')) }}

@@ -5,7 +5,7 @@
     	public function showStaff()
     	{
             //member can't see staff
-            if(!Authority::getCurrentUser()->hasRole('staff') )
+            if(!Authority::getCurrentUser()->hasRole('member') )
             {
     		  return View::make('staff.staff')
     		  ->with ('hotels',hotel::all())
@@ -69,7 +69,7 @@
                 //remove request from this hotel
     		    $member->requestHotels()->detach($hotel_id);
             
-    		return Redirect::to('staff')->with('success', 'You have successfully decline '.$member->name.' from '$hotel->name);
+    		return Redirect::to('staff')->with('success', 'You have successfully decline '.$member->name.' from '.$hotel->name);
             }
             //Something went wrong
             else

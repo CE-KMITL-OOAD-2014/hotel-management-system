@@ -21,7 +21,7 @@ class Guest extends Eloquent  {
 	protected $fillable = array('gender','nationality','name','lastname',
 		'dateOfBirth','address','tel','passportNo','citizenCardNo');
 
-	    public function hotels()
+	public function hotels()
     {
         return $this->belongsToMany('Hotel','guest_hotel');
     }

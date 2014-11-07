@@ -7,12 +7,11 @@
 
 @section('content')
 
-<?php  
-$hotel = hotel::find($hotel_id);
-echo "My hotel  is ".$hotel->name;
-?> <br>
+<h3>{{ $hotel_id->name  }}</h3>
+ <b>Crate Guest</b>
 
 {{ Form::open(array('url' => 'create_guest/'.$hotel_id, 'class' => 'form-horizontal')) }}
+
     <!-- Gender -->
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">
         {{ Form::label('gender', 'Gender', array('class' => 'control-label')) }}

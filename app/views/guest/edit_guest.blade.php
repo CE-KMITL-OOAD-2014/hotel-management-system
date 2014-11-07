@@ -7,12 +7,18 @@
 
 @section('content')
 
-
-
-{{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
     <h3>{{ $hotel_id->name  }}</h3>
         <b>Guest Detail</b><br>
-    {{ $guest_id->name ." ".$guest_id->lastname." "}}
+         {{$guest_id->gender." "$guest_id->nationality}}<br>
+         {{$guest_id->name." ".$guest_id->lastname}}<br>
+         {{$guest_id->dateOfBirth}}<br>
+         {{$guest_id->address}}<br>
+         {{$guest_id->tel}}<br>
+         {{$guest_id->passportNo}}<br>
+         {{$guest_id->citizenCardNo}}<br>
+   
+{{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
+<!-- if manager show delete guest url-->
 @if(Authority::getCurrentUser()->hasRole('manager'))
   {{ HTML::link('delete_guest/'.$hotel_id->id.'/'.$guest_id->id,'Delete' ) }}
 @endif

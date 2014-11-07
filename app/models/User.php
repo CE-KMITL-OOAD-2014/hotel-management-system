@@ -24,15 +24,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 	protected $fillable = array('name','lastname','username', 'password', 'email');
 
-	public function roles() {
+	public function roles() 
+    {
         return $this->belongsToMany('Role','role_user');
     }
 
-    public function permissions() {
+    public function permissions() 
+    {
         return $this->hasOne('Permission');
     }
 
-    public function hasRole($key) {
+    public function hasRole($key) 
+    {
         foreach($this->roles as $role){
             if($role->name === $key)
             {
@@ -42,11 +45,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 
-    public function hotels(){
+    public function hotels()
+    {
         return $this->belongsToMany('Hotel','hotel_user');
     }
     
-    public function requestHotels(){
+    public function requestHotels()
+    {
         return $this->belongsToMany('Hotel','request_hotel');
     }
 

@@ -48,7 +48,11 @@
             $user = User::find(Auth::id());
             $user->hotels()->attach($new_hotel);
 
-            // Redirect to home with success message
+            //Remove request this user all hotel
+            foreach( $user->requestHotels as $hotels){
+                $user->requestHotels()->detach($hotels->id);
+            }
+            //Redirect to home with success message
             return Redirect::to('hotel')->with('success', 'You have successfully create hotel');
         }
         else
@@ -153,6 +157,6 @@
      }
      //Something went wrong
      else
-        return Redirect::to('guest')->with('success', 'access deny' )
+        return Redirect::back()->with('success', 'access deny' );
     }
 }

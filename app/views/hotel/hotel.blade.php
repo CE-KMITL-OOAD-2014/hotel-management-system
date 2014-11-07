@@ -10,7 +10,7 @@
 
 
 
-@if(Authority::getCurrentUser()->hasRole('manager'))
+@if(!Authority::getCurrentUser()->hasRole('staff'))
     {{ HTML::link('create_hotel', 'Create hotel') }}
     @endif
 

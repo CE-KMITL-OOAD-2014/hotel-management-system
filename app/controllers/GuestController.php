@@ -22,12 +22,12 @@
         $user=User::find(Auth::id());
         //manager and staff with permission can create guest
         if(Authority::getCurrentUser()->hasRole('manager') )
-            return View::make('guest.create_guest',
+            return View::make('guest.create_guest')
             ->with('hotel_id',hotel::find($id));
 
         elseif($user->permissions->manage_guest==1)
-            return View::make('guest.create_guest',
-            ->with('hotel_id',hotel::find($id);)
+            return View::make('guest.create_guest')
+            ->with('hotel_id',hotel::find($id));
         // Something went wrong.
         else
             return Redirect::back()->with('success', 'Access Denied');

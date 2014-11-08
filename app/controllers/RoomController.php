@@ -79,7 +79,7 @@ class RoomController extends BaseController {
 			$hotel= hotel::find($hotel_id);
 			$hotel->rooms()->attach($new_room);
 
-            //Set new_room status to empty(1)
+            //Set new_room status to Empty
 			$new_status = status::create(array(
 				'status'=>'Empty',
 				'room_id'=>$new_room->id,));
@@ -157,11 +157,15 @@ class RoomController extends BaseController {
 	public function getRoomJson($room_status,$hotel_id){
 		$hotels=Hotel::find($hotel_id);
 		$event=array();
-
 		foreach ($hotels->rooms as $room) {
-			foreach($room->statusrooms as $status)
-				if($status->name == $room_status){
-					array_push($event,room::find($room->id,array('roomnumber as title','checkin as start','checkout as end')));
+			foreach($room->statuses as $status)
+				if($status->status == $room_status){
+					$json_array = array(
+						'title'=>Room::find($status->room_id)->roomnumber,
+						'start'=>$status->start,
+						'end'=>$status->end,
+						);
+					array_push($event, $json_array);
 				}
 			}
 			return $event;
@@ -173,14 +177,13 @@ class RoomController extends BaseController {
 					$hotel = Hotel::find($hotel_id);
 					$room_choice =array('' => 'Please select room number');
 					foreach ($hotel->rooms as $room) {
-						foreach ($room->statusrooms as $status) {
-							if($status->name == 'Empty'){
+						foreach ($room->statuses as $status) {
+							if($status->status == 'Empty'){
 								$room_choice[$room->id] = $room->roomnumber;
 							}
 						}
 					}
-					$status_choice = array('' =>'Please select room status') + Statusroom::where('name','!=','Empty')->lists('name','id');
-
+					$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
 					return View::make('room.change_room_status',array('hotel_id'=>$hotel_id,'rooms'=>$room_choice,'status'=>$status_choice));
 				}
 
@@ -204,27 +207,13 @@ class RoomController extends BaseController {
 					if ($validator->passes())
 					{
 						$room = Room::find(Input::get('roomnumber'));
-						$room->checkin = Input::get('start_date');
-						$room->checkout = Input::get('end_date');
-						$room->statusrooms()->detach('1');
-						switch (Input::get('status')) {
-					//Occupied 
-							case '2':
-							$room->statusrooms()->attach('2');
-							break;
-					//Reserved 	
-							case '3':
-							$room->statusrooms()->attach('3');
-							break;
-					//Maintenance
-							case '4':
-							$room->statusrooms()->attach('4');
-							break;
-							default:
-					// do nothing
-							break;
-						}
-						$room->save();
+						$new_status = status::create(array(
+						'status'=>Input::get('status'),
+						'room_id'=>Input::get('roomnumber'),
+						'start'=>Input::get('start_date'),
+						'end'=>Input::get('end_date')
+						));
+						
 						return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
 					}
 					else return Redirect::back()->withErrors($validator)->withInput();

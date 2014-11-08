@@ -17,8 +17,6 @@ class CreateRoomsTable extends Migration {
 			$table->string('roomnumber',255);
 			$table->string('price', 255);
 			$table->text('detail');
-			$table->date('checkin',255)->nullable();
-			$table->date('checkout',255)->nullable();
 			$table->timestamps();
 		});
 	}

@@ -31,8 +31,8 @@ Route::get('edit_room/{hotel}/{room}','RoomController@showEditRoom');
 Route::post('edit_room/{hotel}/{room}','RoomController@postEditRoom');
 Route::get('delete_room/{hotel}/{room}','RoomController@deleteRoom');
 Route::get('room_json/{room_status}/{hotel_id}','RoomController@getRoomJson');
-Route::get('change_room_status/{hotel_id}','RoomController@showChangeRoomstatus');
-Route::post('change_room_status/{hotel_id}','RoomController@postChangeRoomstatus');
+Route::get('change_room_status/{hotel_id}','RoomController@showCreateRoomstatus');
+Route::post('change_room_status/{hotel_id}','RoomController@postCreateRoomstatus');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');

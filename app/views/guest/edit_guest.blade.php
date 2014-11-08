@@ -26,7 +26,7 @@
    
         {{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
         <!-- only manager can delete guest-->
-        @if(Authority::getCurrentUser()->hasRole('manager'))
+        @if(User::find(auth::id())=='manager')
 
         {{ HTML::link('delete_guest/'.$hotel_id->id.'/'.$guest_id->id,'Delete' ) }}
         
@@ -71,7 +71,7 @@
     <div class="control-group {{{ $errors->has('dateOfBirth') ? 'error' : '' }}}">
         {{ Form::label('dateOfBirth', 'Date Of Birth', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('dateOfBirth','',array('id'=>'date','placeholder'=>'Choose date of Birth')) }}
+            {{ Form::text('dateOfBirth',$guest_id->dateOfBirth,array('id'=>'date','placeholder'=>'Choose date of Birth')) }}
             {{ $errors->first('dateOfBirth') }}
         </div>
     </div>

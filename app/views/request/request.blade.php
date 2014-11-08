@@ -16,12 +16,19 @@
         <!-- show all his hotels -->
     	<h3>{{ $hotel->name  }}</h3>
     	@foreach($hotel->requestUsers as $member)
-    	<li>
+    	
             <!-- show member require for each hotel -->
-    		{{ $member->name }}
-    		{{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'accept') }}
-            {{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'decline') }}
-        </li>
+            
+         
+            {{"Name : ".$member->name}}   
+           <br>
+            {{"Lastname : ".$member->lastname}}<br>
+            {{"email : ".$member->email}}<br>
+            {{"work history : ".$member->workhistory}}<br>
+             {{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'accept') }}
+            {{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'decline') }}<br><br>
+
+       
     	@endforeach
     @endforeach
 

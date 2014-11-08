@@ -77,10 +77,10 @@ class AuthController extends BaseController {
             'email' => Input::get('email')
             );
         $rules = array(
-            'name' => 'Required',
-            'lastname' =>  'Required',
-            'username' =>  'Required|unique:users',
-            'password' =>  'Required',
+            'name' => 'Required|alpha',
+            'lastname' =>  'Required|alpha',
+            'username' =>  'Required|unique:users|between:4,15',
+            'password' =>  'Required|between:6,15',
             'email' =>  'Required|email|unique:users'
             );
         $validator = Validator::make($userdata, $rules);
@@ -119,8 +119,8 @@ class AuthController extends BaseController {
             'email' => Input::get('email')
             );
         $rules = array(
-            'name' => 'Required',
-            'lastname' =>  'Required',
+            'name' => 'Required|alpha',
+            'lastname' =>  'Required|alpha',
             'email' =>  'Required|email|unique:users,email,'.$user->id
             );
         $validator = Validator::make($userdata, $rules);

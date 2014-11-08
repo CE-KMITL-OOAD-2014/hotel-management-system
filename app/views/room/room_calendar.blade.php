@@ -128,7 +128,9 @@
 #calendar {
 max-width: 900px;
 margin: 0 auto;
+padding-top: 60px;
 }
+
 @stop
 @section('content')
 

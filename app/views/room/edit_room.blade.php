@@ -8,7 +8,7 @@
 @section('content')
 
 {{ Form::open(array('url' => 'edit_room/'.$hotel_id->id.'/'.$room_id->id, 'class' => 'form-horizontal')) }}
-<!--Only manager can edit room -->
+
 
 
         <h3>{{ $hotel_id->name  }}</h3>
@@ -16,7 +16,7 @@
         {{ "Room Number :".$room_id->roomnumber}}<br>
         {{" Price : ".$room_id->price}}<br>
         {{ "Detail :".$room_id->detail}}<br>
-    
+    <!-- delete room -->
 {{ HTML::link('delete_room/'.$hotel_id->id.'/'.$room_id->id,'Delete Room' ) }}
 
     <!-- Roomnumber -->

@@ -6,7 +6,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can view guest
-        if( Authority::getCurrentUser()->hasRole('manager'))
+        if($user->role == 'manager')
             return View::make('guest.guest');
             
         elseif($user->permissions->view_guest==1)
@@ -21,7 +21,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can create guest
-        if(Authority::getCurrentUser()->hasRole('manager') )
+        if($user->role == 'manager' )
             return View::make('guest.create_guest')
             ->with('hotel_id',$hotel_id);
 
@@ -81,7 +81,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can edit guest
-        if(Authority::getCurrentUser()->hasRole('manager') )
+        if($user->role == 'manager' )
         {
         return View::make('guest.edit_guest')
         ->with('guest_id',guest::find($guest_id))
@@ -149,7 +149,7 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-     if( Authority::getCurrentUser()->hasRole('manager') )
+     if(User::find(auth::id()) == 'manager')
      { 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);

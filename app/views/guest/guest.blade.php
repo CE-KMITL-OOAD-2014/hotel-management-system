@@ -10,7 +10,7 @@
 
 <?php $users=User::find(Auth::id());?>
 <!--manager can see all guest in his hotels-->
-@if(Authority::getCurrentUser()->hasRole('manager'))
+@if($users->role == 'manager')
     <!--show all hotel manager -->
     @foreach($users->hotels as $hotel)
         <h3> {{ $hotel->name  }}</h3>

@@ -17,22 +17,16 @@ $user=User::find(Auth::id());
 
     	<h3>{{ $hotel_id->name  }}</h3>
         <h4>Staff Detail</h4>
-        {{"Name : ".$staff_id->name}}<br>
+        {{"Name : ".$staff_id->name}}
+        <!--fire this staff -->
+        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,' Fire '.$staff_id->name ) }}<br>
         {{"Lastname : ".$staff_id->lastname}}<br>
         {{"email : ".$staff_id->email}}<br>
         {{"work history : ".$staff_id->work_history}}<br>
   
 
-        <!-- Work history -->
-    <div class="control-group {{{ $errors->has('work_history') ? 'error' : '' }}}">
-        {{ Form::label('work_history', 'Work History', array('class' => 'control-label')) }}
-        <div class="controls">
-            {{ Form::textarea('work_history', $staff_id->work_history) }}
-            {{ $errors->first('work_history') }}
-        </div>
-    </div>
-        <!--fire this staff -->
-          {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}<br>
+
+
         
         <h4>Set Permission</h4>
         
@@ -95,6 +89,14 @@ $user=User::find(Auth::id());
         @endif
         {{ Form::label('radio6','Manage Guest',array('class'=>'')) }}
         </li>
+    </div>
+            <!-- Work history -->
+    <div class="control-group {{{ $errors->has('work_history') ? 'error' : '' }}}">
+        {{ Form::label('work_history', 'Work History', array('class' => 'control-label')) }}
+        <div class="controls">
+            {{ Form::textarea('work_history', $staff_id->work_history) }}
+            {{ $errors->first('work_history') }}
+        </div>
     </div>
  
     <div class="control-group">

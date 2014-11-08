@@ -34,7 +34,7 @@
         <!-- check permission staff can view room-->
         @if($users->permissions->view_room==1)
             <!--show url to room-->
-            {{ HTML::link('hotel/'.$hotel->id, $hotel->name ) }}
+            {{ HTML::link('hotel/'.$hotel->id, $hotel->name ) }}<br>
         @else 
             <!--show text-->
             {{'hotel name : '.$hotel->name }}<br>

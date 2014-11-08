@@ -14,16 +14,17 @@ $user=User::find(Auth::id());
       ?>
 
     	<h3>{{ $hotel_id->name  }}</h3>
-        <b>Staff Detail</b><br>
+        <h4>Staff Detail</h4>
         {{"Name : ".$staff_id->name}}<br>
         {{"Lastname : ".$staff_id->lastname}}<br>
         {{"email : ".$staff_id->email}}<br>
         {{"work history : ".$staff_id->work_history}}<br>
-        <b>Set Permission</b><br>
+        <h4>Set Permission</h4>
 
 {{ Form::open(array('url' => 'permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
  <div class="radio">
 
+<h5>Room pemission </h5>
 <li>
 {{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
 {{ Form::label('radio1','No Room',array('class'=>'')) }}
@@ -39,7 +40,7 @@ $user=User::find(Auth::id());
 {{ Form::radio('room','manage_room','',array('id'=>'radio3')) }}
 {{ Form::label('radio3','Manage Room',array('class'=>'')) }}
 </li>
-
+<h5>Guest permission</h5>
 <li>
 {{ Form::radio('guest','no_guest',true,array('id'=>'radio4'))}}
 {{ Form::label('radio4','No guest',array('class'=>''))}}
@@ -61,7 +62,6 @@ $user=User::find(Auth::id());
             {{ Form::submit('Submit', array('class' => 'btn')) }}
         </div>
     </div>
-@endif
 
     {{ Form::close() }}
 @stop

@@ -110,8 +110,10 @@
             $staff->permissions->view_guest = 0;
             $staff->permissions->manage_guest = 0;  
         }
+        $staff->work_history = Input::get('work_history');
          //replace old data with input
         $staff->permissions->save();
+        $staff->save();
         return Redirect::to('staff')->with('success', 'You have successfully set '.$staff->name.' permission.');
     }
 }

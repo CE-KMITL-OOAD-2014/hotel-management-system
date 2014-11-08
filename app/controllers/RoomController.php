@@ -67,8 +67,8 @@ class RoomController extends BaseController {
 			'roomnumber' => 'Required',
 			'price' =>  'Required',
 			'detail' =>  'Required',
-
 			);
+
 		$validator = Validator::make($userdata, $rules);
 		if ($validator->passes())
 		{
@@ -80,7 +80,9 @@ class RoomController extends BaseController {
 			$hotel->rooms()->attach($new_room);
 
             //Set new_room status to empty(1)
-			$new_room->statusrooms()->attach(1);
+			$new_status = status::create(array(
+				'status'=>'Empty',
+				'room_id'=>$new_room->id,));
 
             // Redirect to home with success message
 			return Redirect::to('room')->with('success', 'You have successfully create room '.$new_room->roomnumber);

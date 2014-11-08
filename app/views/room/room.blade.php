@@ -34,7 +34,6 @@ $user = User::find(Auth::id());
 @elseif($user->permissions->view_room==1)
     @foreach($user->hotels as $hotel)
         @foreach($hotel->rooms as $room)
-     
             <li>
                 {{ $room->roomnumber}}
                 {{ $room->price}}

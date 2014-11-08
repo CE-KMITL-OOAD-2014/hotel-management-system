@@ -12,7 +12,7 @@
         {{"Gender : ".$guest_id->gender}}<br>
         {{"Nationality : ".$guest_id->nationality}}<br>
         {{"Name : ".$guest_id->name}}<br>
-        {{"Surname : ".$guest_id->lastname}}<br>
+        {{"Lastname : ".$guest_id->lastname}}<br>
         {{"Date of Birth : ".$guest_id->dateOfBirth}}<br>
         {{"Address : ".$guest_id->address}}<br>
         {{"Telephone Number : ".$guest_id->tel}}<br>
@@ -83,7 +83,7 @@
 
     <!-- telephon number -->
     <div class="control-group {{{ $errors->has('tel') ? 'error' : '' }}}">
-        {{ Form::label('tel', 'Tel.', array('class' => 'control-label')) }}
+        {{ Form::label('tel', 'Telephone Number.', array('class' => 'control-label')) }}
         <div class="controls">
             {{ Form::text('tel',$guest_id->tel) }}
             {{ $errors->first('tel') }}

@@ -40,7 +40,7 @@
     
         <!-- telephonumber -->
     <div class="control-group {{{ $errors->has('tel') ? 'error' : '' }}}">
-        {{ Form::label('tel', 'Tel', array('class' => 'control-label')) }}
+        {{ Form::label('tel', 'Telephone Number', array('class' => 'control-label')) }}
         <div class="controls">
             {{ Form::text('tel', $hotel->tel) }}
             {{ $errors->first('tel') }}

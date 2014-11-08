@@ -11,6 +11,9 @@
 
 {{ Form::open(array('url' => 'create_room/'.$hotel_id, 'class' => 'form-horizontal')) }}
 
+    <?php $hotel = Hotel::find($hotel_id)?>
+       <h3>{{ $hotel->name  }}</h3>
+
     <!-- Roomnumber -->
     <div class="control-group {{{ $errors->has('roomnumber') ? 'error' : '' }}}">
         {{ Form::label('roomnumber', 'Roomnumber', array('class' => 'control-label')) }}

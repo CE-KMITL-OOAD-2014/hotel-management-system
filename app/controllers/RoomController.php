@@ -114,7 +114,7 @@ class RoomController extends BaseController {
 
 		   /////This function will display form to change room status
 				public function showChangeRoomstatus($hotel_id){
-		////populate drop down menu ($roochoice) with empty room of current hotel
+		////populate drop down menu ($room_choice) with empty room of current hotel
 					$hotel = Hotel::find($hotel_id);
 					$room_choice =array('' => 'Please select room number');
 					foreach ($hotel->rooms as $room) {

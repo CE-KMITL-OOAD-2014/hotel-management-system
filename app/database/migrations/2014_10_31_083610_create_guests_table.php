@@ -20,7 +20,7 @@ class CreateGuestsTable extends Migration {
 			$table->string('name',255);
 			$table->string('lastname', 255);
 			$table->string('dateOfBirth',255);
-			$table->string('address',255);
+			$table->text('address');
 			$table->string('tel',255);
 			$table->string('passportNo',255);
 			$table->string('citizenCardNo',255);

@@ -15,7 +15,7 @@ class CreateHotelsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name',255);
-			$table->string('address',255);
+			$table->text('address');
 			$table->string('tel',255);
 			$table->timestamps();
 		});

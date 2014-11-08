@@ -18,6 +18,7 @@
         {{"Telephone Number : ".$guest_id->tel}}<br>
         {{"Passport Number : ".$guest_id->passportNo}}<br>
         {{"Citizen Card Number : ".$guest_id->citizenCardNo}}<br>
+        {{"Comment : ".$guest_id->comment}}<br><br>
    
         {{ Form::open(array('url' => 'edit_guest/'.$hotel_id->id.'/'.$guest_id->id, 'class' => 'form-horizontal')) }}
         <!-- only manager can delete guest-->
@@ -30,7 +31,7 @@
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">
         {{ Form::label('gender', 'Gender', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('gender',$guest_id->gender )}}
+             {{ Form::select('gender', array('M'=>'Male','F'=>'Female')) }}
             {{ $errors->first('gender') }}
         </div>
     </div>

@@ -18,7 +18,7 @@
     <div class="control-group {{{ $errors->has('gender') ? 'error' : '' }}}">
         {{ Form::label('gender', 'Gender', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('gender', Input::get('gender')) }}
+            {{ Form::select('gender', array('Male'=>'Male','Female'=>'Female')) }}
             {{ $errors->first('gender') }}
         </div>
     </div>

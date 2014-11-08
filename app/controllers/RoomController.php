@@ -65,7 +65,7 @@ class RoomController extends BaseController {
 			);
 		$rules = array(
 			'roomnumber' => 'Required',
-			'price' =>  'Required',
+			'price' =>  'Required|numeric',
 			'detail' =>  'Required',
 
 			);
@@ -113,7 +113,7 @@ class RoomController extends BaseController {
 			);
 		$rules = array(
 			'roomnumber' => 'Required',
-			'price' =>  'Required',
+			'price' =>  'Required|numeric',
 			'detail' =>  'Required', 
 			);
 		$validator = Validator::make($userdata, $rules);

@@ -37,7 +37,7 @@
     public function postCreateGuest($hotel_id)
     {
         $userdata = array(
-            'gender' => Input::get('gender'),
+            
             'nationality'=> Input::get('nationality'),
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
@@ -48,23 +48,24 @@
             'citizenCardNo'=>Input::get('citizenCardNo'),
             );
         $rules = array(
-            'gender'=>'Required',
-            'nationality'=>'Required',
-            'name' => 'Required',
-            'lastname' =>'Required',
+           
+            'nationality'=>'Required|alpha',
+            'name' => 'Required|alpha',
+            'lastname' =>'Required|alpha',
             'dateOfBirth'=>'Required',
             'address' =>  'Required',
-            'tel' =>  'Required',
-            'passportNo' => 'Required',
-            'citizenCardNo' => 'Required',
+            'tel' =>  'Required|numeric',
+            'passportNo' => 'Required|numeric',
+            'citizenCardNo' => 'Required|numeric',
 
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
             // Create guest in database
-            $new_guest =  guest::create($userdata);
-
+            $new_guest =  guest::create($userdata); 
+            $new_guest->gender =Input::get('gender');
+            $new_guest->save();
             //Attatch new guest to hotel
             $hotel = hotel::find($hotel_id);
             $hotel->guests()->attach($new_guest);
@@ -101,7 +102,7 @@
     {
      $guest = guest::find($guest_id);
      $userdata = array(
-        'gender' => Input::get('gender'),
+ 
         'nationality'=> Input::get('nationality'),
         'name' => Input::get('name'),
         'lastname' => Input::get('lastname'),
@@ -112,21 +113,21 @@
         'citizenCardNo'=>Input::get('citizenCardNo'),
         );
      $rules = array(
-        'gender'=>'Required',
-        'nationality'=>'Required',
-        'name' => 'Required',
-        'lastname' =>'Required',
+        
+        'nationality'=>'Required|alpha',
+        'name' => 'Required|alpha',
+        'lastname' =>'Required|alpha',
         'dateOfBirth'=>'Required',
         'address' =>  'Required',
-        'tel' =>  'Required',
-        'passportNo' => 'Required',
-        'citizenCardNo' => 'Required',
+        'tel' =>  'Required|numeric',
+        'passportNo' => 'Required|numeric',
+        'citizenCardNo' => 'Required|numeric',
         );
      $validator = Validator::make($userdata, $rules);
      //replace old value with input
      if ($validator->passes())
      {
-        $guest->gender = Input::get('gender');
+        $guest->gender =Input::get('gender');
         $guest->nationality = Input::get('nationality');
         $guest->name = Input::get('name');
         $guest->lastname = Input::get('lastname');
@@ -135,6 +136,7 @@
         $guest->tel = Input::get('tel');
         $guest->passportNo = Input::get('passportNo');
         $guest->citizenCardNo = Input::get('citizenCardNo');
+        $guest->comment = Input::get('comment');
         $guest->save();
 
         return Redirect::to('guest')->with('success', 'You have successfully edit '.$guest->name.' guest.');

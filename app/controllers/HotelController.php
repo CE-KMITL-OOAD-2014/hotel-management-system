@@ -28,7 +28,7 @@
         $rules = array(
             'name' => 'Required',
             'address' =>  'Required|unique:hotels',
-            'tel' =>  'Required|unique:hotels',
+            'tel' =>  'Required|numeric|unique:hotels',
 
             );
         $validator = Validator::make($userdata, $rules);
@@ -101,7 +101,7 @@
         $rules = array(
             'name' => 'Required',
             'address' =>  'Required|unique:hotels,address,'.$id,
-            'tel' =>  'Required|unique:hotels,tel,'.$id,
+            'tel' =>  'Required|numeric|unique:hotels,tel,'.$id,
 
             );
         $validator = Validator::make($userdata, $rules);

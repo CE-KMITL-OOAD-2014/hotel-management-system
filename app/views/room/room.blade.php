@@ -24,26 +24,24 @@ $user = User::find(Auth::id());
                 {{ $room->roomnumber}}
                 {{ $room->price}}
                 {{ $room->detail}}
-            @foreach($room->statusrooms as $status)
-            
-                {{ $status->name}}
+                {{ $room->statuses}}
                 {{ HTML::link('edit_room/'.$hotel->id.'/'.$room->id, 'Edit room') }}
             </li>
-            @endforeach
+
         @endforeach 
     @endforeach
 <!-- staff with permission can see rooms in his hotel -->
 @elseif($user->permissions->view_room==1)
     @foreach($user->hotels as $hotel)
         @foreach($hotel->rooms as $room)
-            @foreach($room->statusrooms as $status)
+     
             <li>
                 {{ $room->roomnumber}}
                 {{ $room->price}}
                 {{ $room->detail}}
-                {{ $status->name}}            
+                {{ $room->statuses}}
             </li>
-            @endforeach
+ 
         @endforeach
     @endforeach
 @endif

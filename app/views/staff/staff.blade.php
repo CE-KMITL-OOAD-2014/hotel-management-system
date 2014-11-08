@@ -9,7 +9,7 @@
 <h1>This is  my staff</h1>
 
 <?php $user=User::find(Auth::id());?>
-<!-- only manager can edit permission staff -->
+<!-- only manager  see edit permission staff -->
 @if(Authority::getCurrentUser()->hasRole('manager'))
     <!--show all his hotels -->
     @foreach($user->hotels as $hotel)

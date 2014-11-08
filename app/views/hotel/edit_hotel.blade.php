@@ -7,35 +7,38 @@
 
 {{-- Content --}}
 @section('content')
-<div class="page-header">
+
     <h2>Edit hotel </h2>
-</div>
+
 
 {{ Form::open(array('url' => 'edit_hotel/'.$hotel->id , 'class' => 'form-horizontal')) }}
-    @if(Authority::getCurrentUser()->hasRole('manager'))
-    {{ HTML::link('delete_hotel/'.$hotel->id,'Delete' ) }}
-    @endif
+    
 
-    <!-- Name -->
+
+    <!-- hotel name -->
     <div class="control-group {{{ $errors->has('name') ? 'error' : '' }}}">
         {{ Form::label('name', 'Hotel name', array('class' => 'control-label')) }}
         <div class="controls">
             {{ Form::text('name',$hotel->name) }}
             {{ $errors->first('name') }}
+            <!-- only manager can delete his hotel-->
+            @if(Authority::getCurrentUser()->hasRole('manager'))
+            {{ HTML::link('delete_hotel/'.$hotel->id,'Delete '.$hotel->name ) }}
+            @endif
         </div>
     </div>
 
-    <!-- Last name -->
+    <!-- address -->
     <div class="control-group {{{ $errors->has('address') ? 'error' : '' }}}">
         {{ Form::label('address', 'Address', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('address', $hotel->address) }}
+            {{ Form::textarea('address', $hotel->address) }}
             {{ $errors->first('address') }}
         </div>
     </div>
 
     
-        <!-- tel -->
+        <!-- telephonumber -->
     <div class="control-group {{{ $errors->has('tel') ? 'error' : '' }}}">
         {{ Form::label('tel', 'Tel', array('class' => 'control-label')) }}
         <div class="controls">
@@ -43,7 +46,7 @@
             {{ $errors->first('tel') }}
         </div>
     </div>
-
+    <br>
     <!-- Submit button -->
     <div class="control-group">
         <div class="controls">

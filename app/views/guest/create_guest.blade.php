@@ -63,7 +63,7 @@
     <div class="control-group {{{ $errors->has('address') ? 'error' : '' }}}">
         {{ Form::label('address', 'Address', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('address', Input::get('address')) }}
+            {{ Form::textarea('address', Input::get('address')) }}
             {{ $errors->first('address') }}
         </div>
     </div>

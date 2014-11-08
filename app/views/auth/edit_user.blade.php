@@ -43,14 +43,6 @@ $user=User::find(Auth::id());
         </div>
     </div>
 
-        <!-- Work history -->
-    <div class="control-group {{{ $errors->has('work_history') ? 'error' : '' }}}">
-        {{ Form::label('work_history', 'Work History', array('class' => 'control-label')) }}
-        <div class="controls">
-            {{ Form::textarea('work_history', $user->work_history) }}
-            {{ $errors->first('work_history') }}
-        </div>
-    </div>
 
     <!-- Submit button -->
     <div class="control-group">

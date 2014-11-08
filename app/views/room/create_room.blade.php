@@ -33,7 +33,7 @@
     <div class="control-group {{{ $errors->has('detail') ? 'error' : '' }}}">
         {{ Form::label('detail', 'Detail.', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('detail', Input::get('detail')) }}
+            {{ Form::textarea('detail', Input::get('detail')) }}
             {{ $errors->first('detail') }}
         </div>
     </div>

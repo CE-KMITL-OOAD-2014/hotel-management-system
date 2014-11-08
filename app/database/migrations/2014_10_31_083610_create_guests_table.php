@@ -24,6 +24,7 @@ class CreateGuestsTable extends Migration {
 			$table->string('tel',255);
 			$table->string('passportNo',255);
 			$table->string('citizenCardNo',255);
+			$table->text('comment');
 			$table->timestamps();
 		});
 	}

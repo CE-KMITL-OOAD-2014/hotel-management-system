@@ -75,7 +75,7 @@
     <div class="control-group {{{ $errors->has('address') ? 'error' : '' }}}">
         {{ Form::label('address', 'Address', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('address',$guest_id->address) }}
+            {{ Form::textarea('address',$guest_id->address) }}
             {{ $errors->first('address') }}
         </div>
     </div>
@@ -107,6 +107,15 @@
         </div>
     </div>
 
+        <!-- comment -->
+    <div class="control-group {{{ $errors->has('comment') ? 'error' : '' }}}">
+        {{ Form::label('comment', 'Comment', array('class' => 'control-label')) }}
+        <div class="controls">
+            {{ Form::textarea('comment',$guest_id->comment) }}
+            {{ $errors->first('comment') }}
+        </div>
+    </div>
+    
     <!-- Submit button -->
     <div class="control-group">
         <div class="controls">

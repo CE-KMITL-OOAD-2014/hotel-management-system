@@ -21,7 +21,18 @@ $user=User::find(Auth::id());
         {{"Lastname : ".$staff_id->lastname}}<br>
         {{"email : ".$staff_id->email}}<br>
         {{"work history : ".$staff_id->work_history}}<br>
-        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}<br>
+  
+
+        <!-- Work history -->
+    <div class="control-group {{{ $errors->has('work_history') ? 'error' : '' }}}">
+        {{ Form::label('work_history', 'Work History', array('class' => 'control-label')) }}
+        <div class="controls">
+            {{ Form::textarea('work_history', $staff_id->work_history) }}
+            {{ $errors->first('work_history') }}
+        </div>
+    </div>
+        <!--fire this staff -->
+          {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,'Fire' ) }}<br>
         
         <h4>Set Permission</h4>
         

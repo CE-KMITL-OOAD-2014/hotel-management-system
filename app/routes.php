@@ -23,7 +23,8 @@ Route::post('edit_hotel/{id}','HotelController@postEditHotel');
 Route::get('join_hotel/{id}','HotelController@joinHotel');
 Route::get('delete_hotel/{id}','HotelController@deleteHotel');
 
-Route::get('hotel/{id}','RoomController@showRoom');
+Route::get('room','RoomController@showRoom');
+Route::get('hotel/{id}','RoomController@showroomCalendar');
 Route::get('create_room/{id}','RoomController@showCreateRoom');
 Route::post('create_room/{id}','RoomController@postCreateRoom');
 Route::get('edit_room/{hotel}/{room}','RoomController@showEditRoom');

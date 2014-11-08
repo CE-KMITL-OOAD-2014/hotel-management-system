@@ -33,6 +33,7 @@ Route::get('delete_room/{hotel}/{room}','RoomController@deleteRoom');
 Route::get('room_json/{room_status}/{hotel_id}','RoomController@getRoomJson');
 Route::get('change_room_status/{hotel_id}','RoomController@showCreateRoomstatus');
 Route::post('change_room_status/{hotel_id}','RoomController@postCreateRoomstatus');
+Route::get('hotel/delete_room_status/{status_id}','RoomController@getDeleteRoomstatus');
 
 Route::get('staff','StaffController@showStaff');
 Route::get('request','StaffController@showRequest');

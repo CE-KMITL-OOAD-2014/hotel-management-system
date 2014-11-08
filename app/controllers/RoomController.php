@@ -164,6 +164,7 @@ class RoomController extends BaseController {
 						'title'=>Room::find($status->room_id)->roomnumber,
 						'start'=>$status->start,
 						'end'=>$status->end,
+						'url'=> ('delete_room_status/'.$status->id )
 						);
 					array_push($event, $json_array);
 				}
@@ -188,34 +189,39 @@ class RoomController extends BaseController {
 				}
 
 	/////This function will change room status from empty to Occupied, Reserved or Maintenance according to form
-				public function postCreateRoomstatus($hotel_id){
-					$room_data = array(
-						'roomnumber' => Input::get('roomnumber'),
-						'status' => Input::get('status'),
-						'start_date' => Input::get('start_date'),
-						'end_date' => Input::get('end_date')
-						);
-					$rules = array(
-						'roomnumber' => 'Required',
-						'status' => 'Required',
-			///can't set start date in the past
-						'start_date' => 'Required|after:'.date('o-m-d',strtotime("-1 days")),
-			///End date must come after start_date
-						'end_date' => 'Required|after:start_date'
-						);
-					$validator = Validator::make($room_data, $rules);
-					if ($validator->passes())
-					{
-						$room = Room::find(Input::get('roomnumber'));
-						$new_status = status::create(array(
-						'status'=>Input::get('status'),
-						'room_id'=>Input::get('roomnumber'),
-						'start'=>Input::get('start_date'),
-						'end'=>Input::get('end_date')
-						));
-						
-						return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
-					}
-					else return Redirect::back()->withErrors($validator)->withInput();
-				}
-			}
+public function postCreateRoomstatus($hotel_id){
+		$room_data = array(
+			'roomnumber' => Input::get('roomnumber'),
+			'status' => Input::get('status'),
+			'start_date' => Input::get('start_date'),
+			'end_date' => Input::get('end_date')
+			);
+		$rules = array(
+			'roomnumber' => 'Required',
+			'status' => 'Required',
+///can't set start date in the past
+			'start_date' => 'Required|after:'.date('o-m-d',strtotime("-1 days")),
+///End date must come after start_date
+			'end_date' => 'Required|after:start_date'
+			);
+		$validator = Validator::make($room_data, $rules);
+		if ($validator->passes())
+		{
+			$room = Room::find(Input::get('roomnumber'));
+			$new_status = status::create(array(
+			'status'=>Input::get('status'),
+			'room_id'=>Input::get('roomnumber'),
+			'start'=>Input::get('start_date'),
+			'end'=>Input::get('end_date')
+			));
+
+			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
+		}
+		else return Redirect::back()->withErrors($validator)->withInput();
+	}
+	public function getDeleteRoomstatus($status_id){
+	$status = Status::find($status_id);
+	$status->delete();
+	return Redirect::back();
+	}
+}

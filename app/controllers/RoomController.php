@@ -2,14 +2,41 @@
 
 class RoomController extends BaseController {
 
-	public function showRoom($hotel_id)
+	public function showRoom()
 	{
-		//Check manager or permission staff can view room
+		$user=User::find(Auth::id());
+		//only manager can create room
 		if( Authority::getCurrentUser()->hasRole('manager') )
-			return View::make('room.room',array('rooms'=>room::all(),'hotel_id'=>$hotel_id));
+		{	
+			return View::make('room.room')
+			->with('rooms',room::all())
+			->with('hotels',hotel::all());
+		}
+		else if($user->permissions->view_room==1)
+			return View::make('room.room')
+			->with('rooms',room::all())
+			->with('hotels',hotel::all());
+		//Something went wrong
+		else
+			return Redirect::back()->with('success', 'Access Denied');
+	}
+
+	public function showRoomCalendar($hotel_id)
+	{
+		//Check manager or permission staff can view room calendar
+		if( Authority::getCurrentUser()->hasRole('manager') )
+		{
+			return View::make('room.room_calendar')
+			->with('rooms',room::all())
+			->with('hotel_id',$hotel_id);
+		}
 
 		elseif(User::find(Auth::id())->permissions->view_room==1 )
-			return View::make('room.room',array('rooms'=>room::all(),'hotel_id'=>$hotel_id));
+		{
+			return View::make('room.room_calendar')
+			->with('rooms',room::all())
+			->with('hotel_id',$hotel_id);
+		}
 		//Something went wrong
 		else
 			return Redirect::back()->with('success', 'Access Denied');
@@ -19,10 +46,10 @@ class RoomController extends BaseController {
 	{          
 		//Check manager or permission staff can create room
 		if( Authority::getCurrentUser()->hasRole('manager') )
-			return View::make('room.create_room',array('rooms'=>room::all(),'hotel_id'=>$hotel_id));
-
-		elseif(User::find(Auth::hotel_id())->permissions->manage_room==1)
-			return View::make('room.create_room',array('rooms'=>room::all(),'hotel_hotel_id'=>$hotel_id));
+		{
+			return View::make('room.create_room')
+			->with('hotel_id',$hotel_id);
+		}
 		//Something went wrong
 		else
 			return Redirect::back()->with('success', 'Access Denied');
@@ -56,7 +83,7 @@ class RoomController extends BaseController {
 			$new_room->statusrooms()->attach(1);
 
             // Redirect to home with success message
-			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully create room '.$new_room->roomnumber);
+			return Redirect::to('room')->with('success', 'You have successfully create room '.$new_room->roomnumber);
 		}
 		else
         // Something went wrong.
@@ -99,7 +126,7 @@ class RoomController extends BaseController {
 			$room->detail = Input::get('detail');
 			$room->save();
 
-			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
+			return Redirect::to('room')->with('success', 'You have successfully edit '.$room->roomnumber.' room.');
 		}
 		// Something went wrong.
 		else
@@ -118,7 +145,7 @@ class RoomController extends BaseController {
 			//delete room
 			$room->delete();
 
-			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
+			return Redirect::to('room')->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
 		}
 		// Something went wrong.
 		else return Redirect::back()->with('success', 'Access deny ');

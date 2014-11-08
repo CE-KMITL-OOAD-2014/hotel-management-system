@@ -131,7 +131,6 @@ class AuthController extends BaseController {
             $user->name = Input::get('name');
             $user->lastname = Input::get('lastname');
             $user->email = Input::get('email');
-            $user->work_history = Input::get('work_history');
             $user->save();
             // Redirect to home
             return Redirect::to('hotel')->with('success', 'You have successfully edit '.$user->name.' profile.');

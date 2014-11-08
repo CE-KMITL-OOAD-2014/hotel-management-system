@@ -18,10 +18,7 @@ if(Auth::check()){
 		echo 'You are member id: ';
 		echo Auth::id();
 	}
-	foreach(User::all() as $user)
-	{
-		echo $user->id;
-	}
+
 }
 
 ?>

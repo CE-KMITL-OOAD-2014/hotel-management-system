@@ -1,5 +1,9 @@
 @extends('layouts.master')
-
+@section('head')
+@parent
+{{ HTML::style('pickadate.js-3.5.4/themes/classic.css') }}
+{{ HTML::style('pickadate.js-3.5.4/themes/classic.date.css') }}
+@stop
 @section('title')
 @parent
 :: Create Guest
@@ -54,10 +58,11 @@
     <div class="control-group {{{ $errors->has('dateOfBirth') ? 'error' : '' }}}">
         {{ Form::label('dateOfBirth', 'Date Of Birth', array('class' => 'control-label')) }}
         <div class="controls">
-            {{ Form::text('dateOfBirth', Input::get('dateOfBirth')) }}
+            {{ Form::text('dateOfBirth','',array('id'=>'date','placeholder'=>'Choose date of Birth')) }}
             {{ $errors->first('dateOfBirth') }}
         </div>
     </div>
+
 
     <!-- address -->
     <div class="control-group {{{ $errors->has('address') ? 'error' : '' }}}">
@@ -101,4 +106,22 @@
             {{ Form::submit('Submit', array('class' => 'btn')) }}
         </div>
     </div>
+    {{Form::close()}}
+     @section('js')
+    {{ HTML::script('js/jquery-1.11.1.min.js')}}
+    {{ HTML::script('pickadate.js-3.5.4/picker.js')}}
+    {{ HTML::script('pickadate.js-3.5.4/picker.date.js')}}
+    <script>
+  $(function() {
+    // Enable Pickadate on an input field
+    $('#date').pickadate({
+        formatSubmit : 'yyyy-mm-dd',
+        format : 'yyyy-mm-dd',
+        selectYears: true,
+        selectMonths: true,
+        selectYears: 30,
+        max: new Date('Today')
+    });
+  });   
+  </script>
 @stop

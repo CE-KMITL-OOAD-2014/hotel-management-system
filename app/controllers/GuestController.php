@@ -37,7 +37,7 @@
     public function postCreateGuest($hotel_id)
     {
         $userdata = array(
-            
+            'gender'    => Input::get('gender'),
             'nationality'=> Input::get('nationality'),
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
@@ -48,11 +48,11 @@
             'citizenCardNo'=>Input::get('citizenCardNo'),
             );
         $rules = array(
-           
+            'gender'    =>'Required',
             'nationality'=>'Required|alpha',
             'name' => 'Required|alpha',
             'lastname' =>'Required|alpha',
-            'dateOfBirth'=>'Required',
+            'dateOfBirth'=>'Required|before:'.date('o-m-d'),
             'address' =>  'Required',
             'tel' =>  'Required|numeric',
             'passportNo' => 'Required|numeric',
@@ -117,7 +117,7 @@
         'nationality'=>'Required|alpha',
         'name' => 'Required|alpha',
         'lastname' =>'Required|alpha',
-        'dateOfBirth'=>'Required',
+        'dateOfBirth'=>'Required|before:'.date('o-m-d'),
         'address' =>  'Required',
         'tel' =>  'Required|numeric',
         'passportNo' => 'Required|numeric',

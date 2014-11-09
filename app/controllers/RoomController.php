@@ -198,14 +198,15 @@ public function postCreateRoomstatus($hotel_id){
 
 Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
 {
-	///$parameters[0] = table_name 
+	///$parameters[0] = model 
 	///$parameters[1] = column id ('room_id' in this case )
 	///$parameters[2] = value of column id
-	///$parameters[3] = value of start
-	///$parameters[4] = value of end
+	///$parameters[3] = value of start_date
+	///$parameters[4] = value of end_date
 	$model = $parameters[0]::all();
 	foreach($model as $date){
 		if($date->$parameters[1] == $parameters[2]){
+			///// if ( start1 <= end2 and start2 <= end1 ) then overlap occured
 			if($date->start<$parameters[4]&&$parameters[3]<$date->end){
 				return false;
 			}

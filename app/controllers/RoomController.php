@@ -171,7 +171,7 @@ class RoomController extends BaseController {
 			return $event;
 		}
 
-		   /////This function will display form to change room status
+		/////This function will display form to change room status
 				public function showCreateRoomstatus($hotel_id){
 		////populate drop down menu ($room_choice) with empty room of current hotel
 					$hotel = Hotel::find($hotel_id);
@@ -184,8 +184,12 @@ class RoomController extends BaseController {
 						}
 					}
 					$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
-					return View::make('room.change_room_status',array('hotel_id'=>$hotel_id,'rooms'=>$room_choice,'status'=>$status_choice));
+					return View::make('room.change_room_status')
+					->with('hotel_id',$hotel_id)
+					->with('rooms',$room_choice)
+					->with('status',$status_choice);
 				}
+
 
 	/////This function will change room status from empty to Occupied, Reserved or Maintenance according to form
 public function postCreateRoomstatus($hotel_id){

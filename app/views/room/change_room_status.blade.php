@@ -12,6 +12,7 @@
 @section('content')
 
 <?php  echo "My hotel id is :".$hotel_id;?> <br>
+
 {{ Form::open(array('url' => 'change_room_status/'.$hotel_id)) }}
 {{ Form::select('roomnumber', $rooms) }}
 {{ $errors->first('roomnumber') }}

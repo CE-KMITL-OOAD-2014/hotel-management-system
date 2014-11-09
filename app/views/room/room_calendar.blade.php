@@ -66,10 +66,8 @@
                     */
                     select: function(start, end, allDay)
                     {
-                    /*
-                        after selection user will be promted for enter title for event.
-                        */
-                        var title = prompt('Event Title:');
+
+                        location = '{{URL::to('change_room_status/'.$hotel_id)}}'
                     /*
                         if title is enterd calendar will add title and event into fullCalendar.
                             */
@@ -111,7 +109,14 @@
                         color: '#F44336',
                         textColor : '#ffffff'
                     },
-                ]
+                ],
+
+eventClick: function(event) {
+        if (event.url) {
+           return confirm("Are you sure you want to delete this event?");
+        }
+    }
+
                 });
 
 });

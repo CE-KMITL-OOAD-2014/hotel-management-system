@@ -4,15 +4,14 @@ class RoomController extends BaseController {
 
 	public function showRoom()
 	{
-		$user=User::find(Auth::id());
 		//only manager can create room
-		if( Authority::getCurrentUser()->hasRole('manager') )
+		if(User::find(Auth::id())->role == 'manager' )
 		{	
 			return View::make('room.room')
 			->with('rooms',room::all())
 			->with('hotels',hotel::all());
 		}
-		else if($user->permissions->view_room==1)
+		else if(User::find(Auth::id())->permissions->view_room==1)
 			return View::make('room.room')
 			->with('rooms',room::all())
 			->with('hotels',hotel::all());
@@ -24,7 +23,7 @@ class RoomController extends BaseController {
 	public function showRoomCalendar($hotel_id)
 	{
 		//Check manager or permission staff can view room calendar
-		if( Authority::getCurrentUser()->hasRole('manager') )
+		if( User::find(Auth::id())->role == 'manager')
 		{
 			return View::make('room.room_calendar')
 			->with('rooms',room::all())
@@ -45,7 +44,7 @@ class RoomController extends BaseController {
 	public function showCreateRoom($hotel_id)
 	{          
 		//Check manager or permission staff can create room
-		if( Authority::getCurrentUser()->hasRole('manager') )
+		if( User::find(Auth::id())->role == 'manager' )
 		{
 			return View::make('room.create_room')
 			->with('hotel_id',$hotel_id);
@@ -65,7 +64,7 @@ class RoomController extends BaseController {
 			);
 		$rules = array(
 			'roomnumber' => 'Required',
-			'price' =>  'Required',
+			'price' =>  'Required|numeric',
 			'detail' =>  'Required',
 			);
 
@@ -95,7 +94,7 @@ class RoomController extends BaseController {
 	public function showEditRoom($hotel_id,$room_id)
 	{	
 		//only manager can cedit room.
-		if( Authority::getCurrentUser()->hasRole('manager') )
+		if( User::find(Auth::id())->role == 'manager')
 		{
 			return View::make('room.edit_room')
 			->with('hotel_id',hotel::find($hotel_id))
@@ -115,7 +114,7 @@ class RoomController extends BaseController {
 			);
 		$rules = array(
 			'roomnumber' => 'Required',
-			'price' =>  'Required',
+			'price' =>  'Required|numeric',
 			'detail' =>  'Required', 
 			);
 		$validator = Validator::make($userdata, $rules);
@@ -136,7 +135,7 @@ class RoomController extends BaseController {
 	}
 	public function deleteRoom($hotel_id,$room_id)
 	{
-		if( Authority::getCurrentUser()->hasRole('manager') )
+		if( User::find(Auth::id())->role == 'manager' )
 		{
 			$hotel = hotel::find($hotel_id);
 			$room = room::find($room_id);  

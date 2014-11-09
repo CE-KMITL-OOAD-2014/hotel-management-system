@@ -41,17 +41,17 @@
       @if(!Auth::guest())
        <?php $user=User::find(Auth::id()); ?>
       <li><a href={{{ URL::to('hotel') }}}>Hotel</a></li>
-            @if(Authority::getCurrentUser()->hasRole('manager'))
+            @if($user->role == 'manager')
                 <li><a href={{{ URL::to('room') }}}>Room</a></li>
                 <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
                 <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
                 <li><a href={{{ URL::to('request') }}}>Request</a></li>
-            @elseif(Authority::getCurrentUser()->hasRole('staff'))
+            @elseif($user->role == 'staff')
                 <li><a href={{{ URL::to('staff') }}}>Staff</a></li>
-                @if($user->permissions->view_guest==1||$user->permissions->manage_guest==1)
+                @if($user->permissions->view_guest==1)
                 <li><a href={{{ URL::to('guest') }}}>Guest</a></li>
                 @endif
-                @if($user->permissions->view_room==1||$user->permissions->manage_room==1)
+                @if($user->permissions->view_room==1)
                 <li><a href={{{ URL::to('room') }}}>Room</a></li>
                 @endif
             @endif

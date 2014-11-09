@@ -10,11 +10,10 @@
 <h1>This is my room!</h1>
 
 <?php 
-$user = User::find(Auth::id());
-?>
+$user=User::find(auth::id());
+      ?>
 <!-- manager can create all rooms and all his hotels -->
-@if(Authority::getCurrentUser()->hasRole('manager'))
-
+@if( $user->role == 'manager' )
     @foreach($user->hotels as $hotel)
         <h3>{{'hotel name : '.$hotel->name }}</h3>
         {{ HTML::link('create_room/'.$hotel->id, 'Create room') }}
@@ -31,7 +30,7 @@ $user = User::find(Auth::id());
         @endforeach 
     @endforeach
 <!-- staff with permission can see rooms in his hotel -->
-@elseif($user->permissions->view_room==1)
+@elseif( $user->permissions->view_room == 1)
     @foreach($user->hotels as $hotel)
         @foreach($hotel->rooms as $room)
             <li>

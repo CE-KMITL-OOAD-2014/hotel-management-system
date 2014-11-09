@@ -77,9 +77,9 @@ class AuthController extends BaseController {
             'email' => Input::get('email')
             );
         $rules = array(
-            'name' => 'Required',
-            'lastname' =>  'Required',
-            'username' =>  'Required|unique:users',
+            'name' => 'Required|alpha',
+            'lastname' =>  'Required|alpha',
+            'username' =>  'Required|unique:users|between:4,15',
             'password' =>  'Required',
             'email' =>  'Required|email|unique:users'
             );
@@ -89,15 +89,15 @@ class AuthController extends BaseController {
             // Create user in database
             $new_user = user::create($userdata);
             // set defualt role to member
-            $new_user->roles()->attach(2);
+            $new_user->role ='member';
+            $new_user->save();
+           
 
             // logged user in
             Auth::attempt(array(
                 'username' => Input::get('username'),
                 'password' => Input::get('password')
                 ));
-
-            
 
             // Redirect to home with success message
             return Redirect::to('hotel')->with('success', 'You have successfully create account');
@@ -119,8 +119,8 @@ class AuthController extends BaseController {
             'email' => Input::get('email')
             );
         $rules = array(
-            'name' => 'Required',
-            'lastname' =>  'Required',
+            'name' => 'Required|alpha',
+            'lastname' =>  'Required|alpha',
             'email' =>  'Required|email|unique:users,email,'.$user->id
             );
         $validator = Validator::make($userdata, $rules);

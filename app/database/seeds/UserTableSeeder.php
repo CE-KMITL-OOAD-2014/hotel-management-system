@@ -10,14 +10,7 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->delete();
 
         // add user using Eloquent
-        $user = new User;
-        $user->name = 'admin_name';
-        $user->lastname = 'admin_lastname';
-        $user->username = 'admin';
-        $user->password = Hash::make('password');
-        $user->email = 'admin@hotel.com';
-        $user->save();
-        $user->roles()->attach(1);
+
 
         $user = new User;
         $user->name = 'Nathakit';
@@ -25,8 +18,9 @@ class UserTableSeeder extends Seeder {
         $user->username = 'nathakit';
         $user->password = Hash::make('password');
         $user->email = 'nathakit@hotel.com';
+        $user->role = 'manager';
         $user->save();
-        $user->roles()->attach(3);
+     
 
 
         $user = new User;
@@ -35,8 +29,9 @@ class UserTableSeeder extends Seeder {
         $user->username = 'nattanon';
         $user->password = Hash::make('password');
         $user->email = 'nattanon@hotel.com';
+        $user->role = 'manager';
         $user->save();
-        $user->roles()->attach(3);
+
 
                 $user = new User;
         $user->name = 'Membername';
@@ -44,8 +39,9 @@ class UserTableSeeder extends Seeder {
         $user->username = 'member';
         $user->password = Hash::make('password');
         $user->email = 'member@hotel.com';
+        $user->role = 'staff';
         $user->save();
-        $user->roles()->attach(2);
+       
         // alternativ to eloquent we can also use direct database-methods
         /*
         User::create(array(

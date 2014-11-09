@@ -16,14 +16,14 @@ class HotelTableSeeder extends Seeder {
         $hotel->address = 'pegionHole';
         $hotel->tel = '000xxx888';
         $hotel->save();
-        $hotel->users()->attach(2);
+        $hotel->users()->attach(1);
 
         $hotel = new Hotel;
         $hotel->name = 'Rungprasert_hotel';
         $hotel->address = 'DarkHole';
         $hotel->tel = '000xxx8889';
         $hotel->save();
-        $hotel->users()->attach(3);
+        $hotel->users()->attach(2);
         
         // alternativ to eloquent we can also use direct database-methods
         /*

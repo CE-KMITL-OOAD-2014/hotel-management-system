@@ -5,7 +5,7 @@
     	public function showStaff()
     	{
             //member can't see staff
-            if(!Authority::getCurrentUser()->hasRole('member') )
+            if( User::find(Auth::id())->role != 'member' )
             {
     		  return View::make('staff.staff')
     		  ->with ('hotels',hotel::all())
@@ -20,7 +20,7 @@
     	public function showRequest()
     	{
             //only manager can see request to accept memeber to staff
-            if(Authority::getCurrentUser()->hasRole('manager') )
+            if( User::find(Auth::id())->role == 'manager')
                 return View::make('request.request');
             //Something went wrong
             else
@@ -30,7 +30,7 @@
     	public function staffAccept($hotel_id,$member_id)
     	{
 		    //only manager can accept member to staff
-            if( Authority::getCurrentUser()->hasRole('manager') )
+            if( User::find(Auth::id())->role == 'manager' )
             {
     		  $member = User::find($member_id);
             //remove request this member all hotel
@@ -40,8 +40,8 @@
             //add member to staff in this hotel
     		$member->hotels()->attach($hotel_id);
             //change roll manager to staff
-    		$member->roles()->detach(2);
-    		$member->roles()->attach(4);
+    		$member->role = 'staff';
+    		$member->save();
             //create permission for staff
     		$permission = new Permission;
     		$permission->user_id = $member_id;
@@ -62,7 +62,7 @@
     	public function staffDecline($hotel_id,$member_id)
     	{  
             //only manager can delice member to staff
-            if( Authority::getCurrentUser()->hasRole('manager') )
+            if( User::find(Auth::id())->role == 'manager' )
             {
     	        $member = User::find($member_id);
     		    $hotel = Hotel::find($hotel_id);
@@ -80,14 +80,14 @@
     	public function fireStaff($hotel_id,$member_id)
     	{
             //only manager can fire staff
-            if( Authority::getCurrentUser()->hasRole('manager') )
+            if( User::find(Auth::id())->role == 'manager' )
             {
             $hotel = Hotel::find($hotel_id);
     		$member = User::find($member_id);
             $member->permissions->delete();
     		$member->hotels()->detach($hotel_id);
-    		$member->roles()->detach(4);
-    		$member->roles()->attach(2);
+    		$member->role = 'member';
+    		$member->save();
 
             return Redirect::to('staff')->with('success', 'You fire : '.$member->name.' from '.$hotel->name );
             }

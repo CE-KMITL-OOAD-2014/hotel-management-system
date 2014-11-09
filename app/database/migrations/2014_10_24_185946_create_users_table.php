@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('username',64)->unique();
 			$table->string('password',64);
 			$table->string('email')->unique();
+			$table->string('role');
 			$table->text('work_history');
 			$table->string('remember_token', 100)->nullable();
 			$table->timestamps();

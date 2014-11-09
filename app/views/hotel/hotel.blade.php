@@ -8,16 +8,16 @@
 @section('content')
 <h1>This is my hotel!</h1>
 
-
+<?php $users=User::find(Auth::id());?>
 <!-- Staff can't create hotel -->
-@if(!Authority::getCurrentUser()->hasRole('staff'))
+@if( $users->role != 'staff')
     {{ HTML::link('create_hotel', 'Create hotel') }}<br><br>
     @endif
 
 
-<?php $users=User::find(Auth::id());?>
+
 <!--only Manager can Edit his hotels-->
-@if(Authority::getCurrentUser()->hasRole('manager'))
+@if( $users->role == 'manager' )
 
     @foreach($users->hotels as $hotel)
         {{'hotel name : '}}
@@ -28,11 +28,11 @@
    
     @endforeach
 <!-- Staff can see detail hotel -->
-@elseif(Authority::getCurrentUser()->hasRole('staff'))
+@elseif( $users->role == 'staff' )
     @foreach($users->hotels as $hotel)
    
         <!-- check permission staff can view room-->
-        @if($users->permissions->view_room==1)
+        @if($users->permissions->view_room==1&&$users->permissions->manage_room==1)
             <!--show url to room-->
             {{'hotel name : '}}
             {{ HTML::link('hotel/'.$hotel->id, $hotel->name  ) }}<br>

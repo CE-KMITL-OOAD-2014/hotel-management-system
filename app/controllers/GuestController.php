@@ -6,7 +6,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can view guest
-        if( Authority::getCurrentUser()->hasRole('manager'))
+        if($user->role == 'manager')
             return View::make('guest.guest');
             
         elseif($user->permissions->view_guest==1)
@@ -21,7 +21,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can create guest
-        if(Authority::getCurrentUser()->hasRole('manager') )
+        if($user->role == 'manager' )
             return View::make('guest.create_guest')
             ->with('hotel_id',$hotel_id);
 
@@ -37,7 +37,7 @@
     public function postCreateGuest($hotel_id)
     {
         $userdata = array(
-            'gender' => Input::get('gender'),
+            'gender'    => Input::get('gender'),
             'nationality'=> Input::get('nationality'),
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
@@ -48,23 +48,24 @@
             'citizenCardNo'=>Input::get('citizenCardNo'),
             );
         $rules = array(
-            'gender'=>'Required',
-            'nationality'=>'Required',
-            'name' => 'Required',
-            'lastname' =>'Required',
-            'dateOfBirth'=>'Required',
+            'gender'    =>'Required',
+            'nationality'=>'Required|alpha',
+            'name' => 'Required|alpha',
+            'lastname' =>'Required|alpha',
+            'dateOfBirth'=>'Required|before:'.date('o-m-d'),
             'address' =>  'Required',
-            'tel' =>  'Required',
-            'passportNo' => 'Required',
-            'citizenCardNo' => 'Required',
+            'tel' =>  'Required|numeric',
+            'passportNo' => 'Required|numeric',
+            'citizenCardNo' => 'Required|numeric',
 
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
             // Create guest in database
-            $new_guest =  guest::create($userdata);
-
+            $new_guest =  guest::create($userdata); 
+            $new_guest->gender =Input::get('gender');
+            $new_guest->save();
             //Attatch new guest to hotel
             $hotel = hotel::find($hotel_id);
             $hotel->guests()->attach($new_guest);
@@ -80,7 +81,7 @@
     {
         $user=User::find(Auth::id());
         //manager and staff with permission can edit guest
-        if(Authority::getCurrentUser()->hasRole('manager') )
+        if($user->role == 'manager' )
         {
         return View::make('guest.edit_guest')
         ->with('guest_id',guest::find($guest_id))
@@ -101,7 +102,7 @@
     {
      $guest = guest::find($guest_id);
      $userdata = array(
-        'gender' => Input::get('gender'),
+ 
         'nationality'=> Input::get('nationality'),
         'name' => Input::get('name'),
         'lastname' => Input::get('lastname'),
@@ -112,21 +113,21 @@
         'citizenCardNo'=>Input::get('citizenCardNo'),
         );
      $rules = array(
-        'gender'=>'Required',
-        'nationality'=>'Required',
-        'name' => 'Required',
-        'lastname' =>'Required',
-        'dateOfBirth'=>'Required',
+        
+        'nationality'=>'Required|alpha',
+        'name' => 'Required|alpha',
+        'lastname' =>'Required|alpha',
+        'dateOfBirth'=>'Required|before:'.date('o-m-d'),
         'address' =>  'Required',
-        'tel' =>  'Required',
-        'passportNo' => 'Required',
-        'citizenCardNo' => 'Required',
+        'tel' =>  'Required|numeric',
+        'passportNo' => 'Required|numeric',
+        'citizenCardNo' => 'Required|numeric',
         );
      $validator = Validator::make($userdata, $rules);
      //replace old value with input
      if ($validator->passes())
      {
-        $guest->gender = Input::get('gender');
+        $guest->gender =Input::get('gender');
         $guest->nationality = Input::get('nationality');
         $guest->name = Input::get('name');
         $guest->lastname = Input::get('lastname');
@@ -135,6 +136,7 @@
         $guest->tel = Input::get('tel');
         $guest->passportNo = Input::get('passportNo');
         $guest->citizenCardNo = Input::get('citizenCardNo');
+        $guest->comment = Input::get('comment');
         $guest->save();
 
         return Redirect::to('guest')->with('success', 'You have successfully edit '.$guest->name.' guest.');
@@ -147,7 +149,7 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-     if( Authority::getCurrentUser()->hasRole('manager') )
+     if(User::find(auth::id()) == 'manager')
      { 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);

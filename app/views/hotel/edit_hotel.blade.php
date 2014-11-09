@@ -21,10 +21,9 @@
         <div class="controls">
             {{ Form::text('name',$hotel->name) }}
             {{ $errors->first('name') }}
-            <!-- only manager can delete his hotel-->
-            @if(Authority::getCurrentUser()->hasRole('manager'))
+            <!-- delete hotel -->
             {{ HTML::link('delete_hotel/'.$hotel->id,'Delete '.$hotel->name ) }}
-            @endif
+            
         </div>
     </div>
 
@@ -40,7 +39,7 @@
     
         <!-- telephonumber -->
     <div class="control-group {{{ $errors->has('tel') ? 'error' : '' }}}">
-        {{ Form::label('tel', 'Tel', array('class' => 'control-label')) }}
+        {{ Form::label('tel', 'Telephone Number', array('class' => 'control-label')) }}
         <div class="controls">
             {{ Form::text('tel', $hotel->tel) }}
             {{ $errors->first('tel') }}

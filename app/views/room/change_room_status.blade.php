@@ -8,7 +8,6 @@
 @parent
 :: Change room status
 @stop
-
 @section('content')
 
 <?php  echo "My hotel id is :".$hotel_id;?> <br>
@@ -21,9 +20,11 @@
 {{ $errors->first('status') }}
 <br />
 {{Form::text('start_date','',array('id'=>'date','placeholder'=>'Choose start date'))}}
+{{Form::hidden('start_date_input','',array('id'=>'date','placeholder'=>'Choose start date'))}}
 {{ $errors->first('start_date') }}
 <br />
 {{Form::text('end_date','',array('id'=>'date2','placeholder'=>'Choose end date'))}}
+{{Form::hidden('end_date_input','',array('id'=>'date2','placeholder'=>'Choose end date'))}}
 {{ $errors->first('end_date') }}
    <div class="control-group">
         <div class="controls">
@@ -40,11 +41,11 @@
     // Enable Pickadate on an input field
     $('#date').pickadate({
         formatSubmit : 'yyyy-mm-dd',
-        format : 'yyyy-mm-dd',
+        hiddenName: true,
     });
        $('#date2').pickadate({
         formatSubmit : 'yyyy-mm-dd',
-        format : 'yyyy-mm-dd',
+        hiddenName: true,
     });
   });   
 </script>

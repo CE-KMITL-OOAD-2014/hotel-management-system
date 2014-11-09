@@ -109,15 +109,15 @@
                         color: '#F44336',
                         textColor : '#ffffff'
                     },
-                ],
+                    ],
 
-eventClick: function(event) {
-        if (event.url) {
-           return confirm("Are you sure you want to delete this event?");
-        }
-    }
+                    eventClick: function(event) {
+                       if (event.url) {
+                           return confirm("Are you sure you want to delete this event?");
+                       }
+                   }
 
-                });
+               });
 
 });
 

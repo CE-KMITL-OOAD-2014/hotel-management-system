@@ -13,8 +13,8 @@ class RoomController extends BaseController {
 		}
 		else if(User::find(Auth::id())->permissions->view_room==1)
 			return View::make('room.room')
-			->with('rooms',room::all())
-			->with('hotels',hotel::all());
+		->with('rooms',room::all())
+		->with('hotels',hotel::all());
 		//Something went wrong
 		else
 			return Redirect::back()->with('success', 'Access Denied');
@@ -172,83 +172,84 @@ class RoomController extends BaseController {
 		}
 
 		/////This function will display form to change room status
-				public function showCreateRoomstatus($hotel_id){
+		public function showCreateRoomstatus($hotel_id){
 		////populate drop down menu ($room_choice) with empty room of current hotel
-					$hotel = Hotel::find($hotel_id);
-					$room_choice =array('' => 'Please select room number');
-					foreach ($hotel->rooms as $room) {
-						foreach ($room->statuses as $status) {
-							if($status->status == 'Empty'){
-								$room_choice[$room->id] = $room->roomnumber;
-							}
-						}
+			$hotel = Hotel::find($hotel_id);
+			$room_choice =array('' => 'Please select room number');
+			foreach ($hotel->rooms as $room) {
+				foreach ($room->statuses as $status) {
+					if($status->status == 'Empty'){
+						$room_choice[$room->id] = $room->roomnumber;
 					}
-					$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
-					return View::make('room.change_room_status')
-					->with('hotel_id',$hotel_id)
-					->with('rooms',$room_choice)
-					->with('status',$status_choice);
 				}
+			}
+			$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
+			return View::make('room.change_room_status')
+			->with('hotel_id',$hotel_id)
+			->with('rooms',$room_choice)
+			->with('status',$status_choice);
+		}
 
 
 	/////This function will change room status from empty to Occupied, Reserved or Maintenance according to form
-public function postCreateRoomstatus($hotel_id){
-		$room_data = array(
-			'roomnumber' => Input::get('roomnumber'),
-			'status' => Input::get('status'),
-			'start_date' => Input::get('start_date'),
-			'end_date' => Input::get('end_date')
-			);
+		public function postCreateRoomstatus($hotel_id){
+			$room_data = array(
+				'roomnumber' => Input::get('roomnumber'),
+				'status' => Input::get('status'),
+				'start_date' => Input::get('start_date'),
+				'end_date' => Input::get('end_date')
+				);
 
-Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
-{
-	///$parameters[0] = model 
-	///$parameters[1] = column id ('room_id' in this case )
-	///$parameters[2] = value of column id
-	///$parameters[3] = value of start_date
-	///$parameters[4] = value of end_date
-	$model = $parameters[0]::all();
-	foreach($model as $date){
-		if($date->$parameters[1] == $parameters[2]){
-			///// if ( start1 <= end2 and start2 <= end1 ) then overlap occured
-			if($date->start<$parameters[4]&&$parameters[3]<$date->end){
-				return false;
+			Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
+			{
+				///$parameters[0] = model 
+				///$parameters[1] = column id ('room_id' in this case )
+				///$parameters[2] = value of column id
+				///$parameters[3] = value of start_date
+				///$parameters[4] = value of end_date
+				$model = $parameters[0]::all();
+				foreach($model as $date){
+					if($date->$parameters[1] == $parameters[2]){
+						///// if ( start1 <= end2 and start2 <= end1 ) then overlap occured
+						if($date->start<$parameters[4]&&$parameters[3]<$date->end){
+							return false;
+						}
+					}
+				}
+				return true;
+			});
+
+			$rules = array(
+				'roomnumber' => 'Required',
+				'status' => 'Required',
+				///can't set start date in the past
+				'start_date' => 'Required|
+				after:'.date('o-m-d',strtotime("-1 days")).'|
+				date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
+				///End date must come after start_date
+				'end_date' => 'Required|
+				after:start_date|
+				date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
+				);
+			$validator = Validator::make($room_data, $rules);
+			if ($validator->passes())
+			{
+				$room = Room::find(Input::get('roomnumber'));
+				$new_status = status::create(array(
+					'status'=>Input::get('status'),
+					'room_id'=>Input::get('roomnumber'),
+					'start'=>Input::get('start_date'),
+					'end'=>Input::get('end_date')
+					));
+
+				return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
 			}
+			else return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		public function getDeleteRoomstatus($status_id){
+			$status = Status::find($status_id);
+			$status->delete();
+			return Redirect::back();
 		}
 	}
-  return true;
-});
-
-		$rules = array(
-			'roomnumber' => 'Required',
-			'status' => 'Required',
-///can't set start date in the past
-			'start_date' => 'Required|
-			after:'.date('o-m-d',strtotime("-1 days")).'|
-			date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
-///End date must come after start_date
-			'end_date' => 'Required|
-			after:start_date|
-			date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
-			);
-		$validator = Validator::make($room_data, $rules);
-		if ($validator->passes())
-		{
-			$room = Room::find(Input::get('roomnumber'));
-			$new_status = status::create(array(
-			'status'=>Input::get('status'),
-			'room_id'=>Input::get('roomnumber'),
-			'start'=>Input::get('start_date'),
-			'end'=>Input::get('end_date')
-			));
-
-			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
-		}
-		else return Redirect::back()->withErrors($validator)->withInput();
-	}
-	public function getDeleteRoomstatus($status_id){
-	$status = Status::find($status_id);
-	$status->delete();
-	return Redirect::back();
-	}
-}

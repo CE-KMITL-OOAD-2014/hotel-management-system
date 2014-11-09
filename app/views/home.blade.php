@@ -7,6 +7,6 @@
 
 @section('content')
 <h1>Hotel management system</h1>
-<h2>Featrue :</h2>
+<h2>Feature :</h2>
 
 @stop

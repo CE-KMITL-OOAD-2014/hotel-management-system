@@ -195,13 +195,36 @@ public function postCreateRoomstatus($hotel_id){
 			'start_date' => Input::get('start_date'),
 			'end_date' => Input::get('end_date')
 			);
+
+Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
+{
+	///$parameters[0] = table_name 
+	///$parameters[1] = column id ('room_id' in this case )
+	///$parameters[2] = value of column id
+	///$parameters[3] = value of start
+	///$parameters[4] = value of end
+	$model = $parameters[0]::all();
+	foreach($model as $date){
+		if($date->$parameters[1] == $parameters[2]){
+			if($date->start<$parameters[4]&&$parameters[3]<$date->end){
+				return false;
+			}
+		}
+	}
+  return true;
+});
+
 		$rules = array(
 			'roomnumber' => 'Required',
 			'status' => 'Required',
 ///can't set start date in the past
-			'start_date' => 'Required|after:'.date('o-m-d',strtotime("-1 days")),
+			'start_date' => 'Required|
+			after:'.date('o-m-d',strtotime("-1 days")).'|
+			date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
 ///End date must come after start_date
-			'end_date' => 'Required|after:start_date'
+			'end_date' => 'Required|
+			after:start_date|
+			date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
 			);
 		$validator = Validator::make($room_data, $rules);
 		if ($validator->passes())

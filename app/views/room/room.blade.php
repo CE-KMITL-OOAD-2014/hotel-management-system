@@ -23,7 +23,6 @@ $user=User::find(auth::id());
                 {{ $room->roomnumber}}
                 {{ $room->price}}
                 {{ $room->detail}}
-                {{ $room->statuses}}
                 {{ HTML::link('edit_room/'.$hotel->id.'/'.$room->id, 'Edit room') }}
             </li>
 
@@ -37,7 +36,6 @@ $user=User::find(auth::id());
                 {{ $room->roomnumber}}
                 {{ $room->price}}
                 {{ $room->detail}}
-                {{ $room->statuses}}
             </li>
  
         @endforeach

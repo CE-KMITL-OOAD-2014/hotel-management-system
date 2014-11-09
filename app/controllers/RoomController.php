@@ -17,7 +17,7 @@ class RoomController extends BaseController {
 		->with('hotels',hotel::all());
 		//Something went wrong
 		else
-			return Redirect::back()->with('success', 'Access Denied');
+			return Redirect::back()->with('fail', 'Access Denied');
 	}
 
 	public function showRoomCalendar($hotel_id)
@@ -38,7 +38,7 @@ class RoomController extends BaseController {
 		}
 		//Something went wrong
 		else
-			return Redirect::back()->with('success', 'Access Denied');
+			return Redirect::back()->with('fail', 'Access Denied');
 	}
 
 	public function showCreateRoom($hotel_id)
@@ -51,7 +51,7 @@ class RoomController extends BaseController {
 		}
 		//Something went wrong
 		else
-			return Redirect::back()->with('success', 'Access Denied');
+			return Redirect::back()->with('fail', 'Access Denied');
 	}
 
 	public function postCreateRoom($hotel_id)
@@ -102,7 +102,7 @@ class RoomController extends BaseController {
 		}
 		//Something went wrong.
 		else
-			return Redirect::back()->with('success', 'Access Denied');
+			return Redirect::back()->with('fail', 'Access Denied');
 	}
 
 	public function postEditRoom($hotel_id,$room_id)
@@ -149,7 +149,7 @@ class RoomController extends BaseController {
 			return Redirect::to('room')->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
 		}
 		// Something went wrong.
-		else return Redirect::back()->with('success', 'Access deny ');
+		else return Redirect::back()->with('fail', 'Access deny ');
 	}
 
 	///return json list of room with specific status & hotel

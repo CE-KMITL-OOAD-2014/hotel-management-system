@@ -77,12 +77,21 @@
         <div class="container">
             <!-- Success-Messages -->
             @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block">
+                <div class="alert alert-dismissable alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <h4>Success</h4>
                     {{{ $message }}}
                 </div>
             @endif
+        <!-- Fail-Messages -->
+            @if ($message = Session::get('fail'))
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4>Error</h4>
+                    {{{ $message }}}
+                </div>
+            @endif
+
             <!-- Content -->
             @yield('content')
 

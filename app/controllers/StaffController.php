@@ -13,7 +13,7 @@
             }
             //Something went wrong
             else
-                return Redirect::back()->with('success', 'Access deny ');
+                return Redirect::back()->with('fail', 'Access deny ');
     	}
 
 
@@ -24,7 +24,7 @@
                 return View::make('request.request');
             //Something went wrong
             else
-                return Redirect::back()->with('success', 'Access deny ');
+                return Redirect::back()->with('fail', 'Access deny ');
     	}
 
     	public function staffAccept($hotel_id,$member_id)
@@ -56,7 +56,7 @@
             }
             //Something went wrong
             else
-                return Redirect::back()->with('success', 'Access deny ');
+                return Redirect::back()->with('fail', 'Access deny ');
     	}
 
     	public function staffDecline($hotel_id,$member_id)
@@ -73,7 +73,7 @@
             }
             //Something went wrong
             else
-                return Redirect::back()->with('success', 'Access deny ');
+                return Redirect::back()->with('fail', 'Access deny ');
             
     	}
 
@@ -93,6 +93,6 @@
             }
             //Something went wrong
             else
-            return Redirect::back()->with('success', 'Access deny ');
+            return Redirect::back()->with('fail', 'Access deny ');
     	}
     }

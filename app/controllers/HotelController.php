@@ -161,6 +161,6 @@
      }
      //Something went wrong
      else
-        return Redirect::back()->with('success', 'access deny' );
+        return Redirect::back()->with('fail', 'access deny' );
     }
 }

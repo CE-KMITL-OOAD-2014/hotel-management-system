@@ -73,21 +73,26 @@ class AuthController extends BaseController {
             'name' => Input::get('name'),
             'lastname' => Input::get('lastname'),
             'username' => Input::get('username'),
-            'password' => Hash::make(Input::get('password')),
+            'password' => Input::get('password'),
             'email' => Input::get('email')
             );
         $rules = array(
             'name' => 'Required|alpha',
             'lastname' =>  'Required|alpha',
             'username' =>  'Required|unique:users|between:4,15',
-            'password' =>  'Required',
+            'password' =>  'Required|between:4,15',
             'email' =>  'Required|email|unique:users'
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
         {
             // Create user in database
-            $new_user = user::create($userdata);
+            $new_user = user::create(array(
+            'name' => Input::get('name'),
+            'lastname' => Input::get('lastname'),
+            'username' => Input::get('username'),
+            'password' => Hash::make(Input::get('password')),
+            'email' => Input::get('email')));
             // set defualt role to member
             $new_user->role ='member';
             $new_user->save();

@@ -16,14 +16,17 @@
         {{ HTML::style('css/bootstrap.css') }}
         <style>
         @section('styles')
-      
+            body {
+                padding-top: 60px;
+            }
         @show
         </style>
     </head>
 
     <body>
         <!-- Navbar -->
-        <div class="navbar navbar-default">
+
+        <div class="navbar navbar-default navbar-fixed-top container-fluid">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
       <span class="icon-bar"></span>

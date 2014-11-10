@@ -68,8 +68,8 @@
         if( User::find(Auth::id())->role == 'manager' )
         {
             return View::make('permission.edit_permission') 
-            ->with ('hotel_id',hotel::find($hotel_id))
-            ->with ('staff_id',user::find($staff_id));
+            ->with ('hotel',hotel::find($hotel_id))
+            ->with ('staff',user::find($staff_id));
         }
         else  return Redirect::back()->with('fail', 'Access deny ');
     }

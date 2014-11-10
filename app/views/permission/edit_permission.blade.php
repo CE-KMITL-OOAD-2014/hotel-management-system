@@ -11,100 +11,115 @@
 <?php 
 $user=User::find(Auth::id());
 ?>
+<div class="well col-lg-6 center-block" style="float: none;">
 
-{{ Form::open(array('url' => 'edit_permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
 
-
-    	<h3>{{ $hotel_id->name  }}</h3>
-        <h4>Staff Detail</h4>
-        {{"Name : ".$staff_id->name}}
-        <!--fire this staff -->
-        {{ HTML::link('fireStaff/'.$hotel_id->id.'/'.$staff_id->id,' Fire '.$staff_id->name ) }}<br>
-        {{"Lastname : ".$staff_id->lastname}}<br>
-        {{"email : ".$staff_id->email}}<br>
-        {{"work history : ".$staff_id->work_history}}<br>
+        <legend>Staff Detail</legend>
+        <p><strong>Name : </strong>{{$staff->name .' '.$staff->lastname}}</p> 
+        <p><strong>Email : </strong>{{$staff->email}}</p> 
   
 
 
 
-        
-        <h4>Set Permission</h4>
-        
-    <div class="radio">
-        
-        <h5>Room Permission</h5>
-  
-        <li>
-        @if($staff_id->permissions->view_room == false && $staff_id->permissions->manage_room == false) 
+{{ Form::open(array('url' => 'edit_permission/'.$hotel->id.'/'.$staff->id, 'class' => 'form-horizontal')) }}
+<fieldset>
+        <legend>Set Permission</legend>
+        <div class="form-group">
+      <label class="col-lg-2 control-label">Room</label>
+      <div class="col-lg-10">
+   
+        <div class="radio">
+        <label>
+             @if($staff->permissions->view_room == false && $staff->permissions->manage_room == false)
             {{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
-        @else
+            @else
             {{ Form::radio('room','no_room','',array('id'=>'radio1'))}}
-        @endif
-        {{ Form::label('radio1','No Room',array('class'=>'')) }}
-        </li>
+             @endif
+            Not allowed
+        </label>
+       </div>
 
-        <li>
-        @if($staff_id->permissions->view_room == true && $staff_id->permissions->manage_room == false) 
+        <div class="radio">
+        <label>
+        @if($staff->permissions->view_room == true && $staff->permissions->manage_room == false) 
             {{ Form::radio('room','view_room',true,array('id'=>'radio2'))}}
         @else
             {{ Form::radio('room','view_room','',array('id'=>'radio2'))}}
         @endif
-        {{ Form::label('radio2','View Room',array('class'=>'')) }}
-        </li>
+        View Room
+        </label>
+      </div>
 
-        <li>
-        @if($staff_id->permissions->view_room == true && $staff_id->permissions->manage_room == true) 
+       <div class="radio">
+        <label>
+        @if($staff->permissions->view_room == true && $staff->permissions->manage_room == true) 
             {{ Form::radio('room','manage_room',true,array('id'=>'radio3')) }}
         @else
             {{ Form::radio('room','manage_room','',array('id'=>'radio3')) }}
         @endif
-        {{ Form::label('radio3','Manage Room',array('class'=>'')) }}
-        </li>
+        Manage Room
+        </label>
+        </div>
+</div>
+</div>
+<div class="form-group">
+        <label class="col-lg-2 control-label">Guest</label>
+        <div class="col-lg-10">
 
-        <h5>GuestPermission</h5>
-
-        <li>
-        @if($staff_id->permissions->view_guest == false && $staff_id->permissions->manage_guest == false)
+        <div class="radio">
+        <label>
+        @if($staff->permissions->view_guest == false && $staff->permissions->manage_guest == false)
             {{ Form::radio('guest','no_guest',true,array('id'=>'radio4'))}}
         @else
             {{ Form::radio('guest','no_guest','',array('id'=>'radio4'))}}
         @endif
-        {{ Form::label('radio4','No Guest',array('class'=>'')) }}
-        </li>
+        Not Allowed
+    </label>
+        </div>
 
-        <li>
-        @if($staff_id->permissions->view_guest == true && $staff_id->permissions->manage_guest == false)
+        <div class="radio">
+        <label>
+        @if($staff->permissions->view_guest == true && $staff->permissions->manage_guest == false)
             {{ Form::radio('guest','view_guest',true,array('id'=>'radio5'))}}
         @else
             {{ Form::radio('guest','view_guest','',array('id'=>'radio5'))}}
         @endif
-        {{ Form::label('radio5','View Guest',array('class'=>'')) }}
-        </li>
+        View Guest
+    </label>
+        </div>
 
-        <li>
-        @if($staff_id->permissions->view_guest == true && $staff_id->permissions->manage_guest == true)
+        <div class="radio">
+        <label>
+        @if($staff->permissions->view_guest == true && $staff->permissions->manage_guest == true)
             {{ Form::radio('guest','manage_guest',true,array('id'=>'radio6')) }}
         @else
             {{ Form::radio('guest','manage_guest','',array('id'=>'radio6')) }}
         @endif
-        {{ Form::label('radio6','Manage Guest',array('class'=>'')) }}
-        </li>
+        Manage Guest
+    </label>
+        </div>
     </div>
+</div>
+<div class="form-group">
             <!-- Work history -->
     <div class="control-group {{{ $errors->has('work_history') ? 'error' : '' }}}">
-        {{ Form::label('work_history', 'Work History', array('class' => 'control-label')) }}
-        <div class="controls">
-            {{ Form::textarea('work_history', $staff_id->work_history) }}
+        {{ Form::label('work_history', 'Work History', array('class' => 'col-lg-2 control-label')) }}
+        <div class="col-lg-10">
+            {{ Form::textarea('work_history', $staff->work_history,array('class'=>'form-control','rows'=>'3','id'=>'inputaddress'))}}
             {{ $errors->first('work_history') }}
         </div>
     </div>
- 
-    <div class="control-group">
-        <div class="controls">
-            {{ Form::submit('Submit', array('class' => 'btn')) }}
+ </div>
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+            {{ HTML::link('','Cancel',array('class' => 'btn btn-default')) }}
+               <!--fire this staff -->
+            {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right'))}}
         </div>
     </div>
-
-
+</div>
+</fieldset>
     {{ Form::close() }}
+</div>
 @stop

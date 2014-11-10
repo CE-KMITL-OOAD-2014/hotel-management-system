@@ -7,12 +7,12 @@
 
 @section('content')
 <div class="well col-lg-7 center-block" style="float: none;">
-{{ Form::open(array('url' => 'edit_room/'.$hotel->id.'/'.$room->id, 'class' => 'form-horizontal')) }}
+    {{ Form::open(array('url' => 'edit_room/'.$hotel->id.'/'.$room->id, 'class' => 'form-horizontal')) }}
 
-        <h3>{{ $hotel->name  }}</h3>
+    <h3>{{ $hotel->name  }}</h3>
 
 
-   <!-- Roomnumber -->
+    <!-- Roomnumber -->
     <div class="form-group {{{ $errors->has('roomnumber') ? 'error' : '' }}}">
         {{ Form::label('roomnumber', 'Roomnumber', array('class' => 'col-lg-2 control-label')) }}
         <div class="col-lg-10">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-   <!-- Price -->
+    <!-- Price -->
     <div class="form-group {{{ $errors->has('price') ? 'error' : '' }}}">
         {{ Form::label('price', 'Price', array('class' => 'col-lg-2 control-label')) }}
         <div class="col-lg-10">
@@ -41,12 +41,12 @@
             {{ $errors->first('detail') }}
         </div>
     </div>
-     <!-- Submit button -->
-        <div class="form-group">
+    <!-- Submit button -->
+    <div class="form-group">
         <div class="col-lg-10 col-lg-offset-2">
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-             {{ HTML::link('room','cancel',array('class' => 'btn btn-default')) }}
-             {{ HTML::link('delete_room/'.$hotel->id.'/'.$room->id,'Delete',array('class' => 'btn btn-danger pull-right')) }}
+            {{ HTML::link('room','cancel',array('class' => 'btn btn-default')) }}
+            {{ HTML::link('delete_room/'.$hotel->id.'/'.$room->id,'Delete',array('class' => 'btn btn-danger pull-right')) }}
         </div>
     </div>
 </div>

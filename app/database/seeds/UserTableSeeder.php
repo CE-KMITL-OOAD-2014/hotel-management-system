@@ -39,7 +39,7 @@ class UserTableSeeder extends Seeder {
         $user->username = 'member';
         $user->password = Hash::make('password');
         $user->email = 'member@hotel.com';
-        $user->role = 'staff';
+        $user->role = 'member';
         $user->save();
        
         // alternativ to eloquent we can also use direct database-methods

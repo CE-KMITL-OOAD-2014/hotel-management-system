@@ -141,10 +141,9 @@ class RoomController extends BaseController {
 			$room = room::find($room_id);  
 			//delete relation room and hotel
 			$hotel->rooms()->detach($room);
-			//delete status room
-			$room->statusrooms()->detach([1,2,3,4]);
-			//delete room
+			$room->statuses()->delete();
 			$room->delete();
+			//delete room
 
 			return Redirect::to('room')->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
 		}

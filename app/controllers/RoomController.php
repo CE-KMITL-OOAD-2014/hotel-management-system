@@ -97,8 +97,8 @@ class RoomController extends BaseController {
 		if( User::find(Auth::id())->role == 'manager')
 		{
 			return View::make('room.edit_room')
-			->with('hotel_id',hotel::find($hotel_id))
-			->with('room_id',room::find($room_id));   
+			->with('hotel',hotel::find($hotel_id))
+			->with('room',room::find($room_id));   
 		}
 		//Something went wrong.
 		else

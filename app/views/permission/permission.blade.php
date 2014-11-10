@@ -6,62 +6,80 @@
 @stop
 
 @section('content')
-<h3>Set Permission</h3>
+
 
 
 <?php 
 $user=User::find(Auth::id());
-      ?>
+?>
+<div class="well col-lg-6 center-block" style="float: none;">
+	<h3>Accept staff</h3>
+	<h3>For : {{ $hotel->name }}</h3>
+	<h4><strong>Detail</strong></h4>
+	<p><strong>Name : </strong>{{$staff->name .' '.$staff->lastname}}</p> 
+	<p><strong>Email : </strong>{{$staff->email}}</p> 
+	<p><strong>Work history :</strong>{{$staff->work_history}}</p>
 
-    	<h3>{{ $hotel_id->name  }}</h3>
-        <h4>Staff Detail</h4>
-        {{"Name : ".$staff_id->name}}<br>
-        {{"Lastname : ".$staff_id->lastname}}<br>
-        {{"email : ".$staff_id->email}}<br>
-        {{"work history : ".$staff_id->work_history}}<br>
-        <h4>Set Permission</h4>
+	{{ Form::open(array('url' => 'permission/'.$hotel->id.'/'.$staff->id, 'class' => 'form-horizontal')) }}
+	<fieldset>
+		<legend>Set Permission</legend>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Room</label>
+			<div class="col-lg-10">
+				<div class="radio">
+					<label>
+						{{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
+						Not Allowed
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						{{ Form::radio('room','view_room','',array('id'=>'radio2'))}}
+						View Room
+					</label>
+				</div>
 
-{{ Form::open(array('url' => 'permission/'.$hotel_id->id.'/'.$staff_id->id)) }}
- <div class="radio">
+				<div class="radio">
+					<label>
+						{{ Form::radio('room','manage_room','',array('id'=>'radio3')) }}
+						Manage Room
+					</label>
+				</div>
+			</div>
+		</div>
 
-<h5>Room pemission </h5>
-<li>
-{{ Form::radio('room','no_room',true,array('id'=>'radio1'))}}
-{{ Form::label('radio1','No Room',array('class'=>'')) }}
-</li>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Guest</label>
+			<div class="col-lg-10">
+				<div class = "radio">
+					<label>
+						{{ Form::radio('guest','no_guest',true,array('id'=>'radio4'))}}
+						Not Allowed
+					</label>
+				</div>
 
-<li>
-{{ Form::radio('room','view_room','',array('id'=>'radio2'))}}
-{{ Form::label('radio2','View Room',array('class'=>'')) }}
-</li>
+				<div class = "radio">
+					<label>
+						{{ Form::radio('guest','view_guest','',array('id'=>'radio5'))}}
+						View Guest
+					</label>
+				</div>
 
-
-<li>
-{{ Form::radio('room','manage_room','',array('id'=>'radio3')) }}
-{{ Form::label('radio3','Manage Room',array('class'=>'')) }}
-</li>
-<h5>Guest permission</h5>
-<li>
-{{ Form::radio('guest','no_guest',true,array('id'=>'radio4'))}}
-{{ Form::label('radio4','No guest',array('class'=>''))}}
-</li>
-
-<li>
-{{ Form::radio('guest','view_guest','',array('id'=>'radio5'))}}
-{{ Form::label('radio5','View guest',array('class'=>''))}}
-</li>
-
-<li>
-{{ Form::radio('guest','manage_guest','',array('id'=>'radio6')) }}
-{{ Form::label('radio6','Create guest',array('class'=>'')) }}
-</li>
-  </div>
- 
-    <div class="control-group">
-        <div class="controls">
-            {{ Form::submit('Submit', array('class' => 'btn')) }}
-        </div>
-    </div>
-
-    {{ Form::close() }}
+				<div class = "radio">
+					<label>
+						{{ Form::radio('guest','manage_guest','',array('id'=>'radio6')) }}
+						Creat Guest
+					</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+				{{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+			</div>
+		</div>
+	</fieldset>
+	{{ Form::close() }}
+</div>
 @stop

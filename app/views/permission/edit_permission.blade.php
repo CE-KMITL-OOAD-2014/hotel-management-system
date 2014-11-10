@@ -13,13 +13,9 @@ $user=User::find(Auth::id());
 ?>
 <div class="well col-lg-6 center-block" style="float: none;">
 
-
         <legend>Staff Detail</legend>
         <p><strong>Name : </strong>{{$staff->name .' '.$staff->lastname}}</p> 
         <p><strong>Email : </strong>{{$staff->email}}</p> 
-  
-
-
 
 {{ Form::open(array('url' => 'edit_permission/'.$hotel->id.'/'.$staff->id, 'class' => 'form-horizontal')) }}
 <fieldset>
@@ -27,7 +23,7 @@ $user=User::find(Auth::id());
         <div class="form-group">
       <label class="col-lg-2 control-label">Room</label>
       <div class="col-lg-10">
-   
+
         <div class="radio">
         <label>
              @if($staff->permissions->view_room == false && $staff->permissions->manage_room == false)
@@ -118,7 +114,6 @@ $user=User::find(Auth::id());
             {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right'))}}
         </div>
     </div>
-</div>
 </fieldset>
     {{ Form::close() }}
 </div>

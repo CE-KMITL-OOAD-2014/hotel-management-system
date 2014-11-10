@@ -9,8 +9,8 @@
         if( User::find(Auth::id())->role == 'manager' )
         {
             return View::make('permission.permission') 
-            ->with ('hotel_id',hotel::find($hotel_id))
-            ->with ('staff_id',user::find($staff_id));
+            ->with ('hotel',hotel::find($hotel_id))
+            ->with ('staff',user::find($staff_id));
         }
        //Something went wrong
         else

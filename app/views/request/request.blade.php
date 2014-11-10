@@ -28,7 +28,6 @@
              {{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'accept') }}
             {{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'decline') }}<br><br>
 
-       
     	@endforeach
     @endforeach
 

@@ -71,7 +71,7 @@
     <div class="form-group {{{ $errors->has('address') ? 'error' : '' }}}">
         {{ Form::label('inputaddress', 'Address', array('class' => 'col-lg-2 control-label')) }}
         <div class="col-lg-8">
-            {{ Form::textarea('address','',array('class'=>'form-control','rows'=>'3','id'=>'inputaddress'))}}
+            {{ Form::textarea('address','',array('class'=>'form-control','rows'=>'3','id'=>'inputaddress','placeholder'=>'Address'))}}
             {{ $errors->first('address') }}
         </div>
     </div>
@@ -113,7 +113,6 @@
              {{ HTML::link('','cancel',array('class' => 'btn btn-default')) }}
         </div>
     </div>
-</div>
 </fieldset>
     {{Form::close()}}
 </div>

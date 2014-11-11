@@ -95,17 +95,17 @@
                         */
                     eventSources:[
                     {
-                        url: '{{URL::to('room_json/Occupied/'.$hotel_id)}}',
+                        url: '{{URL::to('api/room/Occupied/'.$hotel_id)}}',
                         color: '#3F51B5',
                         textColor : '#ffffff'
                     },
                     {
-                        url: '{{URL::to('room_json/Reserved/'.$hotel_id)}}',
+                        url: '{{URL::to('api/room/Reserved/'.$hotel_id)}}',
                         color: '#FFB300',
                         textColor : '#ffffff'
                     },
                     {
-                        url: '{{URL::to('room_json/Maintenance/'.$hotel_id)}}',
+                        url: '{{URL::to('api/room/Maintenance/'.$hotel_id)}}',
                         color: '#F44336',
                         textColor : '#ffffff'
                     },

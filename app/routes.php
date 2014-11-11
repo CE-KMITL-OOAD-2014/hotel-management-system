@@ -30,7 +30,6 @@ Route::post('create_room/{id}','RoomController@postCreateRoom');
 Route::get('edit_room/{hotel}/{room}','RoomController@showEditRoom');
 Route::post('edit_room/{hotel}/{room}','RoomController@postEditRoom');
 Route::get('delete_room/{hotel}/{room}','RoomController@deleteRoom');
-Route::get('room_json/{room_status}/{hotel_id}','RoomController@getRoomJson');
 Route::get('change_room_status/{hotel_id}','RoomController@showCreateRoomstatus');
 Route::post('change_room_status/{hotel_id}','RoomController@postCreateRoomstatus');
 Route::get('hotel/delete_room_status/{status_id}','RoomController@getDeleteRoomstatus');
@@ -60,3 +59,10 @@ Route::get('register','AuthController@showRegister');
 Route::post('register', 'AuthController@postRegister');
 Route::get('edit_user','AuthController@showEditUser');
 Route::post('edit_user','AuthController@postEditUser');
+
+Route::group(array('prefix' => 'api'), function()
+{
+	Route::resource('hotel','HotelController');
+    Route::resource('room/{room_status}/{hotel_id}','RoomController@getRoomJson');
+
+});

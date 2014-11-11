@@ -55,8 +55,8 @@
                     selectable:true will enable user to select datetime slot
                     selectHelper will add helpers for selectable.
                     */
-                    selectable: true,
-                    selectHelper: true,
+                    selectable: false,
+                    selectHelper: false,
                 /*
                     when user select timeslot this option code will execute.
                     It has three arguments. Start,end and allDay.

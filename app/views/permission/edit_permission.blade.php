@@ -109,7 +109,7 @@ $user=User::find(Auth::id());
 <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
         {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-        {{ HTML::link('','Cancel',array('class' => 'btn btn-default')) }}
+        {{ HTML::link('staff','Cancel',array('class' => 'btn btn-default')) }}
         <!--fire this staff -->
         {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right'))}}
     </div>

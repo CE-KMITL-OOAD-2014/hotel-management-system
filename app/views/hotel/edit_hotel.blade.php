@@ -44,7 +44,7 @@
         <div class="form-group">
             <div class="col-lg-9 col-lg-offset-2">
                 {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-                {{ HTML::link('','cancel',array('class' => 'btn btn-default')) }}
+                {{ HTML::link('hotel','cancel',array('class' => 'btn btn-default')) }}
                 {{ HTML::link('delete_hotel/'.$hotel->id,'Delete',array('class' => 'btn btn-danger pull-right')) }}
             </div>
         </div>

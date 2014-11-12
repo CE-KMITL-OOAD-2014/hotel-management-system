@@ -14,14 +14,14 @@ class HotelTableSeeder extends Seeder {
 
         $hotel->name = 'Nathakit_hotel';
         $hotel->address = 'pegionHole';
-        $hotel->tel = '000xxx888';
+        $hotel->tel = '000888';
         $hotel->save();
         $hotel->users()->attach(1);
 
         $hotel = new Hotel;
         $hotel->name = 'Rungprasert_hotel';
         $hotel->address = 'DarkHole';
-        $hotel->tel = '000xxx8889';
+        $hotel->tel = '0008889';
         $hotel->save();
         $hotel->users()->attach(2);
         

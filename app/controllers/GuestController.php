@@ -4,7 +4,7 @@
 
     public function showGuest()
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can view guest
         if($user->role == 'manager')
             return View::make('guest.guest');
@@ -19,7 +19,7 @@
 
     public function showCreateGuest($hotel_id)
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can create guest
         if($user->role == 'manager' )
             return View::make('guest.create_guest')
@@ -78,7 +78,7 @@
     }
     public function showEditGuest($hotel_id,$guest_id)
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can edit guest
         if($user->role == 'manager' )
         {
@@ -148,7 +148,7 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-     if(User::find(auth::id()) == 'manager')
+     if(Auth::user() == 'manager')
      { 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);

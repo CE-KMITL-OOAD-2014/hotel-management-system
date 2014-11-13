@@ -4,7 +4,7 @@ class RoomController extends BaseController {
 
 	public function showRoom()
 	{
-		//only manager can create room
+		//Only manager and staff who can view room can access to room list
 		if(User::find(Auth::id())->role == 'manager' )
 		{	
 			return View::make('room.room')
@@ -26,14 +26,12 @@ class RoomController extends BaseController {
 		if( User::find(Auth::id())->role == 'manager')
 		{
 			return View::make('room.room_calendar')
-			->with('rooms',room::all())
 			->with('hotel_id',$hotel_id);
 		}
 
 		elseif(User::find(Auth::id())->permissions->view_room==1 )
 		{
 			return View::make('room.room_calendar')
-			->with('rooms',room::all())
 			->with('hotel_id',$hotel_id);
 		}
 		//Something went wrong

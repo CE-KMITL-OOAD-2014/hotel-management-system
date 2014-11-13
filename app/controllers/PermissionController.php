@@ -6,7 +6,7 @@
        public function showSetPermission($hotel_id,$staff_id)
        {
         //check manager can set permission staff
-        if( User::find(Auth::id())->role == 'manager' )
+        if( Auth::user()->role == 'manager' )
         {
             return View::make('permission.permission') 
             ->with ('hotel',hotel::find($hotel_id))
@@ -65,7 +65,7 @@
 
     public function showEditPermission($hotel_id,$staff_id)
     {
-        if( User::find(Auth::id())->role == 'manager' )
+        if( Auth::user()->role == 'manager' )
         {
             return View::make('permission.edit_permission') 
             ->with ('hotel',hotel::find($hotel_id))

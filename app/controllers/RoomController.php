@@ -78,11 +78,6 @@ class RoomController extends BaseController {
 			$hotel= hotel::find($hotel_id);
 			$hotel->rooms()->attach($new_room);
 
-            //Set new_room status to Empty
-			$new_status = status::create(array(
-				'status'=>'Empty',
-				'room_id'=>$new_room->id,));
-
             // Redirect to home with success message
 			return Redirect::to('room')->with('success', 'You have successfully create room '.$new_room->roomnumber);
 		}
@@ -176,11 +171,7 @@ class RoomController extends BaseController {
 			$hotel = Hotel::find($hotel_id);
 			$room_choice =array('' => 'Please select room number');
 			foreach ($hotel->rooms as $room) {
-				foreach ($room->statuses as $status) {
-					if($status->status == 'Empty'){
 						$room_choice[$room->id] = $room->roomnumber;
-					}
-				}
 			}
 			$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
 			return View::make('room.change_room_status')

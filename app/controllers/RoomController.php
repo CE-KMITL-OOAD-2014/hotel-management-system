@@ -165,6 +165,7 @@ class RoomController extends BaseController {
 
 		/////This function will display form to change room status
 		public function showCreateRoomstatus($hotel_id){
+			if(Auth::User()->role =='manager'){
 		////populate drop down menu ($room_choice) with empty room of current hotel
 			$hotel = Hotel::find($hotel_id);
 			$room_choice =array('' => 'Please select room number');
@@ -176,6 +177,22 @@ class RoomController extends BaseController {
 			->with('hotel_id',$hotel_id)
 			->with('rooms',$room_choice)
 			->with('status',$status_choice);
+		}
+
+		elseif (Auth::user()->permissions->manage_room == 1) {
+		////populate drop down menu ($room_choice) with empty room of current hotel
+			$hotel = Hotel::find($hotel_id);
+			$room_choice =array('' => 'Please select room number');
+			foreach ($hotel->rooms as $room) {
+						$room_choice[$room->id] = $room->roomnumber;
+			}
+			$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
+			return View::make('room.change_room_status')
+			->with('hotel_id',$hotel_id)
+			->with('rooms',$room_choice)
+			->with('status',$status_choice);
+		}
+		else return Redirect::to('hotel')->with('fail', 'Access deny ');
 		}
 
 

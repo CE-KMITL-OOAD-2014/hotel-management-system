@@ -16,7 +16,7 @@ class HotelController extends BaseController {
 	public function showCreateHotel()
 	{
     //staff can't create hotel
-		if( User::find(Auth::id()) != 'staff' ) 
+		if( Auth::user() != 'staff' ) 
 			return View::make('hotel.create_hotel');
 	}
 
@@ -37,13 +37,13 @@ class HotelController extends BaseController {
 		$validator = Validator::make($userdata, $rules);
 		if ($validator->passes())
 		{
-			$user = User::find(Auth::id());
+			$user = Auth::user();
         // Create hotel in database
 			$new_hotel =  hotel::create($userdata);
 
         //Change role member to manager
 			if( $user->role == 'member'){
-				$user = User::find(Auth::id());
+				$user = Auth::user();
 				$user->role = 'manager';
 				$user->save();
 			}
@@ -67,7 +67,7 @@ class HotelController extends BaseController {
 
 	public function joinHotel($hotel_id)
 	{ 
-		$user = User::find(Auth::id());
+		$user = Auth::user();
 		$hotel = hotel::find($hotel_id);
         //check only member can join hotel 
 		if( $user->role == 'member' ){
@@ -87,7 +87,7 @@ class HotelController extends BaseController {
 	public function showEditHotel($hotel_id)
 	{
     //check only manager can edit hotel
-		if( User::find(Auth::id())->role == 'manager' ){
+		if( Auth::user()->role == 'manager' ){
 			return View::make('hotel.edit_hotel')   
 			->with('hotel',hotel::find($hotel_id));
 		}
@@ -124,7 +124,7 @@ class HotelController extends BaseController {
 	}
 	public function deleteHotel($hotel_id){
 
-		$user=User::find(Auth::id());
+		$user=Auth::user();
 		$hotel=Hotel::find($hotel_id);
 		if( $user->role =='manager' )
 		{

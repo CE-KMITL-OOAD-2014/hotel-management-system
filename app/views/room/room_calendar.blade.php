@@ -124,7 +124,7 @@ padding-top: 5px
 }
 
 .btn {
-  padding: 10px 40px;
+  padding: 10px 38px;
 }
 
 @stop
@@ -132,9 +132,9 @@ padding-top: 5px
 
 <div class="btn-right">
 @if( Auth::user()->role == 'manager')
-{{ HTML::link('change_room_status/'.$hotel_id, 'Create new event',array('class'=>'btn btn-success')) }}
+{{ HTML::link('change_room_status/'.$hotel_id, 'Create new status',array('class'=>'btn btn-success')) }}
 @elseif (Auth::user()->permissions->manage_room == 1)
-{{ HTML::link('change_room_status/'.$hotel_id, 'Create new event',array('class'=>'btn btn-success')) }}
+{{ HTML::link('change_room_status/'.$hotel_id, 'Create new status',array('class'=>'btn btn-success')) }}
 @endif
 </div>
 

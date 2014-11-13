@@ -57,7 +57,6 @@
             'tel' =>  'Required|numeric',
             'passportNo' => 'Required|numeric',
             'citizenCardNo' => 'Required|numeric',
-
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())

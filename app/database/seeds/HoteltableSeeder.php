@@ -11,27 +11,32 @@ class HotelTableSeeder extends Seeder {
 
         // add user using Eloquent
         $hotel = new Hotel;
-
-        $hotel->name = 'Nathakit_hotel';
-        $hotel->address = 'pegionHole';
-        $hotel->tel = '000888';
+        $hotel->name = 'Test101_1';
+        $hotel->address = 'CE-Kmitl';
+        $hotel->tel = '1011';
         $hotel->save();
         $hotel->users()->attach(1);
 
         $hotel = new Hotel;
+        $hotel->name = 'Test101_2';
+        $hotel->address = 'CE-Kmitl';
+        $hotel->tel = '1012';
+        $hotel->save();
+        $hotel->users()->attach(1);
+
+        $hotel = new Hotel;
+        $hotel->name = 'Nathakit_hotel';
+        $hotel->address = 'Muang Nakhonsawan';
+        $hotel->tel = '000888';
+        $hotel->save();
+        $hotel->users()->attach(3);
+
+        $hotel = new Hotel;
         $hotel->name = 'Rungprasert_hotel';
-        $hotel->address = 'DarkHole';
+        $hotel->address = 'Pattaya Chonburi';
         $hotel->tel = '0008889';
         $hotel->save();
-        $hotel->users()->attach(2);
-        
-        // alternativ to eloquent we can also use direct database-methods
-        /*
-        User::create(array(
-            'username'  => 'admin',
-            'password'  => Hash::make('password'),
-            'email'     => 'admin@localhost'
-        ));
-        */
+        $hotel->users()->attach(4);
+
     }
 }

@@ -52,7 +52,7 @@
             <th>#</th>
             <th>Name</th>
             <th>Email</th>
-            <th></th>
+
         </tr>
     </thead>
     @foreach($hotel->users as $user)
@@ -67,7 +67,7 @@
             <td>{{ $staffNumber }}</td>
             <td>{{ $user->name ." ".$user->lastname}}</td>
             <td>{{ $user->email}}</td>
-            <td>{{ HTML::link('edit_permission/'.$hotel->id.'/'.$user->id, 'Edit',array('class' => 'btn btn-default btn-sm'))}}</td>
+           
         </tr>
         <?php $staffNumber++;?>
         @endif

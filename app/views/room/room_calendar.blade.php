@@ -57,34 +57,7 @@
                     */
                     selectable: false,
                     selectHelper: false,
-                /*
-                    when user select timeslot this option code will execute.
-                    It has three arguments. Start,end and allDay.
-                    Start means starting time of event.
-                    End means ending time of event.
-                    allDay means if events is for entire day or not.
-                    */
-                    select: function(start, end, allDay)
-                    {
-
-                        location = '{{URL::to('change_room_status/'.$hotel_id)}}'
-                    /*
-                        if title is enterd calendar will add title and event into fullCalendar.
-                            */
-                        if (title)
-                        {
-                            calendar.fullCalendar('renderEvent',
-                            {
-                                title: title,
-                                start: start,
-                                end: end,
-                                allDay: allDay
-                            },
-                            true // make the event "stick"
-                            );
-                        }
-                        calendar.fullCalendar('unselect');
-                    },
+                   
                 /*
                     editable: true allow user to edit events.
                     */
@@ -96,17 +69,17 @@
                     eventSources:[
                     {
                         url: '{{URL::to('api/room/Occupied/'.$hotel_id)}}',
-                        color: '#3F51B5',
+                        color: '#3498db',
                         textColor : '#ffffff'
                     },
                     {
                         url: '{{URL::to('api/room/Reserved/'.$hotel_id)}}',
-                        color: '#FFB300',
+                        color: '#f39c12',
                         textColor : '#ffffff'
                     },
                     {
                         url: '{{URL::to('api/room/Maintenance/'.$hotel_id)}}',
-                        color: '#F44336',
+                        color: '#e74c3c',
                         textColor : '#ffffff'
                     },
                     ],
@@ -133,7 +106,13 @@
 #calendar {
 max-width: 900px;
 margin: 0 auto;
-padding-top: 60px;
+padding-top: 0px;
+}
+.right {
+max-width: 900px;
+margin: 0 auto;
+text-align : right;
+padding-bottom: 5px;
 }
 
 @stop
@@ -141,8 +120,14 @@ padding-top: 60px;
 
 
 
+<div class="right">
+<span class="label label-info">Occupied</span>
+<span class="label label-warning">Reserved</span>
+<span class="label label-danger">Maintenance</span>
+</div>
 <!--FullCalendar container div-->
-<div id='calendar'></div>
+<div id='calendar'>
+</div>
 @stop
 @section('js')
 {{ HTML::script('js/bootstrap.min.js') }}

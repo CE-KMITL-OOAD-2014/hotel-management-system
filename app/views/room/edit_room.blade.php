@@ -46,8 +46,9 @@
         <div class="col-lg-10 col-lg-offset-2">
             {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
             {{ HTML::link('room','cancel',array('class' => 'btn btn-default')) }}
-            {{ HTML::link('delete_room/'.$hotel->id.'/'.$room->id,'Delete',array('class' => 'btn btn-danger pull-right')) }}
+            {{ HTML::link('delete_room/'.$hotel->id.'/'.$room->id,'Delete',array('class' => 'btn btn-danger pull-right','onclick'=>"return confirm('Are you sure you want to delete this room?')")) }}
         </div>
     </div>
 </div>
+
 @stop

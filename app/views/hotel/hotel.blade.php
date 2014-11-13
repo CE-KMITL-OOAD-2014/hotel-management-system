@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-<h1>This is my hotel!</h1>
+<h1>Hotel</h1>
 
 <?php $users=User::find(Auth::id());?>
 <!-- Staff can't create hotel -->

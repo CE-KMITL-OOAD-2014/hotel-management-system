@@ -108,7 +108,7 @@ max-width: 900px;
 margin: 0 auto;
 padding-top: 0px;
 }
-.right {
+.label_right {
 max-width: 900px;
 margin: 0 auto;
 text-align : right;
@@ -120,7 +120,7 @@ padding-bottom: 5px;
 
 
 
-<div class="right">
+<div class="label_right">
 <span class="label label-info">Occupied</span>
 <span class="label label-warning">Reserved</span>
 <span class="label label-danger">Maintenance</span>

@@ -6,14 +6,14 @@
 @stop
 
 @section('content')
-<h1>This is my guest</h1>
+<h1>Guest</h1>
 
 <?php $users=User::find(Auth::id());?>
 <!--manager can see all guest in his hotels-->
 @if($users->role == 'manager')
 <!--show all hotel manager -->
 @foreach($users->hotels as $hotel)
-<h3> {{ $hotel->name  }}</h3>
+<h3>Hotel : {{ $hotel->name  }}</h3>
 {{ HTML::link('create_guest/'.$hotel->id, 'Create guest',array('class' => 'btn btn-info')) }}
 <!--show all guest each hotel-->
 <?php $guestNumber = 1;?>

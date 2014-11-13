@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-<h1>This is  request</h1>
+<h1>Request</h1>
 
 
 
@@ -14,7 +14,7 @@
 
 @foreach($user->Hotels as $hotel)
 <!-- show all hotels that belong to this manager-->
-<h3>{{ $hotel->name  }}</h3>
+<h3>Hotel : {{ $hotel->name  }}</h3>
 <?php $requestNumber = 1;?>
 <table class="table table-striped table-hover ">
     <thead>

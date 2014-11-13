@@ -17,7 +17,6 @@ $user=User::find(auth::id());
 @foreach($user->hotels as $hotel)
 <h3>{{'Hotel : '.$hotel->name }}</h3>
 {{ HTML::link('create_room/'.$hotel->id, 'Create room',array('class'=>'btn btn-info')) }}
-{{ HTML::link('change_room_status/'.$hotel->id, 'Change room status',array('class'=>'btn btn-warning')) }}
 <?php $roomNumber = 1;?>
 <table class="table table-striped table-hover ">
     <thead>

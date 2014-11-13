@@ -26,7 +26,7 @@ class HotelTest extends TestCase {
 
 			$response = $this->action('POST', 'HotelController@postCreateHotel', $hoteldata);
 			// if success user should be redirected to myhotel
-			$this->assertRedirectedTo('myhotel');
+			$this->assertRedirectedTo('hotel');
 
 			$hotel = Hotel::find(DB::table('hotels')->max('id'));
 			// New hotel's name should be 'testHotelName'

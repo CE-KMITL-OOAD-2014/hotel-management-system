@@ -88,15 +88,15 @@ class AuthController extends BaseController {
         {
             // Create user in database
             $new_user = user::create(array(
-            'name' => Input::get('name'),
-            'lastname' => Input::get('lastname'),
-            'username' => Input::get('username'),
-            'password' => Hash::make(Input::get('password')),
-            'email' => Input::get('email')));
+                'name' => Input::get('name'),
+                'lastname' => Input::get('lastname'),
+                'username' => Input::get('username'),
+                'password' => Hash::make(Input::get('password')),
+                'email' => Input::get('email')));
             // set defualt role to member
             $new_user->role ='member';
             $new_user->save();
-           
+            
 
             // logged user in
             Auth::attempt(array(

@@ -68,7 +68,7 @@ $user=User::find(Auth::id());
 				<div class = "radio">
 					<label>
 						{{ Form::radio('guest','manage_guest','',array('id'=>'radio6')) }}
-						Creat Guest
+						Manage Guest
 					</label>
 				</div>
 			</div>

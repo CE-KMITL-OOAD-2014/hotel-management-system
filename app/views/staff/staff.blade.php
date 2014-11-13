@@ -6,14 +6,14 @@
 @stop
 
 @section('content')
-<h1>Staff list</h1>
+<h1>Staff</h1>
 
 <?php $user=User::find(Auth::id());?>
 <!-- only manager can see edit permission button -->
 @if($user->role == 'manager')
 <!--show all his hotels -->
 @foreach($user->hotels as $hotel)
-<h3>{{ $hotel->name  }}</h3>
+<h3>Hotel : {{ $hotel->name  }}</h3>
 <?php $staffNumber = 1;?>
 <table class="table table-striped table-hover ">
     <thead>

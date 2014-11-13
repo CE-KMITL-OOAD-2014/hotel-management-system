@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<h1>This is my room!</h1>
+<h1>Room</h1>
 
 <?php 
 $user=User::find(auth::id());

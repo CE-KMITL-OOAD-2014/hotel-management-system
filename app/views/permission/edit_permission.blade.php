@@ -111,7 +111,7 @@ $user=User::find(Auth::id());
         {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
         {{ HTML::link('staff','Cancel',array('class' => 'btn btn-default')) }}
         <!--fire this staff -->
-        {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right'))}}
+        {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right','onclick'=>"return confirm('Are you sure you want to fire this staff?')")) }}
     </div>
 </div>
 </fieldset>

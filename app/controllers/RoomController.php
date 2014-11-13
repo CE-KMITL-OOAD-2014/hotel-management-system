@@ -5,13 +5,13 @@ class RoomController extends BaseController {
 	public function showRoom()
 	{
 		//Only manager and staff who can view room can access to room list
-		if(User::find(Auth::id())->role == 'manager' )
+		if(Auth::user()->role == 'manager' )
 		{	
 			return View::make('room.room')
 			->with('rooms',room::all())
 			->with('hotels',hotel::all());
 		}
-		else if(User::find(Auth::id())->permissions->view_room==1)
+		else if(Auth::user()->permissions->view_room==1)
 			return View::make('room.room')
 		->with('rooms',room::all())
 		->with('hotels',hotel::all());
@@ -23,13 +23,13 @@ class RoomController extends BaseController {
 	public function showRoomCalendar($hotel_id)
 	{
 		//Check manager or permission staff can view room calendar
-		if( User::find(Auth::id())->role == 'manager')
+		if(Auth::user()->role == 'manager')
 		{
 			return View::make('room.room_calendar')
 			->with('hotel_id',$hotel_id);
 		}
 
-		elseif(User::find(Auth::id())->permissions->view_room==1 )
+		elseif(Auth::user()->permissions->view_room==1 )
 		{
 			return View::make('room.room_calendar')
 			->with('hotel_id',$hotel_id);
@@ -42,7 +42,7 @@ class RoomController extends BaseController {
 	public function showCreateRoom($hotel_id)
 	{          
 		//Check manager or permission staff can create room
-		if( User::find(Auth::id())->role == 'manager' )
+		if(Auth::user()->role == 'manager' )
 		{
 			return View::make('room.create_room')
 			->with('hotel_id',$hotel_id);
@@ -87,7 +87,7 @@ class RoomController extends BaseController {
 	public function showEditRoom($hotel_id,$room_id)
 	{	
 		//only manager can cedit room.
-		if( User::find(Auth::id())->role == 'manager')
+		if(Auth::user()->role == 'manager')
 		{
 			return View::make('room.edit_room')
 			->with('hotel',hotel::find($hotel_id))
@@ -128,7 +128,7 @@ class RoomController extends BaseController {
 	}
 	public function deleteRoom($hotel_id,$room_id)
 	{
-		if( User::find(Auth::id())->role == 'manager' )
+		if(Auth::user()->role == 'manager' )
 		{
 			$hotel = hotel::find($hotel_id);
 			$room = room::find($room_id);  

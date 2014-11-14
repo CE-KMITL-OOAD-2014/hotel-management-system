@@ -12,8 +12,7 @@
     		  ->with ('users',user::all());
             }
             //Something went wrong
-            else
-                return Redirect::back()->with('fail', 'Access deny ');
+            else return Redirect::to('')->with('fail', 'Access deny ');
     	}
 
 
@@ -23,8 +22,7 @@
             if(Auth::user()->role == 'manager')
                 return View::make('request.request');
             //Something went wrong
-            else
-                return Redirect::back()->with('fail', 'Access deny ');
+            else return Redirect::to('')->with('fail', 'Access deny ');
     	}
 
     	public function staffAccept($hotel_id,$member_id)
@@ -55,8 +53,7 @@
     		return Redirect::to('permission/'.$hotel_id.'/'.$member_id)->with('Set Permission', 'You set permission :'.$member->name);
             }
             //Something went wrong
-            else
-                return Redirect::back()->with('fail', 'Access deny ');
+            else return Redirect::to('')->with('fail', 'Access deny ');
     	}
 
     	public function staffDecline($hotel_id,$member_id)
@@ -72,8 +69,7 @@
     		return Redirect::to('staff')->with('success', 'You have successfully decline '.$member->name.' from '.$hotel->name);
             }
             //Something went wrong
-            else
-                return Redirect::back()->with('fail', 'Access deny ');
+            else return Redirect::to('')->with('fail', 'Access deny ');
             
     	}
 
@@ -92,7 +88,6 @@
             return Redirect::to('staff')->with('success', 'You fire : '.$member->name.' from '.$hotel->name );
             }
             //Something went wrong
-            else
-            return Redirect::back()->with('fail', 'Access deny ');
+             else return Redirect::to('')->with('fail', 'Access deny ');
     	}
     }

@@ -14,7 +14,7 @@
         }
        //Something went wrong
         else
-            return Redirect::to('hotel/')->with('fail', 'access denied');
+            return Redirect::to('')->with('fail', 'access denied');
     }
 
     public function postSetPermission($hotel_id,$staff_id)
@@ -71,7 +71,8 @@
             ->with ('hotel',hotel::find($hotel_id))
             ->with ('staff',user::find($staff_id));
         }
-        else  return Redirect::back()->with('fail', 'Access deny ');
+        //Something went wrong
+        return Redirect::to('')->with('fail', 'access denied');
     }
 
     public function postEditPermission($hotel_id,$staff_id)

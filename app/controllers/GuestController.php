@@ -13,7 +13,7 @@
             return View::make('guest.guest');
         //Somethings went wrong
         else
-            return Redirect::back()->with('fail', 'Access Denied');
+            return Redirect::to('')->with('fail', 'Access Denied');
     }
 
 
@@ -30,7 +30,7 @@
             ->with('hotel_id',$hotel_id);
         // Something went wrong.
         else
-            return Redirect::back()->with('fail', 'Access Denied');
+            return Redirect::to('')->with('fail', 'Access Denied');
     }
 
 
@@ -94,7 +94,7 @@
         }
         //Something went wrong
         else
-             return Redirect::back()->with('fail', 'Access Denied');
+             return Redirect::to('')->with('fail', 'Access Denied');
     }
 
     public function postEditGuest($hotel_id,$guest_id)
@@ -158,6 +158,7 @@
             return Redirect::to('guest')->with('success', 'You delete : '.$guest->name.' from '.$hotel->name );
         }
         //Something went wrong
-        else  return Redirect::to('guest')->with('fail', 'access deny' );
+        else  return Redirect::to('')->with('fail', 'access deny' );
     }
+
 }

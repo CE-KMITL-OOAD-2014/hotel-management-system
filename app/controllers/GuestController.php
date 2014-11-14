@@ -7,9 +7,9 @@
         $user=Auth::user();
         //manager and staff with permission can view guest
         if($user->role == 'manager')
-            
-            return View::make('guest.guest');
-            
+      
+                        
+
         elseif($user->permissions->view_guest==1)
             return View::make('guest.guest');
         //Somethings went wrong

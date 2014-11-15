@@ -27,7 +27,7 @@ class Hotel extends Eloquent  {
 
     public function rooms() 
     {
-        return $this->belongsToMany('Room','room_hotel');
+        return $this->hasMany('Room','room_hotel');
     }
 
     public function requestUsers()

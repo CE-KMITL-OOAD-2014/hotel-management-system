@@ -14,43 +14,43 @@ class RoomTableSeeder extends Seeder {
         $room->roomnumber = '101a';
         $room->price = '101';
         $room->detail = '101a';
+        $room->hotel_id = 1;
         $room->save();
-        $room->hotels()->attach(1);
         
         $room = new Room;
         $room->roomnumber = '101b';
         $room->price = '101';
         $room->detail = '101b';
+        $room->hotel_id = 1;
         $room->save();
-        $room->hotels()->attach(1);
 
         $room = new Room;
         $room->roomnumber = '101c';
         $room->price = '101';
         $room->detail = '101c';
+        $room->hotel_id = 1;
         $room->save();
-        $room->hotels()->attach(1);
 
         $room = new Room;
         $room->roomnumber = '102a';
         $room->price = '102';
         $room->detail = '102a';
+        $room->hotel_id = 2;
         $room->save();
-        $room->hotels()->attach(2);
         
         $room = new Room;
         $room->roomnumber = '102b';
         $room->price = '102';
         $room->detail = '102b';
+        $room->hotel_id = 2;
         $room->save();
-        $room->hotels()->attach(2);
 
         $room = new Room;
         $room->roomnumber = '102c';
         $room->price = '102';
         $room->detail = '102c';
+        $room->hotel_id = 2;
         $room->save();
-        $room->hotels()->attach(2);
 
     }
 }

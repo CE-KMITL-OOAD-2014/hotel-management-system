@@ -7,10 +7,11 @@
         $user=Auth::user();
         //manager and staff with permission can view guest
         if($user->role == 'manager')
-            return View::make('guest.guest');
-                        
+            return View::make('guest.guest')
+        ->with('guests',guest::all());
         elseif($user->permissions->view_guest==1)
-            return View::make('guest.guest');
+            return View::make('guest.guest')
+        ->with('guests',guest::all());
         //Somethings went wrong
         else
             return Redirect::to('')->with('fail', 'Access Denied');
@@ -119,8 +120,8 @@
         'dateOfBirth'=>'Required|before:'.date('o-m-d'),
         'address' =>  'Required',
         'tel' =>  'Required|numeric',
-        'passportNo' => 'Required|numeric',
-        'citizenCardNo' => 'Required|numeric',
+        'passportNo' => 'required_without:citizenCardNo|numeric',
+        'citizenCardNo' => 'required_without:passportNo|numeric',
         );
      $validator = Validator::make($userdata, $rules);
      //replace old value with input

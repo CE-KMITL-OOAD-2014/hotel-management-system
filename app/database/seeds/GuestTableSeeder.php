@@ -6,7 +6,7 @@ class GuestTableSeeder extends Seeder {
         // to use non Eloquent-functions we need to unguard
         Eloquent::unguard();
 
-        // All existing users are deleted !!!
+        // All existing guest are deleted !!!
         DB::table('guests')->delete();
 
         // add user using Eloquent
@@ -24,7 +24,8 @@ class GuestTableSeeder extends Seeder {
         $guest->hotels()->attach(1);
 
         $guest = new Guest;
-        $guest->nationality = 'Female';
+        $guest->gender = 'Female';
+        $guest->nationality = 'Thai';
         $guest->address = 'Thai';
         $guest->name = 'guest_2';
         $guest->lastname = 'guest_2';

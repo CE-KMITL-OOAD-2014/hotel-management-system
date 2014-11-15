@@ -15,7 +15,7 @@ class CreateGuestsTable extends Migration {
 		Schema::create('guests', function($table)
 		{
 			$table->increments('id');
-			$table->string('gender',255);
+			$table->string('gender',10);
 			$table->string('nationality',255);
 			$table->string('name',255);
 			$table->string('lastname', 255);
@@ -24,7 +24,7 @@ class CreateGuestsTable extends Migration {
 			$table->string('tel',255);
 			$table->string('passportNo',255);
 			$table->string('citizenCardNo',255);
-			$table->text('comment');
+			$table->text('comment')->nullable();
 			$table->timestamps();
 		});
 	}

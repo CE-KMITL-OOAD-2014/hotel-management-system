@@ -57,7 +57,7 @@ class RoomController extends BaseController {
 			'roomnumber' => Input::get('roomnumber'),
 			'price' => Input::get('price'),
 			'detail' => Input::get('detail'),
-
+			'hotel_id' => $hotel_id,
 			);
 		$rules = array(
 			'roomnumber' => 'Required',
@@ -70,10 +70,6 @@ class RoomController extends BaseController {
 		{
             // Create user in database
 			$new_room = room::create($userdata);
-
-            //Attach current hotel to newly room 
-			$hotel= hotel::find($hotel_id);
-			$hotel->rooms()->attach($new_room);
 
             // Redirect to home with success message
 			return Redirect::to('room')->with('success', 'You have successfully create room '.$new_room->roomnumber);
@@ -125,17 +121,10 @@ class RoomController extends BaseController {
 	public function deleteRoom($hotel_id,$room_id)
 	{
 		if(Auth::user()->role == 'manager' )
-		{
-			$hotel = hotel::find($hotel_id);
-			$room = room::find($room_id);  
-			//delete relation room and hotel
-			$hotel->rooms()->detach($room);
-			//delete relation room and status
-			$room->statuses()->delete();
-			//delete room
-			$room->delete();
-
-			return Redirect::to('room')->with('success', 'You have successfully delete '.$room->roomnumber.' room.');
+		{	
+			$roomnumber=room::find($room_id)->roomnumber;
+			room::destroy($room_id);
+			return Redirect::to('room')->with('success', 'You have successfully delete '.$roomnumber.' room.');
 		}
 		// Something went wrong.
 		else return Redirect::to('')->with('fail', 'access denied');
@@ -144,28 +133,22 @@ class RoomController extends BaseController {
 	///return json list of room with specific status & hotel
 	
 	public function getRoomJson($room_status,$hotel_id){
-		$hotels=Hotel::find($hotel_id);
+		$hotel=Hotel::find($hotel_id);
 		$event=array();
 
-		foreach ($hotels->rooms as $room) {
-
+		foreach ($hotel->rooms as $room) {
 			foreach($room->statuses as $status){
-
 				if($status->status == $room_status){
-					
 					$json_array = array(
-
 						'title'=>Room::find($status->room_id)->roomnumber,
 						'start'=>$status->start,
 						'end'=>$status->end,
 						'url'=> ('delete_room_status/'.$status->id )
 						);
-
 					array_push($event, $json_array);
 				}
 			}
 		}
-
 			return $event;
 	}
 
@@ -215,7 +198,8 @@ class RoomController extends BaseController {
 			'start_date' => Input::get('start_date'),
 			'end_date' => Input::get('end_date')
 			);
-	
+			
+				////custom validator
 		Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
 		{
 				///$parameters[0] = model 

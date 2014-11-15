@@ -56,8 +56,8 @@
             'dateOfBirth'=>'Required|before:'.date('o-m-d'),
             'address' =>  'Required',
             'tel' =>  'Required|numeric',
-            'passportNo' => 'Required|numeric',
-            'citizenCardNo' => 'Required|numeric',
+            'passportNo' => 'required_without:citizenCardNo|numeric',
+            'citizenCardNo' => 'required_without:passportNo|numeric',
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
@@ -75,7 +75,7 @@
         }
         else
         // Something went wrong.
-            return Redirect::back()->withErrors($validator)->withInput(Input::except('fail'));
+            return Redirect::to('create_guest/'.$hotel_id)->withErrors($validator)->withInput(Input::except('fail'));
     }
     public function showEditGuest($hotel_id,$guest_id)
     {

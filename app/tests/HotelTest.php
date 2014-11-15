@@ -17,7 +17,6 @@ class HotelTest extends TestCase {
 			));
 		$this -> action('POST','AuthController@postRegister',$userdata);
 		
-
 		// provide post input
 		$hoteldata = array(
             'name' => 'testHotelName',

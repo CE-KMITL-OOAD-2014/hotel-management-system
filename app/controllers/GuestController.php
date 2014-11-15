@@ -9,7 +9,6 @@
         if($user->role == 'manager')
             return View::make('guest.guest');
                         
-
         elseif($user->permissions->view_guest==1)
             return View::make('guest.guest');
         //Somethings went wrong

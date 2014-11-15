@@ -155,19 +155,18 @@ class HotelController extends BaseController {
 			}
         //delete hotel
 			$hotel->delete();
-        // check other hotel of manager to change roll
-			$countHotel = 0;
 
+        // check if manager still have hotel left
+			$countHotel = 0;
 			foreach($user->hotels as $hotel ){
 				$countHotel++;
 			}
-        //no hotel change roll to member
+        // if manager have no hotel left the change role to member
 			if($countHotel==0)
 			{
 				$user->role ='member';
 				$user->save();
 			}
-
 			return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
 		}
  		//Something went wrong

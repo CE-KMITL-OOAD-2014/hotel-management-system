@@ -99,12 +99,10 @@ class AuthController extends BaseController {
                 'lastname' => Input::get('lastname'),
                 'username' => Input::get('username'),
                 'password' => Hash::make(Input::get('password')),
-                'email' => Input::get('email')));
-            // set defualt role to member
-            $new_user->role ='member';
+                'email' => Input::get('email'),
+                'role' => 'member'));
             $new_user->save();
             
-
             // logged user in
             Auth::attempt(array(
                 'username' => Input::get('username'),

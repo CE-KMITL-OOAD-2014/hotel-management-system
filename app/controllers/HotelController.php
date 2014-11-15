@@ -148,7 +148,7 @@ class HotelController extends BaseController {
 			foreach($hotel->rooms as $room){
 				App::make('RoomController')->deleteRoom($hotel_id,$room->id);
 			}
-        //delete all staff in hotel
+        //fire all staff in hotel
 			foreach($hotel->users as $staff){
 				if($staff->role == 'staff' )
 					App::make('StaffController')->fireStaff($hotel_id,$staff->id);

@@ -56,7 +56,7 @@
             'dateOfBirth'=>'Required|before:'.date('o-m-d'),
             'address' =>  'Required',
             'tel' =>  'Required|numeric',
-            'passportNo' => 'required_without:citizenCardNo|numeric',
+            'passportNo' => 'required_without:citizenCardNo',
             'citizenCardNo' => 'required_without:passportNo|numeric',
             );
         $validator = Validator::make($userdata, $rules);

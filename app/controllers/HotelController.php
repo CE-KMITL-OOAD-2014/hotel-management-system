@@ -64,7 +64,7 @@ class HotelController extends BaseController {
 		}
 		// Something went wrong.
 		else
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::to('create_hotel')->withErrors($validator)->withInput();
 	}
 
 
@@ -128,7 +128,7 @@ class HotelController extends BaseController {
 		}
     //Something went wrong
 		else 
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::to('edit_hotel/'.$hotel_id)->withErrors($validator)->withInput();
 	}
 	public function deleteHotel($hotel_id){
 
@@ -171,6 +171,6 @@ class HotelController extends BaseController {
 		}
  		//Something went wrong
 		else
-			return Redirect::back()->with('fail', 'access deny' );
+			return Redirect::to('')->with('fail', 'access deny' );
 	}
 }

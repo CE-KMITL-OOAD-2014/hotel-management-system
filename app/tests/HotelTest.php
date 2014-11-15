@@ -62,7 +62,8 @@ class HotelTest extends TestCase {
 			//create second hotel with first hotel's data
 			$response = $this->action('POST', 'HotelController@postCreateHotel', $hoteldata);
 			//User should be redirected to 'create_hotel' to fill form again
-			$this->assertHasOldInput();
 			$this->assertRedirectedTo('create_hotel');
+			$this->assertHasOldInput();
+			
 	}
 }

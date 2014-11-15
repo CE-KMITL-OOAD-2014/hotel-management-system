@@ -219,6 +219,7 @@ class RoomController extends BaseController {
 				return true;
 		});
 
+
 		$rules = array(
 			'roomnumber' => 'Required',
 			'status' => 'Required',
@@ -231,7 +232,11 @@ class RoomController extends BaseController {
 			after:start_date|
 			date_not_overlap:status,room_id,'.$room_data['roomnumber'].','.$room_data['start_date'].','.$room_data['end_date'],
 			);
-		$validator = Validator::make($room_data, $rules);
+
+			////message of custom validator
+			$messages  = array(
+    		'date_not_overlap' => 'Room is not available for this date',);
+		$validator = Validator::make($room_data, $rules,$messages);
 		if ($validator->passes())
 		{
 			$room = Room::find(Input::get('roomnumber'));

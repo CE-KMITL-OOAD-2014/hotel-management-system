@@ -22,7 +22,7 @@ class Room extends Eloquent  {
 
     public function hotels() 
     {
-        return $this->belongTo('Hotel','room_hotel');
+        return $this->belongsToMany('Hotel','room_hotel');
     }
 
     public function statuses() 

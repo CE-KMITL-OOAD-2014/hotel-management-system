@@ -6,7 +6,7 @@
        public function showSetPermission($hotel_id,$staff_id)
        {
         //check manager can set permission staff
-        if( User::find(Auth::id())->role == 'manager' )
+        if( Auth::user()->role == 'manager' )
         {
             return View::make('permission.permission') 
             ->with ('hotel',hotel::find($hotel_id))
@@ -14,7 +14,7 @@
         }
        //Something went wrong
         else
-            return Redirect::to('hotel/')->with('fail', 'access denied');
+            return Redirect::to('')->with('fail', 'access denied');
     }
 
     public function postSetPermission($hotel_id,$staff_id)
@@ -65,13 +65,14 @@
 
     public function showEditPermission($hotel_id,$staff_id)
     {
-        if( User::find(Auth::id())->role == 'manager' )
+        if( Auth::user()->role == 'manager' )
         {
             return View::make('permission.edit_permission') 
             ->with ('hotel',hotel::find($hotel_id))
             ->with ('staff',user::find($staff_id));
         }
-        else  return Redirect::back()->with('fail', 'Access deny ');
+        //Something went wrong
+        return Redirect::to('')->with('fail', 'access denied');
     }
 
     public function postEditPermission($hotel_id,$staff_id)

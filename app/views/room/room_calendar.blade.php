@@ -50,7 +50,7 @@
                     defaultView option used to define which view to show by default,
                     for example we have used agendaWeek.
                         */
-                    defaultView: 'basicWeek',
+                    defaultView: 'month',
                 /*
                     selectable:true will enable user to select datetime slot
                     selectHelper will add helpers for selectable.
@@ -115,10 +115,28 @@ text-align : right;
 padding-bottom: 5px;
 }
 
+.btn-right{
+max-width: 900px;
+margin: 0 auto;
+text-align : right;
+padding-bottom: 0px;
+padding-top: 5px
+}
+
+.btn {
+  padding: 10px 38px;
+}
+
 @stop
 @section('content')
 
-
+<div class="btn-right">
+@if( Auth::user()->role == 'manager')
+{{ HTML::link('change_room_status/'.$hotel_id, 'Create new status',array('class'=>'btn btn-success')) }}
+@elseif (Auth::user()->permissions->manage_room == 1)
+{{ HTML::link('change_room_status/'.$hotel_id, 'Create new status',array('class'=>'btn btn-success')) }}
+@endif
+</div>
 
 <div class="label_right">
 <span class="label label-info">Occupied</span>

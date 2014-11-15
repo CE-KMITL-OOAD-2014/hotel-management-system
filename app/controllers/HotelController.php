@@ -15,9 +15,12 @@ class HotelController extends BaseController {
 
 	public function showCreateHotel()
 	{
-    //staff can't create hotel
-		if( User::find(Auth::id()) != 'staff' ) 
+    	//staff can't create hotel
+		if( Auth::user() != 'staff' ) 
 			return View::make('hotel.create_hotel');
+		//something went wrong
+		else
+			return Redirect::to('')->with('fail', 'access deny' );
 	}
 
 	public function postCreateHotel()
@@ -37,13 +40,13 @@ class HotelController extends BaseController {
 		$validator = Validator::make($userdata, $rules);
 		if ($validator->passes())
 		{
-			$user = User::find(Auth::id());
-        // Create hotel in database
+			$user = Auth::user();
+        	// Create hotel in database
 			$new_hotel =  hotel::create($userdata);
 
-        //Change role member to manager
+        	//Change role member to manager
 			if( $user->role == 'member'){
-				$user = User::find(Auth::id());
+				$user = Auth::user();
 				$user->role = 'manager';
 				$user->save();
 			}
@@ -59,15 +62,15 @@ class HotelController extends BaseController {
         //Redirect to home with success message
 			return Redirect::to('hotel')->with('success', 'You have successfully create hotel');
 		}
+		// Something went wrong.
 		else
-    // Something went wrong.
 			return Redirect::back()->withErrors($validator)->withInput();
 	}
 
 
 	public function joinHotel($hotel_id)
 	{ 
-		$user = User::find(Auth::id());
+		$user = Auth::user();
 		$hotel = hotel::find($hotel_id);
         //check only member can join hotel 
 		if( $user->role == 'member' ){
@@ -82,15 +85,20 @@ class HotelController extends BaseController {
 			$user->requestHotels()->attach($hotel);
 			return Redirect::to('hotel')->with('success', 'You have successfully request to join hotel');
 		}
+		//Something went wrong.
+		else
+			return Redirect::to('')->with('fail', 'access deny' );
 	}
 
 	public function showEditHotel($hotel_id)
 	{
     //check only manager can edit hotel
-		if( User::find(Auth::id())->role == 'manager' ){
+		if( Auth::user()->role == 'manager' ){
 			return View::make('hotel.edit_hotel')   
 			->with('hotel',hotel::find($hotel_id));
 		}
+		else
+			return Redirect::to('')->with('fail', 'access deny' );
 	}
 	public function postEditHotel($hotel_id)
 	{
@@ -124,7 +132,7 @@ class HotelController extends BaseController {
 	}
 	public function deleteHotel($hotel_id){
 
-		$user=User::find(Auth::id());
+		$user=Auth::user();
 		$hotel=Hotel::find($hotel_id);
 		if( $user->role =='manager' )
 		{
@@ -162,7 +170,7 @@ class HotelController extends BaseController {
 
 			return Redirect::to('hotel')->with('success', 'You have successfully edit '.$hotel->name.' hotel.');
 		}
- //Something went wrong
+ 		//Something went wrong
 		else
 			return Redirect::back()->with('fail', 'access deny' );
 	}

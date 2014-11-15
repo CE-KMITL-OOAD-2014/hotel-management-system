@@ -64,6 +64,13 @@ class AuthController extends BaseController {
 
     public function showRegister()
     {
+        // Check if we already logged in
+        if (Auth::check())
+        {
+            // Redirect to homepage
+            return Redirect::to('')->with('fail', 'You are already logged in');
+        }
+
         return View::make('auth.register');
     }
 

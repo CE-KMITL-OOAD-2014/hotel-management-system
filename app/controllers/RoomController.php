@@ -149,7 +149,7 @@ class RoomController extends BaseController {
 				}
 			}
 		}
-			return $event;
+		return $event;
 	}
 
 		/////This function will display form to change room status
@@ -176,10 +176,10 @@ class RoomController extends BaseController {
 			$hotel = Hotel::find($hotel_id);
 			$room_choice =array('' => 'Please select room number');
 			foreach ($hotel->rooms as $room) {
-						$room_choice[$room->id] = $room->roomnumber;
+				$room_choice[$room->id] = $room->roomnumber;
 			}
 			$status_choice = array('' =>'Please select room status','Occupied'=>'Occupied','Reserved'=>'Reserved','Maintenance'=>'Maintenance');
-				
+			
 			return View::make('room.change_room_status')
 			->with('hotel_id',$hotel_id)
 			->with('rooms',$room_choice)
@@ -198,7 +198,7 @@ class RoomController extends BaseController {
 			'start_date' => Input::get('start_date'),
 			'end_date' => Input::get('end_date')
 			);
-			
+		
 				////custom validator
 		Validator::extend('date_not_overlap', function($attribute, $value, $parameters)
 		{
@@ -216,7 +216,7 @@ class RoomController extends BaseController {
 					}
 				}
 			}
-				return true;
+			return true;
 		});
 
 
@@ -234,21 +234,21 @@ class RoomController extends BaseController {
 			);
 
 			////message of custom validator
-			$messages  = array(
-    		'date_not_overlap' => 'Room is not available for this date',);
+		$messages  = array(
+			'date_not_overlap' => 'Room is not available for this date',);
 		$validator = Validator::make($room_data, $rules,$messages);
 		if ($validator->passes())
 		{
 			$room = Room::find(Input::get('roomnumber'));
 			$new_status = status::create(array(
-			'status'=>Input::get('status'),
-			'room_id'=>Input::get('roomnumber'),
-			'start'=>Input::get('start_date'),
-			'end'=>Input::get('end_date')
-			));
+				'status'=>Input::get('status'),
+				'room_id'=>Input::get('roomnumber'),
+				'start'=>Input::get('start_date'),
+				'end'=>Input::get('end_date')
+				));
 			return Redirect::to('hotel/'.$hotel_id)->with('success', 'You have successfully change room status');
-			}
-			else return Redirect::back()->withErrors($validator)->withInput();
+		}
+		else return Redirect::back()->withErrors($validator)->withInput();
 	}
 
 	public function getDeleteRoomstatus($status_id){

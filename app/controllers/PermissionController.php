@@ -3,8 +3,8 @@
 
     class PermissionController extends BaseController {
 
-       public function showSetPermission($hotel_id,$staff_id)
-       {
+     public function showSetPermission($hotel_id,$staff_id)
+     {
         //check manager can set permission staff
         if( Auth::user()->role == 'manager' )
         {
@@ -94,7 +94,7 @@
             $staff->permissions->view_room = 0;
             $staff->permissions->manage_room = 0;  
         }
-     
+        
         //edit permissions staff about guest
         //can view guest
         if(Input::get('guest')=='view_guest'){

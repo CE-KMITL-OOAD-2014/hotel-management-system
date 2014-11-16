@@ -20,15 +20,14 @@ class Room extends Eloquent  {
 	
 	protected $fillable = array('roomnumber','price','detail','hotel_id');
 
-    public function hotels() 
-    {
-        return $this->belongsTo('Hotel');
-    }
+	public function hotels() 
+	{
+		return $this->belongsTo('Hotel');
+	}
 
-    public function statuses() 
-    {
-        return $this->hasMany('Status');
-    }
+	public function statuses() 
+	{
+		return $this->hasMany('Status');
+	}
 
 }
-	

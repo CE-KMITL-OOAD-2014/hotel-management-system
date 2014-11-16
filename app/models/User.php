@@ -1,13 +1,13 @@
-<?php
+	<?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+	use Illuminate\Auth\UserTrait;
+	use Illuminate\Auth\UserInterface;
+	use Illuminate\Auth\Reminders\RemindableTrait;
+	use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+	class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait;
+		use UserTrait, RemindableTrait;
 
 	/**
 	 * The database table used by the model.
@@ -24,19 +24,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 	protected $fillable = array('name','lastname','username', 'password', 'email','role');
 
-    public function permissions() 
-    {
-        return $this->hasOne('Permission');
-    }
+	public function permissions() 
+	{
+		return $this->hasOne('Permission');
+	}
 
-    public function hotels()
-    {
-        return $this->belongsToMany('Hotel','hotel_user');
-    }
-    
-    public function requestHotels()
-    {
-        return $this->belongsToMany('Hotel','request_hotel');
-    }
+	public function hotels()
+	{
+		return $this->belongsToMany('Hotel','hotel_user');
+	}
+	
+	public function requestHotels()
+	{
+		return $this->belongsToMany('Hotel','request_hotel');
+	}
 
 }

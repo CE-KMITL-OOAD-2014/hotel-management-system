@@ -35,8 +35,8 @@
             <td>{{$member->name.' '.$member->lastname}}</td>
             <td>{{ $member->email }}</td>
             <td>{{ $member->workhistory }}</td>
-            <td>{{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'Accept',array('class' => 'btn btn-default btn-sm')) }}</td>
-            <td>{{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'Decline',array('class' => 'btn btn-default btn-sm')) }}</td>
+            <td>{{ HTML::link('accept/'.$hotel->id.'/'.$member->id, 'Accept',array('class' => 'btn btn-default btn-sm','onclick'=>'document.getElementById("accept").className += " disabled"','id'=>'accept')) }}</td>
+            <td>{{ HTML::link('decline/'.$hotel->id.'/'.$member->id, 'Decline',array('class' => 'btn btn-default btn-sm','onclick'=>'document.getElementById("decline").className += " disabled"','id'=>'decline')) }}</td>
         </tr>
         <?php $requestNumber++;?>
         @endforeach

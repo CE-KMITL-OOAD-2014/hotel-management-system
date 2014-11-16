@@ -33,7 +33,7 @@
         <!-- Login & Register button -->
         <div class="control-group">
             <div class="controls">
-                {{ Form::submit('Login', array('class' => 'btn btn-primary')) }}
+                {{ Form::submit('Login', array('class' => 'btn btn-primary','onclick'=>'document.getElementById("submit").className += " disabled"','id'=>'submit')) }}
                 {{ HTML::link('register', 'Register',array('class' => 'btn btn-default')) }}
             </div>
         </div>

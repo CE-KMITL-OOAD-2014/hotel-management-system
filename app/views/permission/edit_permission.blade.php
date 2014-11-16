@@ -108,7 +108,7 @@ $user=User::find(Auth::id());
 </div>
 <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">
-        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Submit', array('class' => 'btn btn-primary','onclick'=>'document.getElementById("submit").className += " disabled"','id'=>'submit')) }}
         {{ HTML::link('staff','Cancel',array('class' => 'btn btn-default')) }}
         <!--fire this staff -->
         {{ HTML::link('fireStaff/'.$hotel->id.'/'.$staff->id,'Fire',array('class' => 'btn btn-danger pull-right','onclick'=>"return confirm('Are you sure you want to fire this staff?')")) }}

@@ -110,7 +110,7 @@
         <!-- Submit button -->
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+                {{ Form::submit('Submit', array('class' => 'btn btn-primary','onclick'=>'document.getElementById("submit").className += " disabled"','id'=>'submit')) }}
                 {{ HTML::link('','cancel',array('class' => 'btn btn-default')) }}
             </div>
         </div>

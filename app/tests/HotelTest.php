@@ -13,10 +13,10 @@ class HotelTest extends TestCase {
 			'username' => 'testUsername',
 			'password' => 'testPassword',
 			'email' => 'test@email.com',
+			'role' => 'member',
 			));
 		$this -> action('POST','AuthController@postRegister',$userdata);
 		
-
 		// provide post input
 		$hoteldata = array(
             'name' => 'testHotelName',
@@ -62,5 +62,7 @@ class HotelTest extends TestCase {
 			$response = $this->action('POST', 'HotelController@postCreateHotel', $hoteldata);
 			//User should be redirected to 'create_hotel' to fill form again
 			$this->assertRedirectedTo('create_hotel');
+			$this->assertHasOldInput();
+			
 	}
 }

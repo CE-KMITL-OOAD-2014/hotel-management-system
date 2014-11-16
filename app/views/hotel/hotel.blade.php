@@ -57,7 +57,7 @@
         <tr>
             <!--show url to room-->
             <!-- check permission staff can view room-->
-            @if($users->permissions->view_room==1&&$users->permissions->manage_room==1)
+            @if($users->permissions->view_room==1)
             <td>{{ HTML::link('hotel/'.$hotel->id,$hotel->name) }}</td>
             @else 
             <!--show text-->

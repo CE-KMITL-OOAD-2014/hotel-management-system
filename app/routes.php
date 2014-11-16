@@ -63,6 +63,6 @@ Route::post('edit_user','AuthController@postEditUser');
 Route::group(array('prefix' => 'api'), function()
 {
 	Route::resource('hotel','HotelController');
-    Route::resource('room/{room_status}/{hotel_id}','RoomController@getRoomJson');
+    Route::any('room/{room_status}/{hotel_id}','RoomController@getRoomJson');
 
 });

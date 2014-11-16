@@ -7,10 +7,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
      */
     public function setUp()
     {
-        parent::setUp();
- 
-        $this->prepareForTests();
-        $this->seed();
+    	parent::setUp();
+    	
+    	$this->prepareForTests();
+
     }
     
 	/**
@@ -32,10 +32,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
  * This will cause the tests to run quickly.
  *
  */
-private function prepareForTests()
-{
-    Artisan::call('migrate');
-    Mail::pretend(true);
-}
-
+	private function prepareForTests()
+	{
+		Artisan::call('migrate');
+		Artisan::call('db:seed');
+		Mail::pretend(true);
+	}
 }

@@ -4,22 +4,23 @@
 
     public function showGuest()
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can view guest
         if($user->role == 'manager')
-            return View::make('guest.guest');
-            
+            return View::make('guest.guest')
+        ->with('guests',guest::all());
         elseif($user->permissions->view_guest==1)
-            return View::make('guest.guest');
+            return View::make('guest.guest')
+        ->with('guests',guest::all());
         //Somethings went wrong
         else
-            return Redirect::back()->with('fail', 'Access Denied');
+            return Redirect::to('')->with('fail', 'Access Denied');
     }
 
 
     public function showCreateGuest($hotel_id)
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can create guest
         if($user->role == 'manager' )
             return View::make('guest.create_guest')
@@ -30,7 +31,7 @@
             ->with('hotel_id',$hotel_id);
         // Something went wrong.
         else
-            return Redirect::back()->with('fail', 'Access Denied');
+            return Redirect::to('')->with('fail', 'Access Denied');
     }
 
 
@@ -55,9 +56,8 @@
             'dateOfBirth'=>'Required|before:'.date('o-m-d'),
             'address' =>  'Required',
             'tel' =>  'Required|numeric',
-            'passportNo' => 'Required|numeric',
-            'citizenCardNo' => 'Required|numeric',
-
+            'passportNo' => 'required_without:citizenCardNo',
+            'citizenCardNo' => 'required_without:passportNo|numeric',
             );
         $validator = Validator::make($userdata, $rules);
         if ($validator->passes())
@@ -75,11 +75,11 @@
         }
         else
         // Something went wrong.
-            return Redirect::back()->withErrors($validator)->withInput(Input::except('fail'));
+            return Redirect::to('create_guest/'.$hotel_id)->withErrors($validator)->withInput(Input::except('fail'));
     }
     public function showEditGuest($hotel_id,$guest_id)
     {
-        $user=User::find(Auth::id());
+        $user=Auth::user();
         //manager and staff with permission can edit guest
         if($user->role == 'manager' )
         {
@@ -95,7 +95,7 @@
         }
         //Something went wrong
         else
-             return Redirect::back()->with('fail', 'Access Denied');
+             return Redirect::to('')->with('fail', 'Access Denied');
     }
 
     public function postEditGuest($hotel_id,$guest_id)
@@ -113,15 +113,14 @@
         'citizenCardNo'=>Input::get('citizenCardNo'),
         );
      $rules = array(
-        
         'nationality'=>'Required|alpha',
         'name' => 'Required|alpha',
         'lastname' =>'Required|alpha',
         'dateOfBirth'=>'Required|before:'.date('o-m-d'),
         'address' =>  'Required',
         'tel' =>  'Required|numeric',
-        'passportNo' => 'Required|numeric',
-        'citizenCardNo' => 'Required|numeric',
+        'passportNo' => 'required_without:citizenCardNo',
+        'citizenCardNo' => 'required_without:passportNo|numeric',
         );
      $validator = Validator::make($userdata, $rules);
      //replace old value with input
@@ -149,7 +148,7 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-     if(User::find(auth::id()) == 'manager')
+     if(Auth::user() == 'manager')
      { 
             $hotel = Hotel::find($hotel_id);
             $guest = Guest::find($guest_id);
@@ -159,6 +158,7 @@
             return Redirect::to('guest')->with('success', 'You delete : '.$guest->name.' from '.$hotel->name );
         }
         //Something went wrong
-        else  return Redirect::to('guest')->with('fail', 'access deny' );
+        else  return Redirect::to('')->with('fail', 'access deny' );
     }
+
 }

@@ -64,6 +64,13 @@ class AuthController extends BaseController {
 
     public function showRegister()
     {
+        // Check if we already logged in
+        if (Auth::check())
+        {
+            // Redirect to homepage
+            return Redirect::to('')->with('fail', 'You are already logged in');
+        }
+
         return View::make('auth.register');
     }
 
@@ -92,12 +99,10 @@ class AuthController extends BaseController {
                 'lastname' => Input::get('lastname'),
                 'username' => Input::get('username'),
                 'password' => Hash::make(Input::get('password')),
-                'email' => Input::get('email')));
-            // set defualt role to member
-            $new_user->role ='member';
+                'email' => Input::get('email'),
+                'role' => 'member'));
             $new_user->save();
             
-
             // logged user in
             Auth::attempt(array(
                 'username' => Input::get('username'),

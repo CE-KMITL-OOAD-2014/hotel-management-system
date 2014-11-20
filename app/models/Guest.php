@@ -22,7 +22,7 @@ class Guest extends Eloquent  {
 		'dateOfBirth','address','tel','passportNo','citizenCardNo','comment');
 
 	public function hotels()
-    {
-        return $this->belongsToMany('Hotel','guest_hotel');
-    }
+	{
+		return $this->belongsToMany('Hotel','guest_hotel');
+	}
 }

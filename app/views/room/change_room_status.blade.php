@@ -53,7 +53,7 @@
 <div class="form-group">
   <div class="col-lg-10 col-lg-offset-3">
     {{ Form::submit('Submit', array('class' => 'btn btn-primary','onclick'=>'document.getElementById("submit").className += " disabled"','id'=>'submit')) }}
-    {{ HTML::link('room','cancel',array('class' => 'btn btn-default')) }}
+    {{ HTML::link('hotel/'.$hotel_id,'cancel',array('class' => 'btn btn-default')) }}
   </div>
 </div>
 </fieldset>

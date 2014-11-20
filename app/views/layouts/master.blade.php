@@ -57,7 +57,6 @@
     @endif
     @endif
     @endif
-    <li class="dropdown">
     </ul>
 
     <ul class="nav navbar-nav navbar-right">

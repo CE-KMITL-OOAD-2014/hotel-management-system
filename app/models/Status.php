@@ -19,10 +19,9 @@ class Status extends Eloquent  {
 	
 	protected $fillable = array('status','room_id','start','end');
 
-    public function rooms() 
-    {
-        return $this->belongsTo('Room');
-    }
+	public function rooms() 
+	{
+		return $this->belongsTo('Room');
+	}
 
 }
-	

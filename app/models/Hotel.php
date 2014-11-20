@@ -38,6 +38,6 @@ class Hotel extends Eloquent  {
     public function guests()
     {
     	return $this->belongsToMany('Guest','guest_hotel');
-   	}
+    }
 
 }

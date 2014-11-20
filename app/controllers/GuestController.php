@@ -148,7 +148,7 @@
     public function deleteGuest($hotel_id,$guest_id)
     {
         //only manager can use delete guest
-       if(Auth::user() == 'manager')
+       if(Auth::user()->role == 'manager')
        { 
         $hotel = Hotel::find($hotel_id);
         $guest = Guest::find($guest_id);
